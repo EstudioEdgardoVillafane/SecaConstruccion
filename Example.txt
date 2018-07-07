@@ -1,0 +1,19 @@
+handleSendForm() <------- HTML
+boolLoQueSea : bool <------ TS
+intLoQueSea : number<------ TS
+..............................
+aux <---------------------- TS
+
+COMPONENTS/BACKEND
+COMPONENTS/FRONTEND
+SERVICES/FRONTEND
+SERVICES/BACKEND
+MODELS
+-
+.
+..............................
+
+/** Comment to something 
+**  @param Object : This is for Object
+**/
+

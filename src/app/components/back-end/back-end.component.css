@@ -1,0 +1,30 @@
+.full-right{
+    flex: 1 1 auto;
+}
+.container-sidenav{
+    flex: 1;
+}
+mat-sidenav{
+    background-color: #494949;
+}
+
+mat-list-item{
+    color:white!important;
+}
+.text-white{
+    color:white!important;
+}
+.text-black{
+    color:black!important;
+}
+mat-toolbar{
+    background-color: rgb(242, 242, 242);
+}
+.backend{
+    color:rgb(19, 19, 19)!important;
+    min-height: 100vh;
+    background-color:rgb(230, 230, 230);;
+    padding-left:50px;
+    padding-right:50px;
+    padding-top: 25px;
+}
