@@ -3,3 +3,15 @@
 body{
     margin : 0px;
 }
+.mb{
+    margin-bottom: 15px!important;
+}
+.mt{
+    margin-top: 15px!important;
+}
+.mr{
+    margin-right: 15px!important;
+}
+.ml{
+    margin-left: 15px!important;
+}

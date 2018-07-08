@@ -1,0 +1,28 @@
+<div class="form-container">
+  <h1 class="text-center">Agregar un producto</h1>
+    <mat-form-field>
+      <input matInput placeholder="Nombre del producto">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Slug del producto">
+      </mat-form-field>
+  
+    <mat-form-field>
+      <textarea matInput placeholder="Descripción del producto"></textarea>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <input matInput placeholder="Codigo">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" (keyup)="applyFilter($event.target.value)">
+      </mat-form-field>
+      
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of listFilter" [value]="option">{{option}}</mat-option>
+      </mat-autocomplete>
+      
+      
+
+  </div>
+  

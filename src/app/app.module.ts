@@ -2,7 +2,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatAutocompleteModule,
   MatBadgeModule,
@@ -61,6 +61,8 @@ import { UserService } from './services/back-end/user.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ProductComponent } from './components/back-end/product/product.component';
 import { ProductService } from './services/back-end/product.service';
+import { StatusProductPipe } from './status-product.pipe';
+import { StoreProductComponent } from './components/back-end/product/store-product/store-product.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ import { ProductService } from './services/back-end/product.service';
     FrontEndComponent,
     BackEndComponent,
     ProductComponent,
+    StatusProductPipe,
+    StoreProductComponent,
  
   ],
   imports: [
@@ -112,7 +116,8 @@ import { ProductService } from './services/back-end/product.service';
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  ReactiveFormsModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

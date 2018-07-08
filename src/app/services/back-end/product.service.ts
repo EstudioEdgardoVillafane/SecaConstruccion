@@ -21,7 +21,7 @@ export class ProductService {
     return this.listProducts = this.fireBase.list('product');
   }
   
-  insertUser(userObject: User) {
+  insertUser(productObject) {
     // this.listUser.push ({
     //   user: userObject.user,
     //   position: userObject.position,
@@ -29,13 +29,29 @@ export class ProductService {
     // });
   }
 
-  updateUser(userObject) {
+  updateUser(productObject) {
     // this.listUser.update(userObject.$key, {
     //   user: userObject.user,
     //   password: userObject.password
     // });
   }
-
+  updateStatus(productObject){
+     this.listProducts.update(productObject.$key, {
+        status: 0,
+      });
+  }
+  duplicateProduct(productObject : Product){
+    this.listProducts.push({
+      name: productObject.name,
+      slug: productObject.slug,
+      price: productObject.price,
+      description: productObject.description,
+      seccion: productObject.seccion,
+      categoria: productObject.categoria,
+      option: productObject.option,
+      status: productObject.status
+    });
+  }
   deleteUser($key) {
     this.listProducts.remove($key);
   }

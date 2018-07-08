@@ -12,10 +12,13 @@ import { Product } from '../../../model/product';
 export class ProductComponent implements OnInit {
 
   constructor(private productService : ProductService) { }
+
   listProducts : any[];
-  displayedColumns: string[] = ['name', 'slug', 'price', 'seccion', 'categoria','option','description'];
+  displayedColumns: string[] = ['select','name', 'slug', 'price', 'seccion', 'categoria','option','description'];
+
   dataSource = new MatTableDataSource<Product>();
   selection = new SelectionModel<Product>(true, []);
+
   ngOnInit() {
     this.productService.getProduct()
     .snapshotChanges()
@@ -24,10 +27,38 @@ export class ProductComponent implements OnInit {
       item.forEach(element => {
         let x = element.payload.toJSON();
         x["$key"] = element.key;
-        this.listProducts.push(x);
+        if(x["status"] != 0){
+          this.listProducts.push(x);
+        }
       });
     this.dataSource.data = this.listProducts;
     })
   }
 
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  handleDestroy(){
+    let data = this.selection.selected;
+    data.forEach(element => { 
+      this.productService.updateStatus(element);
+    });
+  }
+  
+  handleDuplicate(){
+    let data = this.selection.selected;
+    data.forEach(element => {
+      this.productService.duplicateProduct(element);
+    });
+  }
 }
