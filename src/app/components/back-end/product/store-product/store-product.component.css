@@ -4,3 +4,9 @@
 .text-center{
     text-align: center;
 }
+.addAny{
+    cursor: pointer;
+}
+.rg{
+    float: right;
+}

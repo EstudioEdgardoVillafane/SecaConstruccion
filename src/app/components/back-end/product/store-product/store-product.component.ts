@@ -5,6 +5,9 @@ import {map, startWith} from 'rxjs/operators';
 import { ProductService } from '../../../../services/back-end/product.service';
 import { MatTableDataSource } from '@angular/material';
 import { Product } from '../../../../model/product';
+import { SeccionService } from '../../../../services/back-end/seccion.service';
+import { Seccion } from '../../../../model/seccion';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-store-product',
@@ -12,10 +15,22 @@ import { Product } from '../../../../model/product';
   styleUrls: ['./store-product.component.css']
 })
 export class StoreProductComponent implements OnInit {
-  constructor(private productService : ProductService) { }
   
+  constructor(private productService : ProductService, private seccionService : SeccionService, public snackBar: MatSnackBar) { }
+  
+  booleanAdd : boolean;
+  booleanNextPage : boolean = true;
+
   listProducts : any[];
+  listSeccion : any[];
+  listSeccionFilter : any[];
   listFilter : any[];
+
+  productToAdd = new Product();
+  seccionToAdd = new Seccion();
+
+  aux : number;
+
   ngOnInit() {
     this.productService.getProduct()
     .snapshotChanges()
@@ -29,14 +44,87 @@ export class StoreProductComponent implements OnInit {
         }
       });
     })
+    this.seccionService.getSeccion()
+    .snapshotChanges()
+    .subscribe(item => {
+      this.listSeccion = [];
+      item.forEach(element => {
+        let x = element.payload.toJSON();
+        x["$key"] = element.key;
+        if(x["status"] != 0){
+          this.listSeccion.push(x);
+        }
+      });
+    })
   }
 
+  /** This is a filter to the input of the seccion's */
   applyFilter(filterValue: string) {
     this.listFilter = [];
-    this.listProducts.forEach(element => {
+    this.listSeccion.forEach(element => {
       if(element.name.toUpperCase().match(filterValue.toUpperCase())){
         this.listFilter.push(element.name);
       }
     });
+    this.booleanAdd = (this.listFilter.length == 0) ? true : false;
   }
+
+/** We are adding a new seccion on firebase, this function use addSeccion() */
+  handleAddSeccion(){
+    (this.productToAdd.seccion != null) ? this.addSeccion() : "nothing";
+  }
+  addSeccion(){
+    this.seccionService.insertSeccion(this.productToAdd);
+    this.booleanAdd = false;
+  }
+
+  /** Next page to store */
+  goNextPage(){
+    
+    if(this.booleanAdd == true){
+      this.openSnackBar("Ingrese una seccion al producto o agrege una seccion nueva", "Ok!");
+    }else{
+      this.aux = 0;
+      (this.productToAdd.name == null) ? this.openSnackBar("Ingrese un nombre al producto", "Ok!") : this.aux++;
+      (this.productToAdd.slug == null) ? this.openSnackBar("Ingrese un slug al producto", "Ok!") : this.aux++;
+      (this.productToAdd.description == null) ? this.openSnackBar("Ingrese una descripción al producto", "Ok!") : this.aux++;
+      (this.productToAdd.code == null) ? this.openSnackBar("Ingrese un codigo al producto", "Ok!") : this.aux++;
+      (this.productToAdd.seccion == null) ? this.openSnackBar("Ingrese una seccion al producto", "Ok!") : 
+      //  We are saving the seccion to filter categories
+      this.seccionService.getJsonForName(this.productToAdd.seccion,this.listSeccion)
+      .subscribe((data) => {
+        this.filterSeccion(data.$key)
+      })
+     
+      this.aux++;
+      if(this.aux == 5){
+        this.booleanNextPage = false;
+      }
+    }
+  }
+  
+  filterSeccion(key){
+    this.seccionService.getSeccionFilterToAddCategoria(key)
+    .snapshotChanges()
+    .subscribe(item => {
+      this.listSeccionFilter = [];
+      item.forEach(element => {
+        let x = element.payload.toJSON();
+        this.listSeccionFilter.push(x);
+      });
+      console.log(this.listSeccionFilter)
+    })
+    
+  }
+  
+  handleAddCategoria(){
+   this.seccionService.insertCategoria("algo")
+  }
+  /** SnackBar Alert */
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 6000,
+    });
+  }
+
 }

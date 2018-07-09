@@ -1,28 +1,47 @@
-<div class="form-container">
+
+<div class="form-container" *ngIf="booleanNextPage">
   <h1 class="text-center">Agregar un producto</h1>
     <mat-form-field>
-      <input matInput placeholder="Nombre del producto">
+      <input matInput placeholder="Nombre del producto" [(ngModel)]="productToAdd.name" name="name">
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Slug del producto">
+        <input matInput placeholder="Slug del producto" [(ngModel)]="productToAdd.slug" name="slug">
       </mat-form-field>
   
     <mat-form-field>
-      <textarea matInput placeholder="Descripción del producto"></textarea>
+      <textarea matInput placeholder="Descripción del producto" [(ngModel)]="productToAdd.description" name="description"></textarea>
     </mat-form-field>
   
     <mat-form-field>
-      <input matInput placeholder="Codigo">
+      <input matInput placeholder="Codigo" [(ngModel)]="productToAdd.code" name="code">
     </mat-form-field>
     <mat-form-field>
-        <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" (keyup)="applyFilter($event.target.value)">
+        <input type="text"  placeholder="Seleccionce seccion"  matInput [matAutocomplete]="auto" (keyup)="applyFilter($event.target.value)" [(ngModel)]="productToAdd.seccion" name="name">
+        <mat-icon *ngIf="booleanAdd" matSuffix class="addAny" (click)="handleAddSeccion()">add_circle_outline</mat-icon>
       </mat-form-field>
       
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of listFilter" [value]="option">{{option}}</mat-option>
       </mat-autocomplete>
-      
-      
+   
+   <button mat-raised-button color="primary" (click)="goNextPage()"> Siguiente </button>
 
   </div>
-  
+  <div class="form-container" *ngIf="!booleanNextPage">
+    <span class="rg">
+    <input matInput placeholder="Agregar categoria..." type="text" name="">
+    <button mat-raised-button color="primary"><mat-icon>add</mat-icon></button>
+    </span>  
+    <mat-expansion-panel (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+        <mat-panel-title>
+        No hay categorias
+        </mat-panel-title>
+        <mat-panel-description>
+        <a (click)="handleAddCategoria()">Agregar</a>
+        </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>I'm visible because I am open</p>
+      </mat-expansion-panel>
+  </div>

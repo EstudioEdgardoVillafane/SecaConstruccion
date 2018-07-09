@@ -61,8 +61,8 @@ import { UserService } from './services/back-end/user.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ProductComponent } from './components/back-end/product/product.component';
 import { ProductService } from './services/back-end/product.service';
-import { StatusProductPipe } from './status-product.pipe';
 import { StoreProductComponent } from './components/back-end/product/store-product/store-product.component';
+import { SeccionService } from './services/back-end/seccion.service';
 
 @NgModule({
   declarations: [
@@ -70,7 +70,6 @@ import { StoreProductComponent } from './components/back-end/product/store-produ
     FrontEndComponent,
     BackEndComponent,
     ProductComponent,
-    StatusProductPipe,
     StoreProductComponent,
  
   ],
@@ -119,7 +118,10 @@ import { StoreProductComponent } from './components/back-end/product/store-produ
   MatFormFieldModule,
   ReactiveFormsModule
   ],
-  providers: [ProductService],
+  providers: [
+    ProductService,
+    SeccionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
