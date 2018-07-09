@@ -1,28 +1,62 @@
-<div class="form-container">
+
+<div class="form-container" *ngIf="booleanNextPage">
   <h1 class="text-center">Agregar un producto</h1>
     <mat-form-field>
-      <input matInput placeholder="Nombre del producto">
+      <input matInput placeholder="Nombre del producto" [(ngModel)]="productToAdd.name" name="name">
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Slug del producto">
+        <input matInput placeholder="Slug del producto" [(ngModel)]="productToAdd.slug" name="slug">
       </mat-form-field>
   
     <mat-form-field>
-      <textarea matInput placeholder="Descripción del producto"></textarea>
+      <textarea matInput placeholder="Descripción del producto" [(ngModel)]="productToAdd.description" name="description"></textarea>
     </mat-form-field>
   
     <mat-form-field>
-      <input matInput placeholder="Codigo">
+      <input matInput placeholder="Codigo" [(ngModel)]="productToAdd.code" name="code">
     </mat-form-field>
     <mat-form-field>
-        <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" (keyup)="applyFilter($event.target.value)">
+        <input type="text"  placeholder="Seleccionce seccion"  matInput [matAutocomplete]="auto" (keyup)="applyFilter($event.target.value)" [(ngModel)]="productToAdd.seccion" name="name">
+        <mat-icon *ngIf="booleanAdd" matSuffix class="addAny" (click)="handleAddSeccion()">add_circle_outline</mat-icon>
       </mat-form-field>
       
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of listFilter" [value]="option">{{option}}</mat-option>
       </mat-autocomplete>
-      
-      
+   
+   <button mat-raised-button color="primary" (click)="goNextPage()"> Siguiente </button>
 
+  </div>
+  <div class="form-container" *ngIf="!booleanNextPage">
+    <mat-form-field>
+
+    <input matInput placeholder="Agregar categoria..." type="text" [(ngModel)]="categoriaToAdd" name="name">
+    <mat-icon matSuffix (click)="handleAddCategoria()" class="addAny">add</mat-icon>
+  </mat-form-field>  
+
+    <mat-expansion-panel  *ngFor="let x of listSeccionFilter"  [expanded]="auxCheckbox === x.$key" (closed)="handleClosePanel()" (opened)="handleCategoriaSelected(x)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+
+            {{x.name}}
+            
+        </mat-panel-title>
+        <mat-panel-description>
+        <a>Categoria</a>
+        </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+
+        <input type="text" matInput placeholder="Ingrese una opcion para agregar" [(ngModel)]="optionToAdd" name="option">
+        <mat-icon matSuffix (click)="handleAddOption()" class="addAny">add</mat-icon>
+      </mat-form-field>
+      <mat-list>
+          <mat-list-item *ngFor="let option of listOption">
+            <mat-checkbox value="{{option.$key}}"> {{option.name}}</mat-checkbox>
+          </mat-list-item>
+      </mat-list>        
+    
+
+    </mat-expansion-panel>
   </div>
   

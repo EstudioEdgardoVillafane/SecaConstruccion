@@ -7,5 +7,9 @@ export class Product {
     seccion : string;
     categoria : string;
     option : string;
+    order : number;
+    favorite : number;
+    etiqueta : any;
+    code : string;
     status : number;
 }
