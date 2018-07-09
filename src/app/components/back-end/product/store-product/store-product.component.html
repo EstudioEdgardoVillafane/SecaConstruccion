@@ -28,20 +28,35 @@
 
   </div>
   <div class="form-container" *ngIf="!booleanNextPage">
-    <span class="rg">
-    <input matInput placeholder="Agregar categoria..." type="text" name="">
-    <button mat-raised-button color="primary"><mat-icon>add</mat-icon></button>
-    </span>  
-    <mat-expansion-panel (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false">
+    <mat-form-field>
+
+    <input matInput placeholder="Agregar categoria..." type="text" [(ngModel)]="categoriaToAdd" name="name">
+    <mat-icon matSuffix (click)="handleAddCategoria()" class="addAny">add</mat-icon>
+  </mat-form-field>  
+
+    <mat-expansion-panel  *ngFor="let x of listSeccionFilter"  [expanded]="auxCheckbox === x.$key" (closed)="handleClosePanel()" (opened)="handleCategoriaSelected(x)">
         <mat-expansion-panel-header>
-        <mat-panel-title>
-        No hay categorias
+          <mat-panel-title>
+
+            {{x.name}}
+            
         </mat-panel-title>
         <mat-panel-description>
-        <a (click)="handleAddCategoria()">Agregar</a>
+        <a>Categoria</a>
         </mat-panel-description>
         </mat-expansion-panel-header>
-        <p>I'm visible because I am open</p>
-      </mat-expansion-panel>
+        <mat-form-field>
+
+        <input type="text" matInput placeholder="Ingrese una opcion para agregar" [(ngModel)]="optionToAdd" name="option">
+        <mat-icon matSuffix (click)="handleAddOption()" class="addAny">add</mat-icon>
+      </mat-form-field>
+      <mat-list>
+          <mat-list-item *ngFor="let option of listOption">
+            <mat-checkbox value="{{option.$key}}"> {{option.name}}</mat-checkbox>
+          </mat-list-item>
+      </mat-list>        
+    
+
+    </mat-expansion-panel>
   </div>
+  

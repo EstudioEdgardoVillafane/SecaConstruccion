@@ -21,6 +21,7 @@ export class StoreProductComponent implements OnInit {
   booleanAdd : boolean;
   booleanNextPage : boolean = true;
 
+  listOption : any[];
   listProducts : any[];
   listSeccion : any[];
   listSeccionFilter : any[];
@@ -28,8 +29,13 @@ export class StoreProductComponent implements OnInit {
 
   productToAdd = new Product();
   seccionToAdd = new Seccion();
+  categoriaToAdd;
+  optionToAdd;
 
   aux : number;
+  auxString;
+  keySeccionSelected : string;
+  keyCategoriaSelected : string;
 
   ngOnInit() {
     this.productService.getProduct()
@@ -93,6 +99,7 @@ export class StoreProductComponent implements OnInit {
       //  We are saving the seccion to filter categories
       this.seccionService.getJsonForName(this.productToAdd.seccion,this.listSeccion)
       .subscribe((data) => {
+        this.keySeccionSelected = data.$key;
         this.filterSeccion(data.$key)
       })
      
@@ -110,16 +117,47 @@ export class StoreProductComponent implements OnInit {
       this.listSeccionFilter = [];
       item.forEach(element => {
         let x = element.payload.toJSON();
+        x["$key"] = element.key;
         this.listSeccionFilter.push(x);
       });
-      console.log(this.listSeccionFilter)
     })
     
   }
-  
+  /** Insert a new categoria */
   handleAddCategoria(){
-   this.seccionService.insertCategoria("algo")
+   this.seccionService.insertCategoria(this.categoriaToAdd);
   }
+  /** Insert a new option */
+  handleAddOption(){
+    this.seccionService.insertOption(this.optionToAdd);
+  }
+
+ ck(id){
+  this.auxString = document.getElementById('c'+id);
+  this.auxString.checked = false;
+ }
+ 
+  auxCheckbox;
+  handleCategoriaSelected(key){
+    
+    this.auxCheckbox = key.$key;
+    this.keyCategoriaSelected = key.$key;
+    this.filterOption();
+  }
+
+  filterOption(){
+    this.seccionService.getCategoriaFilterToAddOption(this.keySeccionSelected,this.keyCategoriaSelected)
+    .snapshotChanges()
+    .subscribe(item => {
+      this.listOption = [];
+      item.forEach(element => {
+        let x = element.payload.toJSON();
+        x["$key"] = element.key;
+        this.listOption.push(x);
+      });
+    })
+  }
+  
   /** SnackBar Alert */
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
