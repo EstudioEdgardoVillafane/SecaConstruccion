@@ -8,25 +8,27 @@ import { User } from '../../model/user';
 })
 export class UserService {
 
-  listUser: AngularFireList<any>;
-
   constructor( private fireBase: AngularFireDatabase ) { }
-
+  
+  listUser: AngularFireList<any>;
+  selectKeyUser = new User();
   getUser() {
     return this.listUser = this.fireBase.list('user');
   }
 
   insertUser(userObject: User) {
     this.listUser.push ({
-      name: userObject.user,
-      password: userObject.password
+      user: userObject.user,
+      password: userObject.password,
+      mail: userObject.mail
     });
   }
 
   updateUser(userObject) {
     this.listUser.update(userObject.$key, {
       user: userObject.user,
-      password: userObject.password
+      password: userObject.password,
+      mail: userObject.mail
     });
   }
 

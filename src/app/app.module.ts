@@ -5,43 +5,43 @@ import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatAutocompleteModule,
-  MatBadgeModule,
-  MatBottomSheetModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCardModule,
-  MatCheckboxModule,
-  MatChipsModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatDividerModule,
-  MatExpansionModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatRadioModule,
-  MatRippleModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatSliderModule,
-  MatSlideToggleModule,
-  MatSnackBarModule,
-  MatSortModule,
-  MatStepperModule,
-  MatTableModule,
-  MatTabsModule,
-  MatToolbarModule,
-  MatTooltipModule,
-  MatTreeModule,
-  MatFormFieldModule,
-  matFormFieldAnimations,
-} from '@angular/material';
+          MatBadgeModule,
+          MatBottomSheetModule,
+          MatButtonModule,
+          MatButtonToggleModule,
+          MatCardModule,
+          MatCheckboxModule,
+          MatChipsModule,
+          MatDatepickerModule,
+          MatDialogModule,
+          MatDividerModule,
+          MatExpansionModule,
+          MatGridListModule,
+          MatIconModule,
+          MatInputModule,
+          MatListModule,
+          MatMenuModule,
+          MatNativeDateModule,
+          MatPaginatorModule,
+          MatProgressBarModule,
+          MatProgressSpinnerModule,
+          MatRadioModule,
+          MatRippleModule,
+          MatSelectModule,
+          MatSidenavModule,
+          MatSliderModule,
+          MatSlideToggleModule,
+          MatSnackBarModule,
+          MatSortModule,
+          MatStepperModule,
+          MatTableModule,
+          MatTabsModule,
+          MatToolbarModule,
+          MatTooltipModule,
+          MatTreeModule,
+          MatFormFieldModule,
+          matFormFieldAnimations
+        } from '@angular/material';
 
 // FireBase Configuration
 
@@ -50,19 +50,24 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 
-//  Componenets
-
-import { AppComponent } from './app.component';
 //  Services
+import { UserService } from './services/back-end/user.service';
+import { ProductService } from './services/back-end/product.service';
 
+//  Componenets
+import { AppComponent } from './app.component';
 import { FrontEndComponent } from './components/front-end/front-end.component';
 import { BackEndComponent } from './components/back-end/back-end.component';
-import { UserService } from './services/back-end/user.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ProductComponent } from './components/back-end/product/product.component';
-import { ProductService } from './services/back-end/product.service';
 import { StatusProductPipe } from './status-product.pipe';
 import { StoreProductComponent } from './components/back-end/product/store-product/store-product.component';
+import { UserComponent } from './components/back-end/user/user.component';
+import { UpdateUserComponent } from './components/back-end/user/update-user/update-user.component';
+import { StoreUserComponent } from './components/back-end/user/store-user/store-user.component';
+import { ClientComponent } from './components/back-end/client/client.component';
+import { StoreClientComponent } from './components/back-end/client/store-client/store-client.component';
+import { UpdateClientComponent } from './components/back-end/client/update-client/update-client.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +77,12 @@ import { StoreProductComponent } from './components/back-end/product/store-produ
     ProductComponent,
     StatusProductPipe,
     StoreProductComponent,
+    UserComponent,
+    UpdateUserComponent,
+    StoreUserComponent,
+    ClientComponent,
+    StoreClientComponent,
+    UpdateClientComponent
  
   ],
   imports: [
@@ -119,7 +130,10 @@ import { StoreProductComponent } from './components/back-end/product/store-produ
   MatFormFieldModule,
   ReactiveFormsModule
   ],
-  providers: [ProductService],
+  providers: [
+    ProductService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

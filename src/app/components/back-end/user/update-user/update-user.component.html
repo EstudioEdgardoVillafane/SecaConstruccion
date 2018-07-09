@@ -1,0 +1,34 @@
+<mat-grid-list cols="3" rowHeight="500px" >
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile>
+
+    <div class="example-container">
+      <div *ngIf="boolDontChangePassword">
+        <mat-form-field>
+          <input [(ngModel)]="userList.user" matInput placeholder="Nombre de usuario" name="user" >
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input [(ngModel)]="userList.mail" matInput placeholder="E-mail" name="mail" >
+        </mat-form-field>
+      </div>
+      
+      <div *ngIf="boolChangePassword">
+        <mat-form-field>
+          <input [(ngModel)]="objectUser.password" matInput placeholder="Contraseña" type="password" name="password">
+        </mat-form-field>
+        
+        <mat-form-field>
+          <input matInput placeholder="Confirmar contraseña" type="password" name="passwordConfirm" >
+        </mat-form-field>
+        
+      </div>
+      
+        <div *ngIf="boolDontChangePassword"><button mat-raised-button color="accent" (click)="handleChangePassword()">Cambiar contraseña</button></div>
+        <div *ngIf="boolChangePassword"><button mat-raised-button color="accent" (click)="handleDontChangePassword()">Cancelar</button></div>
+        <button mat-raised-button color="primary" (click)="handleSendUser()">Crear</button>
+        <button mat-raised-button color="danger" [routerLink]="['/backend/usuarios']">Volver</button>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+</mat-grid-list>
