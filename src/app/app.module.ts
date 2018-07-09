@@ -63,6 +63,9 @@ import { ProductComponent } from './components/back-end/product/product.componen
 import { ProductService } from './services/back-end/product.service';
 import { StatusProductPipe } from './status-product.pipe';
 import { StoreProductComponent } from './components/back-end/product/store-product/store-product.component';
+import { SectionComponent } from './components/back-end/section/section.component';
+import { SectionAddComponent } from './components/back-end/section/section-add/section-add.component';
+import { SectionEditComponent } from './components/back-end/section/section-edit/section-edit.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,10 @@ import { StoreProductComponent } from './components/back-end/product/store-produ
     ProductComponent,
     StatusProductPipe,
     StoreProductComponent,
- 
+    SectionComponent,
+    SectionAddComponent,
+    SectionEditComponent,
+
   ],
   imports: [
   AppRoutingModule,
