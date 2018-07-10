@@ -26,18 +26,24 @@ export class StoreProductComponent implements OnInit {
   listSeccion : any[];
   listSeccionFilter : any[];
   listFilter : any[];
+  arrayCheckbox : string[];
 
   productToAdd = new Product();
   seccionToAdd = new Seccion();
-  categoriaToAdd;
-  optionToAdd;
+  categoriaToAdd; //  ngModel
+  optionToAdd;    //  ngModel
 
   aux : number;
-  auxString;
   keySeccionSelected : string;
   keyCategoriaSelected : string;
 
+  //  U.X
+  afterCheck;
+  auxCheckbox;
+  
   ngOnInit() {
+    //  List of fireBase
+
     this.productService.getProduct()
     .snapshotChanges()
     .subscribe(item => {
@@ -96,8 +102,11 @@ export class StoreProductComponent implements OnInit {
       (this.productToAdd.description == null) ? this.openSnackBar("Ingrese una descripción al producto", "Ok!") : this.aux++;
       (this.productToAdd.code == null) ? this.openSnackBar("Ingrese un codigo al producto", "Ok!") : this.aux++;
       (this.productToAdd.seccion == null) ? this.openSnackBar("Ingrese una seccion al producto", "Ok!") : 
+      
       //  We are saving the seccion to filter categories
-      this.seccionService.getJsonForName(this.productToAdd.seccion,this.listSeccion)
+      // this.productToAdd.seccion get the value of the ngModel
+
+      this.seccionService.getJsonOfSeccionForName(this.productToAdd.seccion,this.listSeccion)
       .subscribe((data) => {
         this.keySeccionSelected = data.$key;
         this.filterSeccion(data.$key)
@@ -105,11 +114,13 @@ export class StoreProductComponent implements OnInit {
      
       this.aux++;
       if(this.aux == 5){
+        //  Change template
         this.booleanNextPage = false;
       }
     }
   }
-  
+
+  /** When we are going to a next page, we filter all categorias of the seccion selected. */
   filterSeccion(key){
     this.seccionService.getSeccionFilterToAddCategoria(key)
     .snapshotChanges()
@@ -120,31 +131,32 @@ export class StoreProductComponent implements OnInit {
         x["$key"] = element.key;
         this.listSeccionFilter.push(x);
       });
-    })
-    
+    })  
   }
+
   /** Insert a new categoria */
   handleAddCategoria(){
    this.seccionService.insertCategoria(this.categoriaToAdd);
   }
+
   /** Insert a new option */
   handleAddOption(){
     this.seccionService.insertOption(this.optionToAdd);
   }
 
- ck(id){
-  this.auxString = document.getElementById('c'+id);
-  this.auxString.checked = false;
- }
- 
-  auxCheckbox;
+  /** Checkbox of the options, just one can be checked.  */
+  handleSaveCheckbox(checkbox){
+    (this.afterCheck === checkbox) ? this.afterCheck = null : this.afterCheck = checkbox;
+  }
+
+  /** Expansion panel, just one can be opened. */
   handleCategoriaSelected(key){
-    
     this.auxCheckbox = key.$key;
     this.keyCategoriaSelected = key.$key;
     this.filterOption();
   }
 
+  /** When the expansion panel of the categoria is opened, we are listing a options.  */
   filterOption(){
     this.seccionService.getCategoriaFilterToAddOption(this.keySeccionSelected,this.keyCategoriaSelected)
     .snapshotChanges()
@@ -158,6 +170,32 @@ export class StoreProductComponent implements OnInit {
     })
   }
   
+  storeProduct(){
+    this.aux = 0;
+    (this.keySeccionSelected == null) ? this.openSnackBar("Debe seleccionar una categoria", "Ok!") : this.searchNameOfCategoria();
+    (this.keyCategoriaSelected == null ) ? this.openSnackBar("Debes seleccionar una opcion", "Ok!") :  this.searchNameOfOption();
+   
+  }
+
+  searchNameOfCategoria(){
+    this.seccionService.getJsonOfCategoriaForKey(this.keySeccionSelected, this.listSeccionFilter)
+    .subscribe((data) => {
+      this.productToAdd.categoria = data.categoria;
+      this.aux++;
+      console.log("categoria");
+      console.log(data);
+    });
+  }
+  searchNameOfOption(){
+    this.seccionService.getJsonOfCategoriaForKey(this.keyCategoriaSelected, this.listOption)
+    .subscribe((data) => {
+      this.productToAdd.option = data.option;
+      this.aux++;
+      console.log("option");
+      console.log(data);
+    });
+  }
+
   /** SnackBar Alert */
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {

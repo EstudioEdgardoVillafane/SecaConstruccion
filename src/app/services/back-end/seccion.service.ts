@@ -26,6 +26,7 @@ export class SeccionService {
   getSeccionFilterToAddCategoria(key) {
     return this.listSeccionFilter = this.fireBase.list('seccion/'+key+"/categoria");
   }
+
   getCategoriaFilterToAddOption(keySeccion, keyOption) {
     return this.listCategoriaFilter = this.fireBase.list('seccion/'+keySeccion+"/categoria/"+keyOption+"/option");
   }
@@ -35,11 +36,13 @@ export class SeccionService {
       name: nameCategoria
     });
   }
+
   insertOption(optionName){
     this.listCategoriaFilter.push({
       name: optionName
     });
   }
+
   insertSeccion(seccionObject) {
     this.listSeccion.push ({
       name: seccionObject.seccion,
@@ -53,8 +56,15 @@ export class SeccionService {
     });
   }
     
-  getJsonForName(name:string, json){
+  getJsonOfSeccionForName(name:string, json){
     return of(json.find((seccion => seccion.name === name)));
+  }
+
+  getJsonOfCategoriaForKey(key, json){
+    return of(json.find((categoria => categoria.$key === key)));
+  }
+  getJsonOfOptionForKey(key, json){
+    return of(json.find((option => option.$key === key)));
   }
 
   deleteSeccion($key) {
