@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+    color: black;
+  }
+
+  hr{
+      width: 70%;
+  }
+  .mat-form-field {
+    font-size: 14px;
+    width: 40%;
+  }
+  .mat-column-select {
+    overflow: initial;
+  }
