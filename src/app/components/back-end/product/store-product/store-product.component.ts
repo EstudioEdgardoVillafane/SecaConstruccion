@@ -33,9 +33,9 @@ export class StoreProductComponent implements OnInit {
 
   productToAdd = new Product();
   seccionToAdd = new Seccion();
-  categoriaToAdd; //  ngModel
-  optionToAdd;    //  ngModel
-  etiquetaToAdd = "";  //  ngModel
+  categoriaToAdd : string = ""; //  ngModel
+  optionToAdd : string = "";    //  ngModel
+  etiquetaToAdd : string = "";  //  ngModel
   aux : number;
   keySeccionSelected : string;
   keyCategoriaSelected : string;
@@ -162,7 +162,21 @@ export class StoreProductComponent implements OnInit {
 
   /** Insert a new categoria */
   handleAddCategoria(){
-   this.seccionService.insertCategoria(this.categoriaToAdd);
+    if(this.categoriaToAdd != ""){
+      let boolToAdd = true;
+      this.listSeccionFilter.forEach(element => {
+        if(element.name.toUpperCase() == this.categoriaToAdd.toUpperCase()){
+         boolToAdd = false;
+        }
+      });
+      if(boolToAdd == true){
+        this.seccionService.insertCategoria(this.categoriaToAdd);
+      }else{
+        this.openSnackBar("Esta categoria ya existe", "Ok!");
+      }
+    }else{
+      this.openSnackBar("Estas intentando agregar una categoria en blanco", "Ok!");
+    }
   }
 
   /** Insert a new option */
@@ -172,10 +186,10 @@ export class StoreProductComponent implements OnInit {
   /** Insert a new etiqueta */
   handleAddEtiqueta(){
     (this.etiquetaToAdd != "" ) ? this.addEtiqueta() : this.openSnackBar("Tenes que selecciona por lo menos una etiqueta","Ok!");
-    console.log(this.etiquetaToAdd);
   }
   addEtiqueta(){
-   this.etiquetaToAdd = this.etiquetaToAdd.replace(" ","-");
+  this.listFilterEtiqueta = [];
+   this.etiquetaToAdd = this.etiquetaToAdd.replace(/ /g,"-");
     let toAdd : boolean = true;
     let toAddOnArray : boolean = true;
     this.listEtiquetas.forEach(element => {
@@ -186,11 +200,9 @@ export class StoreProductComponent implements OnInit {
     if(toAdd == true){
       this.seccionService.insertEtiquetas(this.etiquetaToAdd);
     }
-    
-    // let aux 
+     
     for(let i in this.arrayEtiquetasSelected){
       if(this.arrayEtiquetasSelected[i] == this.etiquetaToAdd){
-        console.log("etiqueta" );
         toAddOnArray = false;
       }  
     }
@@ -203,11 +215,20 @@ export class StoreProductComponent implements OnInit {
     this.etiquetaToAdd = "";
   }
   
+  handlePullEtiqueta(nameOfEtiquetaToHide){
+    var index = this.arrayEtiquetasSelected.indexOf(nameOfEtiquetaToHide);
+    this.arrayEtiquetasSelected.splice(index, 1);
+  }
+
+
   /** Checkbox of the options, just one can be checked.  */
   handleSaveCheckbox(checkbox){
-    (this.afterCheck === checkbox) ? this.afterCheck = null : this.afterCheck = checkbox;
+    (this.afterCheck === checkbox) ? this.afterCheck = null : this.saveCheckbox(checkbox);
   }
-  
+  saveCheckbox(json){
+    this.afterCheck = json.$key;
+    this.productToAdd.option = json.name;
+  }
   /** Expansion panel, just one can be opened. */
   handleCategoriaSelected(key){
     this.auxCheckbox = key.$key;
@@ -233,26 +254,17 @@ export class StoreProductComponent implements OnInit {
   /** This function used SearchNameOfCategoria() and SearchNameOfOptions */
   storeProduct(){
     this.aux = 0;
-    (this.keySeccionSelected == null) ? this.openSnackBar("Debe seleccionar una categoria", "Ok!") : this.searchNameOfCategoria();
-    (this.keyCategoriaSelected == null ) ? this.openSnackBar("Debes seleccionar una opcion", "Ok!") :  this.searchNameOfOption();
-   
+    (this.keySeccionSelected == null && this.keyCategoriaSelected == null ) ? this.openSnackBar("Verifique haber seleccionado una categoria y una opcion ", "Ok!") :this.searchNameOfCategoria();
+    
+    console.log(this.productToAdd);
   }
+
   searchNameOfCategoria(){
-    this.seccionService.getJsonOfCategoriaForKey(this.keySeccionSelected, this.listSeccionFilter)
+    this.seccionService.getJsonOfCategoriaForKey(this.keyCategoriaSelected, this.listSeccionFilter)
     .subscribe((data) => {
-      this.productToAdd.categoria = data.categoria;
+      this.productToAdd.categoria = data.name;
       this.aux++;
-      console.log("categoria");
-      console.log(data);
-    });
-  }
-  searchNameOfOption(){
-    this.seccionService.getJsonOfCategoriaForKey(this.keyCategoriaSelected, this.listOption)
-    .subscribe((data) => {
-      this.productToAdd.option = data.option;
       this.aux++;
-      console.log("option");
-      console.log(data);
     });
   }
 /**-----------------------------------------------------------------------------------------------**/

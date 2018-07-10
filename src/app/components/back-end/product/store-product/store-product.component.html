@@ -1,6 +1,6 @@
 
+  <h1 class="text-center">Agregar producto</h1>
 <div class="form-container" *ngIf="booleanNextPage">
-  <h1 class="text-center">Agregar un producto</h1>
     <mat-form-field class="fw">
       <input matInput placeholder="Nombre del producto" [(ngModel)]="productToAdd.name" name="name">
     </mat-form-field>
@@ -28,12 +28,13 @@
 
   </div>
   <div class="form-container" *ngIf="!booleanNextPage">
-    <mat-form-field>
-
-    <input matInput placeholder="Agregar categoria..." type="text" [(ngModel)]="categoriaToAdd" name="name">
-    <mat-icon matSuffix (click)="handleAddCategoria()" class="addAny">add</mat-icon>
-  </mat-form-field>  
-
+  <div>
+    <mat-form-field class="rg">
+      <input matInput placeholder="Agregar categoria..." type="text" [(ngModel)]="categoriaToAdd" name="name">
+      <mat-icon matSuffix (click)="handleAddCategoria()" class="addAny">add</mat-icon>
+    </mat-form-field>  
+  </div>
+  <h3>Seleccione una categoria</h3>
     <mat-expansion-panel class="fw"  *ngFor="let x of listSeccionFilter"  [expanded]="auxCheckbox === x.$key" (closed)="handleClosePanel()" (opened)="handleCategoriaSelected(x)">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -49,23 +50,29 @@
         </mat-form-field>
         <mat-list>
             <mat-list-item *ngFor="let option of listOption">
-                <mat-checkbox id="{{option.$key}}" [checked]="afterCheck === option.$key" (change)="handleSaveCheckbox(option.$key)"> {{option.name}}</mat-checkbox>
+                <mat-checkbox id="{{option.$key}}" [checked]="afterCheck === option.$key" (change)="handleSaveCheckbox(option)"> {{option.name}}</mat-checkbox>
             </mat-list-item>
         </mat-list>        
       </mat-expansion-panel>
-      <mat-form-field>
+      
+      <mat-form-field class="fw mt">
+        <input type="text"  placeholder="Escriba etiqueta" matInput [matAutocomplete]="etiqueta" (keyup)="applyFilterEtiquetas()" [(ngModel)]="etiquetaToAdd" name="name">
+        <mat-icon matSuffix class="addAny" (click)="handleAddEtiqueta()">add_circle_outline</mat-icon>
+      </mat-form-field>
+      <mat-autocomplete class="fw" #etiqueta="matAutocomplete">
+        <mat-option *ngFor="let option of listFilterEtiqueta" [value]="option" (click)="handleSaveArrayOfEtiquetas()">{{option}}</mat-option>
+      </mat-autocomplete>
+      <button mat-raised-button color="primary" class="btn" *ngFor="let x of arrayEtiquetasSelected" (click)="handlePullEtiqueta(x)"><mat-icon>close</mat-icon> {{x}}</button>
+      <br>
+      <mat-form-field class="mt">
         <!-- Any mat-icon here -->
         <mat-icon matPrefix>attach_money</mat-icon>
         <input type="text" matInput placeholder="Precio" [(ngModel)]="productToAdd.price" name="price">
       </mat-form-field>
-
-      <mat-form-field class="fw">
-        <input type="text"  placeholder="Seleccionce seccion"  matInput [matAutocomplete]="etiqueta" (keyup)="applyFilterEtiquetas()" [(ngModel)]="etiquetaToAdd" name="name">
-        <mat-icon matSuffix class="addAny" (click)="handleAddEtiqueta()">add_circle_outline</mat-icon>
-      </mat-form-field>
-      <mat-autocomplete class="fw" #etiqueta="matAutocomplete">
-          <mat-option *ngFor="let option of listFilterEtiqueta" [value]="option" (click)="handleSaveArrayOfEtiquetas()">{{option}}</mat-option>
-      </mat-autocomplete>
-      <button mat-raised-button color="primary" class="btn" *ngFor="let x of arrayEtiquetasSelected"><mat-icon>close</mat-icon> {{x}}</button>
+      <br>
+      <span class="rg">
+        <button mat-raised-button color="primary" class="mr" (click)="storeProduct()"><mat-icon>add</mat-icon> Agregar producto </button>
+        <button mat-raised-button color="warn" ><mat-icon>cancel</mat-icon> Volver al listado </button>
+      </span>
     </div>
-  
+    

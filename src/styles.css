@@ -1,7 +1,9 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Shanti');
 
 body{
     margin : 0px;
+    font-family: 'Shanti', sans-serif!important;
 }
 .mb{
     margin-bottom: 15px!important;

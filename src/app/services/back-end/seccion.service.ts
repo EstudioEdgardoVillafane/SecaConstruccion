@@ -75,7 +75,7 @@ export class SeccionService {
     return of(json.find((categoria => categoria.$key === key)));
   }
   getJsonOfOptionForKey(key, json){
-    return of(json.find((option => option.$key === key)));
+    return of(json.find((categoria => categoria.$key === key)));
   }
 
   deleteSeccion($key) {
