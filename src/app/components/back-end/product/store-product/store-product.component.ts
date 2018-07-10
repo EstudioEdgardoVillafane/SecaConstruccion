@@ -20,7 +20,8 @@ export class StoreProductComponent implements OnInit {
   
   booleanAdd : boolean;
   booleanNextPage : boolean = true;
-
+  
+  listEtiquetasFromProducts : any[];
   listOption : any[];
   listProducts : any[];
   listSeccion : any[];
@@ -120,6 +121,7 @@ export class StoreProductComponent implements OnInit {
         this.booleanNextPage = false;
       }
     }
+  
     
     //  Do a list of etiquetas.
     this.seccionService.getEtiquetas()
@@ -254,16 +256,31 @@ export class StoreProductComponent implements OnInit {
   /** This function used SearchNameOfCategoria() and SearchNameOfOptions */
   storeProduct(){
     this.aux = 0;
-    (this.keySeccionSelected == null && this.keyCategoriaSelected == null ) ? this.openSnackBar("Verifique haber seleccionado una categoria y una opcion ", "Ok!") :this.searchNameOfCategoria();
-    
-    console.log(this.productToAdd);
+    (this.keyCategoriaSelected == undefined ) ? this.openSnackBar("Verifique haber seleccionado una categoria y una opcion ", "Ok!") : this.searchNameOfCategoria();
+    (this.arrayEtiquetasSelected.length == 0) ? this.openSnackBar("Debe agregar etiquetas al producto", "Ok!") : this.aux++;
+    (this.productToAdd.price == undefined) ? this.openSnackBar("Ingrese un precio a su producto", "Ok!") : this.aux++;
+    if(this.aux == 3){
+      this.productService.insertProduct(this.productToAdd);
+      this.productService.getEtiquetas(this.listProducts[this.listProducts.length-1].$key)
+      .snapshotChanges()
+      .subscribe(item => {
+        this.listEtiquetasFromProducts = [];
+        item.forEach(element => {
+          let x = element.payload.toJSON();
+          x["$key"] = element.key;
+          this.listEtiquetasFromProducts.push(x);
+        });
+      });  
+      this.arrayEtiquetasSelected.forEach(element => {
+        this.productService.insertEtiqueta(element);
+      });
+    }
   }
 
   searchNameOfCategoria(){
     this.seccionService.getJsonOfCategoriaForKey(this.keyCategoriaSelected, this.listSeccionFilter)
     .subscribe((data) => {
       this.productToAdd.categoria = data.name;
-      this.aux++;
       this.aux++;
     });
   }

@@ -13,6 +13,7 @@ import { Product } from '../../model/product';
 export class ProductService {
 
   listProducts : AngularFireList<any>;
+  listEtiquetas : AngularFireList<any>;
 
 
   constructor( private fireBase: AngularFireDatabase ) { }
@@ -20,13 +21,28 @@ export class ProductService {
   getProduct() {
     return this.listProducts = this.fireBase.list('product');
   }
-  
-  insertUser(productObject) {
-    // this.listUser.push ({
-    //   user: userObject.user,
-    //   position: userObject.position,
-    //   password: userObject.password
-    // });
+
+  getEtiquetas(key){
+    return this.listEtiquetas = this.fireBase.list("product/"+key+"/etiqueta");
+  }
+
+  insertProduct(productObject : Product){
+    this.listProducts.push({
+      name: productObject.name,
+      slug: productObject.slug,
+      price: productObject.price,
+      description: productObject.description,
+      seccion: productObject.seccion,
+      categoria: productObject.categoria,
+      option: productObject.option,
+      status: 1
+    });
+  }
+
+  insertEtiqueta(name){
+    this.listEtiquetas.push({
+      name: name
+    });
   }
 
   updateUser(productObject) {
@@ -52,7 +68,7 @@ export class ProductService {
       status: productObject.status
     });
   }
-  deleteUser($key) {
+  deleteProduct($key) {
     this.listProducts.remove($key);
   }
 
