@@ -15,6 +15,7 @@ export class SeccionService {
   listSeccion : AngularFireList<any>;
   listSeccionFilter : AngularFireList<any>; //list filter
   listCategoriaFilter : AngularFireList<any>; //list filter
+  listEtiquetas : AngularFireList<any>;
 
   constructor( private fireBase: AngularFireDatabase ) { }
 
@@ -22,13 +23,23 @@ export class SeccionService {
     return this.listSeccion = this.fireBase.list('seccion');
   }
 
+  getEtiquetas() {
+    return this.listEtiquetas = this.fireBase.list('etiquetas');
+  }
+  
   /** We are filter the seccion for add categorie */
   getSeccionFilterToAddCategoria(key) {
     return this.listSeccionFilter = this.fireBase.list('seccion/'+key+"/categoria");
   }
-
+  
   getCategoriaFilterToAddOption(keySeccion, keyOption) {
     return this.listCategoriaFilter = this.fireBase.list('seccion/'+keySeccion+"/categoria/"+keyOption+"/option");
+  }
+  
+  insertEtiquetas(etiquetaName){
+    this.listEtiquetas.push({
+      name: etiquetaName
+    });
   }
 
   insertCategoria(nameCategoria){

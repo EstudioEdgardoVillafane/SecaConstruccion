@@ -26,13 +26,16 @@ export class StoreProductComponent implements OnInit {
   listSeccion : any[];
   listSeccionFilter : any[];
   listFilter : any[];
+  listFilterEtiqueta : any[];
+  listEtiquetas : any[];
   arrayCheckbox : string[];
+  arrayEtiquetasSelected = new Array();
 
   productToAdd = new Product();
   seccionToAdd = new Seccion();
   categoriaToAdd; //  ngModel
   optionToAdd;    //  ngModel
-
+  etiquetaToAdd = "";  //  ngModel
   aux : number;
   keySeccionSelected : string;
   keyCategoriaSelected : string;
@@ -43,7 +46,6 @@ export class StoreProductComponent implements OnInit {
   
   ngOnInit() {
     //  List of fireBase
-
     this.productService.getProduct()
     .snapshotChanges()
     .subscribe(item => {
@@ -118,7 +120,31 @@ export class StoreProductComponent implements OnInit {
         this.booleanNextPage = false;
       }
     }
+    
+    //  Do a list of etiquetas.
+    this.seccionService.getEtiquetas()
+    .snapshotChanges()
+    .subscribe(item => {
+      this.listEtiquetas = [];
+      item.forEach(element => {
+        let x = element.payload.toJSON();
+        x["$key"] = element.key;
+        this.listEtiquetas.push(x);
+      });
+    });  
   }
+
+  /** This is a filter to the input of the etiquet's */
+  applyFilterEtiquetas() {
+    this.listFilterEtiqueta = [];
+    this.listEtiquetas.forEach(element => {
+      if(element.name.toUpperCase().match(this.etiquetaToAdd.toUpperCase())){
+        this.listFilterEtiqueta.push(element.name);
+      }
+    });
+  }
+ 
+
 
   /** When we are going to a next page, we filter all categorias of the seccion selected. */
   filterSeccion(key){
@@ -143,12 +169,45 @@ export class StoreProductComponent implements OnInit {
   handleAddOption(){
     this.seccionService.insertOption(this.optionToAdd);
   }
-
+  /** Insert a new etiqueta */
+  handleAddEtiqueta(){
+    (this.etiquetaToAdd != "" ) ? this.addEtiqueta() : this.openSnackBar("Tenes que selecciona por lo menos una etiqueta","Ok!");
+    console.log(this.etiquetaToAdd);
+  }
+  addEtiqueta(){
+   this.etiquetaToAdd = this.etiquetaToAdd.replace(" ","-");
+    let toAdd : boolean = true;
+    let toAddOnArray : boolean = true;
+    this.listEtiquetas.forEach(element => {
+      if(element.name === this.etiquetaToAdd){
+        toAdd = false;
+      }
+    });
+    if(toAdd == true){
+      this.seccionService.insertEtiquetas(this.etiquetaToAdd);
+    }
+    
+    // let aux 
+    for(let i in this.arrayEtiquetasSelected){
+      if(this.arrayEtiquetasSelected[i] == this.etiquetaToAdd){
+        console.log("etiqueta" );
+        toAddOnArray = false;
+      }  
+    }
+    if(toAddOnArray == true){
+      if(this.arrayEtiquetasSelected.length == null){
+        this.arrayEtiquetasSelected[0] = this.etiquetaToAdd;
+      }
+      this.arrayEtiquetasSelected[this.arrayEtiquetasSelected.length] = this.etiquetaToAdd;  
+    }
+    this.etiquetaToAdd = "";
+  }
+  
   /** Checkbox of the options, just one can be checked.  */
   handleSaveCheckbox(checkbox){
     (this.afterCheck === checkbox) ? this.afterCheck = null : this.afterCheck = checkbox;
   }
-
+  
   /** Expansion panel, just one can be opened. */
   handleCategoriaSelected(key){
     this.auxCheckbox = key.$key;
@@ -170,13 +229,14 @@ export class StoreProductComponent implements OnInit {
     })
   }
   
+
+  /** This function used SearchNameOfCategoria() and SearchNameOfOptions */
   storeProduct(){
     this.aux = 0;
     (this.keySeccionSelected == null) ? this.openSnackBar("Debe seleccionar una categoria", "Ok!") : this.searchNameOfCategoria();
     (this.keyCategoriaSelected == null ) ? this.openSnackBar("Debes seleccionar una opcion", "Ok!") :  this.searchNameOfOption();
    
   }
-
   searchNameOfCategoria(){
     this.seccionService.getJsonOfCategoriaForKey(this.keySeccionSelected, this.listSeccionFilter)
     .subscribe((data) => {
@@ -195,6 +255,8 @@ export class StoreProductComponent implements OnInit {
       console.log(data);
     });
   }
+/**-----------------------------------------------------------------------------------------------**/
+
 
   /** SnackBar Alert */
   openSnackBar(message: string, action: string) {

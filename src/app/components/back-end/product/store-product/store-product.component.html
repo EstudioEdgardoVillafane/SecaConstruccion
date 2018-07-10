@@ -1,26 +1,26 @@
 
 <div class="form-container" *ngIf="booleanNextPage">
   <h1 class="text-center">Agregar un producto</h1>
-    <mat-form-field>
+    <mat-form-field class="fw">
       <input matInput placeholder="Nombre del producto" [(ngModel)]="productToAdd.name" name="name">
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field class="fw">
         <input matInput placeholder="Slug del producto" [(ngModel)]="productToAdd.slug" name="slug">
       </mat-form-field>
   
-    <mat-form-field>
+    <mat-form-field class="fw">
       <textarea matInput placeholder="Descripción del producto" [(ngModel)]="productToAdd.description" name="description"></textarea>
     </mat-form-field>
   
-    <mat-form-field>
+    <mat-form-field class="fw">
       <input matInput placeholder="Codigo" [(ngModel)]="productToAdd.code" name="code">
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field class="fw">
         <input type="text"  placeholder="Seleccionce seccion"  matInput [matAutocomplete]="auto" (keyup)="applyFilter($event.target.value)" [(ngModel)]="productToAdd.seccion" name="name">
         <mat-icon *ngIf="booleanAdd" matSuffix class="addAny" (click)="handleAddSeccion()">add_circle_outline</mat-icon>
       </mat-form-field>
       
-      <mat-autocomplete #auto="matAutocomplete">
+      <mat-autocomplete #auto="matAutocomplete" class="fw">
         <mat-option *ngFor="let option of listFilter" [value]="option">{{option}}</mat-option>
       </mat-autocomplete>
    
@@ -34,7 +34,7 @@
     <mat-icon matSuffix (click)="handleAddCategoria()" class="addAny">add</mat-icon>
   </mat-form-field>  
 
-    <mat-expansion-panel  *ngFor="let x of listSeccionFilter"  [expanded]="auxCheckbox === x.$key" (closed)="handleClosePanel()" (opened)="handleCategoriaSelected(x)">
+    <mat-expansion-panel class="fw"  *ngFor="let x of listSeccionFilter"  [expanded]="auxCheckbox === x.$key" (closed)="handleClosePanel()" (opened)="handleCategoriaSelected(x)">
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{x.name}}  
@@ -55,7 +55,17 @@
       </mat-expansion-panel>
       <mat-form-field>
         <!-- Any mat-icon here -->
-        <input type="text" matInput placeholder="precio" [(ngModel)]="productToAdd.price" name="price">
+        <mat-icon matPrefix>attach_money</mat-icon>
+        <input type="text" matInput placeholder="Precio" [(ngModel)]="productToAdd.price" name="price">
       </mat-form-field>
-  </div>
+
+      <mat-form-field class="fw">
+        <input type="text"  placeholder="Seleccionce seccion"  matInput [matAutocomplete]="etiqueta" (keyup)="applyFilterEtiquetas()" [(ngModel)]="etiquetaToAdd" name="name">
+        <mat-icon matSuffix class="addAny" (click)="handleAddEtiqueta()">add_circle_outline</mat-icon>
+      </mat-form-field>
+      <mat-autocomplete class="fw" #etiqueta="matAutocomplete">
+          <mat-option *ngFor="let option of listFilterEtiqueta" [value]="option" (click)="handleSaveArrayOfEtiquetas()">{{option}}</mat-option>
+      </mat-autocomplete>
+      <button mat-raised-button color="primary" class="btn" *ngFor="let x of arrayEtiquetasSelected"><mat-icon>close</mat-icon> {{x}}</button>
+    </div>
   

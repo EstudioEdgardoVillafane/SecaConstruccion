@@ -75,6 +75,7 @@ import { SectionAddComponent } from './components/back-end/section/section-add/s
 import { SectionEditComponent } from './components/back-end/section/section-edit/section-edit.component';
 
 import { SeccionService } from './services/back-end/seccion.service';
+import { ChangeSpacePipe } from './pipes/change-space.pipe';
 
 
 @NgModule({
@@ -93,6 +94,7 @@ import { SeccionService } from './services/back-end/seccion.service';
     SectionComponent,
     SectionAddComponent,
     SectionEditComponent,
+    ChangeSpacePipe,
   ],
   imports: [
   AppRoutingModule,

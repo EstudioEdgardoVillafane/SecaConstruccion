@@ -1,4 +1,4 @@
-.form-container > *{
+.form-container, .fw{
     width: 100%;
 }
 .text-center{
@@ -11,5 +11,5 @@
     float: right;
 }
 .btn{
-    width: 25%!important;
+    min-width: 10%!important;
 }
