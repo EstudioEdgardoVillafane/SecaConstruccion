@@ -1,0 +1,15 @@
+
+<h2>Agregar Nueva Seccion</h2>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input   matInput
+             placeholder="Nombre"
+             [(ngModel)]= "objectSection.name"
+             name="name"
+    >
+  </mat-form-field>
+</form>
+<button mat-raised-button color="primary" (click)="handleStoreSection()">Agregar</button>
+<button mat-raised-button color="warn" [routerLink]="['/backend/seccion']">Volver</button>
+
+
