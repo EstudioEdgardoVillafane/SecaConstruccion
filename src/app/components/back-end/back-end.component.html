@@ -14,13 +14,20 @@
       <mat-nav-list>
         <mat-list dense>
             <mat-list-item (click)="goHome()">
-                <mat-icon>home</mat-icon> <a>Home</a> 
+                <mat-icon>home</mat-icon> <a>Home</a>
               </mat-list-item>
         <mat-list-item (click)="goUser()">
           <mat-icon>account_circle</mat-icon> <a>Usuarios</a> 
         </mat-list-item>
+        <mat-list-item (click)="goUsuarios()">
+          <mat-icon>account_circle</mat-icon> <a>Usuarios</a>
+
+        </mat-list-item>
         <mat-list-item (click)="goProyect()">
-          <mat-icon>assignment</mat-icon> <a>Proyectos</a> 
+          <mat-icon>assignment</mat-icon> <a>Proyectos</a>
+        </mat-list-item>
+        <mat-list-item (click)="goSection()">
+          <mat-icon>assignment</mat-icon> <a>Seccion</a>
         </mat-list-item>
         <mat-list-item (click)="goClient()">
             <mat-icon>account_circle</mat-icon> <a>Clientes</a> 
@@ -35,3 +42,4 @@
       </section>
     </mat-sidenav-content>
 </mat-sidenav-container>
+

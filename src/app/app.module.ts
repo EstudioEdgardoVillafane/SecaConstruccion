@@ -61,6 +61,7 @@ import { BackEndComponent } from './components/back-end/back-end.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ProductComponent } from './components/back-end/product/product.component';
 import { StatusProductPipe } from './status-product.pipe';
+import { ProductService } from './services/back-end/product.service';
 import { StoreProductComponent } from './components/back-end/product/store-product/store-product.component';
 import { UserComponent } from './components/back-end/user/user.component';
 import { UpdateUserComponent } from './components/back-end/user/update-user/update-user.component';
@@ -69,13 +70,19 @@ import { ClientComponent } from './components/back-end/client/client.component';
 import { StoreClientComponent } from './components/back-end/client/store-client/store-client.component';
 import { UpdateClientComponent } from './components/back-end/client/update-client/update-client.component';
 
+import { SectionComponent } from './components/back-end/section/section.component';
+import { SectionAddComponent } from './components/back-end/section/section-add/section-add.component';
+import { SectionEditComponent } from './components/back-end/section/section-edit/section-edit.component';
+
+import { SeccionService } from './services/back-end/seccion.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     FrontEndComponent,
     BackEndComponent,
     ProductComponent,
-    StatusProductPipe,
     StoreProductComponent,
     UserComponent,
     UpdateUserComponent,
@@ -83,7 +90,9 @@ import { UpdateClientComponent } from './components/back-end/client/update-clien
     ClientComponent,
     StoreClientComponent,
     UpdateClientComponent
- 
+    SectionComponent,
+    SectionAddComponent,
+    SectionEditComponent,
   ],
   imports: [
   AppRoutingModule,
@@ -132,7 +141,8 @@ import { UpdateClientComponent } from './components/back-end/client/update-clien
   ],
   providers: [
     ProductService,
-    UserService
+    UserService,
+    SeccionService
   ],
   bootstrap: [AppComponent]
 })

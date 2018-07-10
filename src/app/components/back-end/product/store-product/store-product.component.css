@@ -4,3 +4,12 @@
 .text-center{
     text-align: center;
 }
+.addAny{
+    cursor: pointer;
+}
+.rg{
+    float: right;
+}
+.btn{
+    width: 25%!important;
+}
