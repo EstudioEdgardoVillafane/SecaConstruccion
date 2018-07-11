@@ -60,8 +60,6 @@ import { FrontEndComponent } from './components/front-end/front-end.component';
 import { BackEndComponent } from './components/back-end/back-end.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ProductComponent } from './components/back-end/product/product.component';
-import { StatusProductPipe } from './status-product.pipe';
-import { ProductService } from './services/back-end/product.service';
 import { StoreProductComponent } from './components/back-end/product/store-product/store-product.component';
 import { UserComponent } from './components/back-end/user/user.component';
 import { UpdateUserComponent } from './components/back-end/user/update-user/update-user.component';
@@ -76,6 +74,11 @@ import { SectionEditComponent } from './components/back-end/section/section-edit
 
 import { SeccionService } from './services/back-end/seccion.service';
 import { ChangeSpacePipe } from './pipes/change-space.pipe';
+import { UpdateProductComponent } from './components/back-end/product/update-product/update-product.component';
+import { FavoritePipe } from './pipes/favorite.pipe';
+import { HomeComponent } from './components/front-end/home/home.component';
+import { ProductsComponent } from './components/front-end/products/products.component';
+import { FooterComponent } from './components/front-end/footer/footer.component';
 
 
 @NgModule({
@@ -90,11 +93,16 @@ import { ChangeSpacePipe } from './pipes/change-space.pipe';
     StoreUserComponent,
     ClientComponent,
     StoreClientComponent,
-    UpdateClientComponent
+    UpdateClientComponent,
     SectionComponent,
     SectionAddComponent,
     SectionEditComponent,
     ChangeSpacePipe,
+    UpdateProductComponent,
+    FavoritePipe,
+    HomeComponent,
+    ProductsComponent,
+    FooterComponent,
   ],
   imports: [
   AppRoutingModule,

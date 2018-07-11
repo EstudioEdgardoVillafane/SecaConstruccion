@@ -23,8 +23,8 @@
       <mat-autocomplete #auto="matAutocomplete" class="fw">
         <mat-option *ngFor="let option of listFilter" [value]="option">{{option}}</mat-option>
       </mat-autocomplete>
-   
-   <button mat-raised-button color="primary" (click)="goNextPage()"> Siguiente </button>
+      <button mat-raised-button color="primary" class="mr" (click)="goNextPage()"> Siguiente </button>
+      <button mat-raised-button color="warn" routerLink="/" > Volver al listado </button> 
 
   </div>
   <div class="form-container" *ngIf="!booleanNextPage">
@@ -64,15 +64,23 @@
       </mat-autocomplete>
       <button mat-raised-button color="primary" class="btn" *ngFor="let x of arrayEtiquetasSelected" (click)="handlePullEtiqueta(x)"><mat-icon>close</mat-icon> {{x}}</button>
       <br>
+      
+      
+      <form id="formIMG">
+      Foto del producto: <input class="fw mt" (change)="handleGenerateUrlIMG()" name="uploadedfile" type="file">
+      </form>
+
+
       <mat-form-field class="mt">
         <!-- Any mat-icon here -->
         <mat-icon matPrefix>attach_money</mat-icon>
         <input type="text" matInput placeholder="Precio" [(ngModel)]="productToAdd.price" name="price">
       </mat-form-field>
       <br>
-      <span class="rg">
-        <button mat-raised-button color="primary" class="mr" (click)="storeProduct()"><mat-icon>add</mat-icon> Agregar producto </button>
-        <button mat-raised-button color="warn" ><mat-icon>cancel</mat-icon> Volver al listado </button>
+      <span class="pb">
+        <button mat-raised-button color="primary" class="mr" (click)="storeProduct()"> Agregar producto </button>
+        <button mat-raised-button color="warn" routerLink="/" > Volver al listado </button>
       </span>
+      <br>
     </div>
     

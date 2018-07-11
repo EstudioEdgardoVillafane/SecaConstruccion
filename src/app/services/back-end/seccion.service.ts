@@ -38,7 +38,13 @@ export class SeccionService {
   
   insertEtiquetas(etiquetaName){
     this.listEtiquetas.push({
-      name: etiquetaName
+      name: etiquetaName,
+      count: 1
+    });
+  }
+  updateEtiqueta(countValue, key){
+    this.listEtiquetas.update(key,{
+      count: countValue
     });
   }
 

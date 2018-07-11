@@ -1,23 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
 import { ProductService } from '../../../../services/back-end/product.service';
-import { MatTableDataSource } from '@angular/material';
-import { Product } from '../../../../model/product';
-import { SeccionService } from '../../../../services/back-end/seccion.service';
-import { Seccion } from '../../../../model/seccion';
-import {MatSnackBar} from '@angular/material';
 import { Router } from '@angular/router';
+import { SeccionService } from '../../../../services/back-end/seccion.service';
+import { MatSnackBar } from '@angular/material';
+import { Seccion } from '../../../../model/seccion';
+import { Product } from '../../../../model/product';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-store-product',
-  templateUrl: './store-product.component.html',
-  styleUrls: ['./store-product.component.css']
+  selector: 'app-update-product',
+  templateUrl: './update-product.component.html',
+  styleUrls: ['./update-product.component.css']
 })
-export class StoreProductComponent implements OnInit {
-  
-  constructor(private productService : ProductService, private router : Router, private seccionService : SeccionService, public snackBar: MatSnackBar) { }
+export class UpdateProductComponent implements OnInit {
+
+  constructor(private productService : ProductService, private router : Router, private seccionService : SeccionService, public snackBar: MatSnackBar, private _activatedRoute : ActivatedRoute) { }
   
   booleanAdd : boolean;
   booleanNextPage : boolean = true;
@@ -41,13 +38,14 @@ export class StoreProductComponent implements OnInit {
   aux : number;
   keySeccionSelected : string;
   keyCategoriaSelected : string;
-
+  keyToEdit : string;
   //  U.X
   afterCheck;
   auxCheckbox;
   
   ngOnInit() {
     //  List of fireBase
+    this.listOfProducts();    
     
     this.seccionService.getSeccion()
     .snapshotChanges()
@@ -62,7 +60,7 @@ export class StoreProductComponent implements OnInit {
       });
     })
   }
-
+  
   listOfProducts(){
     
     this.productService.getProduct()
@@ -76,6 +74,13 @@ export class StoreProductComponent implements OnInit {
           this.listProducts.push(x);
         }
       });
+
+      const key = this._activatedRoute.snapshot.paramMap.get('key');
+      this.keyToEdit = key;
+      this.productService.getProductForKey(key,this.listProducts)
+      .subscribe((data) => {
+        this.productToAdd  = data;
+      })
     })
   }
 
@@ -129,7 +134,6 @@ export class StoreProductComponent implements OnInit {
       }
     }
   
-    this.listOfProducts();    
     
     //  Do a list of etiquetas.
     this.seccionService.getEtiquetas()
@@ -262,7 +266,7 @@ export class StoreProductComponent implements OnInit {
   
 
   /** This function used SearchNameOfCategoria() and SearchNameOfOptions */
-  storeProduct(){
+  updateProduct(){
     this.aux = 0;
     (this.keyCategoriaSelected == undefined ) ? this.openSnackBar("Verifique haber seleccionado una categoria y una opcion ", "Ok!") : this.searchNameOfCategoria();
     (this.arrayEtiquetasSelected.length == 0) ? this.openSnackBar("Debe agregar etiquetas al producto", "Ok!") : this.aux++;
@@ -278,7 +282,7 @@ export class StoreProductComponent implements OnInit {
         }
       });
       this.productToAdd.url = this.request.responseText;
-      this.productService.insertProduct(this.productToAdd);
+      this.productService.updateProduct(this.keyToEdit,this.productToAdd);
       this.router.navigateByUrl("/");
     }
   }
@@ -294,10 +298,9 @@ export class StoreProductComponent implements OnInit {
       this.request.send(this.formObjectIMG);
       this.request.onload = (e) => {
         console.log("some");
-     this.productToAdd.url = this.request.responseText;
-        
       }
      this.productToAdd.url = this.request.responseText;
+    console.log(this.request.responseText);
   }
 
   searchNameOfCategoria(){

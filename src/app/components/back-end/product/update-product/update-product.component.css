@@ -1,11 +1,9 @@
-.form-container{
+.form-container, .fw{
     width: 100%;
     padding-bottom: 30px;
 }
 .fw{
     clear: right;
-    width: 100%;
-    
 }
 h3{
     padding-top: 30px;

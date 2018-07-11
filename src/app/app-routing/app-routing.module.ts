@@ -17,14 +17,18 @@ import { UpdateUserComponent } from '../components/back-end/user/update-user/upd
 import { ClientComponent } from '../components/back-end/client/client.component';
 import { StoreClientComponent } from '../components/back-end/client/store-client/store-client.component';
 import { UpdateClientComponent } from '../components/back-end/client/update-client/update-client.component';
+import { UpdateProductComponent } from '../components/back-end/product/update-product/update-product.component';
+import { FrontEndComponent } from '../components/front-end/front-end.component';
+import { HomeComponent } from '../components/front-end/home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'backend', pathMatch: 'full' },
+  { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'backend',component: BackEndComponent,
   children: [
       { path: '', redirectTo: 'productos', pathMatch: 'full'},
       { path: 'productos', component: ProductComponent },
       { path: 'productos/store', component: StoreProductComponent },
+      { path: 'productos/update/:key', component: UpdateProductComponent },
       { path: 'usuarios', component: UserComponent},
       { path: 'usuarios/update', component: UpdateUserComponent},
       { path: 'usuarios/store', component: StoreUserComponent},  
@@ -34,7 +38,12 @@ const routes: Routes = [
       { path: 'seccion', component: SectionComponent },
       { path: 'seccion/agregar', component: SectionAddComponent },
       { path: 'seccion/editar', component: SectionEditComponent },
-    ]}
+    ]},
+    { path: '',component: FrontEndComponent,
+  children: [
+    { path: '', redirectTo: 'home', pathMatch: 'full'},
+    { path: 'home', component: HomeComponent }
+  ]}
 ];
 
 @NgModule({

@@ -30,5 +30,5 @@ export class SectionService {
     this.listSection.update(sectionObject.$key, {
       name: sectionObject.name,
   });
-
+}
 }
