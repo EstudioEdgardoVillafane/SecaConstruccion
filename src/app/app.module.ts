@@ -79,6 +79,7 @@ import { FavoritePipe } from './pipes/favorite.pipe';
 import { HomeComponent } from './components/front-end/home/home.component';
 import { ProductsComponent } from './components/front-end/products/products.component';
 import { FooterComponent } from './components/front-end/footer/footer.component';
+import { SeccionComponent } from './components/front-end/products/seccion/seccion.component';
 
 
 @NgModule({
@@ -103,6 +104,7 @@ import { FooterComponent } from './components/front-end/footer/footer.component'
     HomeComponent,
     ProductsComponent,
     FooterComponent,
+    SeccionComponent,
   ],
   imports: [
   AppRoutingModule,

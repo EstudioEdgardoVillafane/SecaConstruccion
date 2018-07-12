@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/back-end/product.service';
+import { SeccionService } from '../../../services/back-end/seccion.service';
 
 @Component({
   selector: 'app-products',
@@ -9,9 +10,10 @@ import { ProductService } from '../../../services/back-end/product.service';
 export class ProductsComponent implements OnInit {
 
   listFavorite : any[];
+  listEtiquetas : any[];
   listProducts : any[];
-
-  constructor(private productService : ProductService) { }
+  
+  constructor(private productService : ProductService, private seccionService : SeccionService) { }
 
   ngOnInit() {
     this.productService.getProduct()
@@ -30,6 +32,19 @@ export class ProductsComponent implements OnInit {
         }
       });
     });
+    this.seccionService.getEtiquetas()
+    .snapshotChanges()
+    .subscribe(item => {
+      this.listEtiquetas = [];
+      item.forEach(element => {
+        
+        let x = element.payload.toJSON();
+        x["$key"] = element.key;
+        this.listEtiquetas.push(x);
+      });
+      this.listEtiquetas.reverse();
+    });
+
   }
 
 }

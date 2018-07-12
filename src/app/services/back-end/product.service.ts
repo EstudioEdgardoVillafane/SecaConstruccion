@@ -22,7 +22,7 @@ export class ProductService {
   constructor( private fireBase: AngularFireDatabase ) { }
 
   getProduct() {
-    return this.listProducts = this.fireBase.list('product');
+    return this.listProducts = this.fireBase.list('product', ref => ref.orderByChild("order"));
   }
 
   getEtiquetas(key){

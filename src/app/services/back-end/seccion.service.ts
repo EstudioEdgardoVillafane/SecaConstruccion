@@ -24,7 +24,7 @@ export class SeccionService {
   }
 
   getEtiquetas() {
-    return this.listEtiquetas = this.fireBase.list('etiquetas');
+    return this.listEtiquetas = this.fireBase.list('etiquetas', ref => ref.orderByChild("count"));
   }
   
   /** We are filter the seccion for add categorie */

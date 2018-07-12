@@ -4,10 +4,11 @@
   <img src="https://djhr6j39qs1q5.cloudfront.net/cdn/recursos/553/520x110/sucursales2-520x110.png?15079002431&jpg=1" class="top">
   <img src="https://djhr6j39qs1q5.cloudfront.net/cdn/recursos/554/520x110/atencion3-520x110.png?15082714251&jpg=1" class="top">
 </div>
+
 <section class="container">
 <div class="py-cards">
   <h2 class="title mb">Nuestros productos más vendidos</h2>
-<mat-grid-list cols="4" rowHeight="400px">
+  <mat-grid-list cols="4" rowHeight="400px">
     <mat-grid-tile *ngFor="let producto of listFavorite | slice : 0 : 4"> 
 
         <mat-card class="card-product">
@@ -28,15 +29,17 @@
             </mat-card-actions>
           </mat-card>
     
-    </mat-grid-tile>
-    
-</mat-grid-list>
+    </mat-grid-tile>  
+  </mat-grid-list>
 </div>
+
 <div class="py-cards">
     <h2 class="title mb">Etiquetas más usadas</h2>
-    <!-- <button mat-raised-button color="primary" *ngFor="let etiqueta of ListEtiqueta | slice : 0 : 20" class="mt-2 mr-1"  routerLink="/producto-etiqueta/{{etiqueta.e_nombre}}"><mat-icon>loyalty</mat-icon><a class="h7">{{etiqueta.e_nombre}}</a></button> -->
+    <button mat-raised-button color="primary" *ngFor="let etiqueta of listEtiquetas | slice : 0 : 20" class="mt-2 mr-1"  routerLink="/producto-etiqueta/{{etiqueta.e_nombre}}"><mat-icon>loyalty</mat-icon><a class="h7">{{etiqueta.name}}</a></button>
+</div>
 
-
-
+<div class="py-cards">
+  <h2 class="title mb">Categorias más populares</h2>
+  <app-seccion></app-seccion>
 </div>
 </section>
