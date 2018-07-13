@@ -20,6 +20,9 @@
 .card-product-name{
     padding-top: 20px;
 }
+.tc{
+    text-align: center;
+}
 .py-cards{
     padding-top: 40px;
     padding-bottom: 40px;
@@ -27,7 +30,7 @@
 .container{
     padding-left: 60px;
     padding-right: 60px;
-    padding-bottom: 140px;
+    padding-bottom: 60px;
     background-color:#f2f2f2!important;
 }
 .card-product-img > img {

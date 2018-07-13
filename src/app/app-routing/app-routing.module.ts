@@ -20,6 +20,7 @@ import { UpdateClientComponent } from '../components/back-end/client/update-clie
 import { UpdateProductComponent } from '../components/back-end/product/update-product/update-product.component';
 import { FrontEndComponent } from '../components/front-end/front-end.component';
 import { HomeComponent } from '../components/front-end/home/home.component';
+import { DetalleProductComponent } from '../components/front-end/detalle-product/detalle-product.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -42,7 +43,8 @@ const routes: Routes = [
     { path: '',component: FrontEndComponent,
   children: [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
-    { path: 'home', component: HomeComponent }
+    { path: 'home', component: HomeComponent },
+    { path: 'producto/:slug', component: DetalleProductComponent }
   ]}
 ];
 

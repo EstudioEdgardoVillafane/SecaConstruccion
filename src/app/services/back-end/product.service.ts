@@ -72,6 +72,9 @@ export class ProductService {
   getProductForKey(key, json){
     return of(json.find((producto => producto.$key === key)));
   }
+  getProductForSlug(slug, json){
+    return of(json.find((producto => producto.slug === slug)));
+  }
  
  
   insertEtiqueta(name){

@@ -1,0 +1,102 @@
+
+<div class="general">
+    <div class="container text-dark">
+    
+    
+      <!-- primer fila, contiene foto principal + precio,nombre,etc -->
+      <mat-grid-list cols="2" rowHeight="400px">
+        <!-- foto principal del producto -->
+        <mat-grid-tile>
+          <div class="contenedor-imagen">
+            <img class="imagen-prod" src="{{productFilter.url}}">
+          </div>
+        </mat-grid-tile>
+    
+        <!-- nombre prod + precio + detalle de envios y pagos + botones -->
+        <mat-grid-tile>
+          <div class="contenedor-venta">
+            <h3 class="nombre-prod">Nombre Producto</h3>
+            <h2 class="precio">${{productFilter.price}}</h2>
+    
+            <p>
+              <mat-icon>credit_card</mat-icon>Paga hasta en 12 cuotas
+            </p>
+            <p>
+              <mat-icon>local_shipping</mat-icon>Envios a todo el pais
+            </p>
+              <button   mat-raised-button color="primary"
+                        matBadge="1" matBadgePosition="before" matBadgeColor="accent">
+                        Agregar al carrito
+              </button>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    
+    
+      <!-- segunda fila, contiene descripcion del producto y metodos de pagos -->
+      <mat-grid-list cols="2" rowHeight="300px">
+        <!-- descripcion del producto -->
+        <mat-grid-tile>
+          <div class="descripcion">
+            <h2>Descripcion</h2>
+            <p style="text-align: justify">
+              {{productFilter.description}}
+            </p>
+          </div>
+        </mat-grid-tile>
+    
+    
+        <mat-grid-tile>
+    
+          <div class="medios-pago">
+            <h2>Medios de pago</h2>
+            <mat-tab-group>
+              <mat-tab label="En Efectivo">
+                <p class="text-dark">
+                  Podra acercarse a una de nuestras sucursales y pagar en efectivo, puediendo retirar la mercaderia en el momento o fiajando una fecha de entrega
+                </p>
+              </mat-tab>
+              <mat-tab label="Tarjetas de Credito">
+                <p class="text-dark">
+                  Una vez realizado el pago podra ponerse en contacto con algun representante de ventas nuestro, para asi coordinar una entrega
+                </p>
+              </mat-tab>
+              <mat-tab label="Transferencia Bancaria">
+                <p class="text-dark">
+                    Una vez acreditada la transferencia podra ponerse en contacto con algun representante de ventas nuestro, para asi coordinar una entrega
+                </p>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    
+      <mat-grid-list cols="1" >
+        <mat-grid-tile>
+          <div class="preguntas">
+            <h2>Preguntas</h2>
+            <h6>Realice las preguntas que considere necesarias, a la brevedad le responderemos!</h6>
+            <form class="form-consulta">
+                <mat-form-field class="escribir-consulta">
+                  <textarea matInput placeholder="Consulta" name="messageAsk"></textarea>
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="handdleAsk()">Enviar</button>
+              </form>
+    
+    
+            <h5>Ultimas preguntas</h5>
+            <div *ngFor="let preguntas of listAsk | slice : 0 : 10">
+              <p>
+                  <mat-icon>mail</mat-icon> 
+              </p>
+              <p class="text-muted">
+                  <mat-icon>message</mat-icon>
+              </p>
+            </div>
+            <br>
+            </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+    </div>
+    <app-footer></app-footer>

@@ -42,4 +42,31 @@
   <h2 class="title mb">Categorias más populares</h2>
   <app-seccion></app-seccion>
 </div>
+<div class="py-cards">
+  <h2 class="title mb tc"> Nuestro catalogo </h2>
+  <mat-grid-list cols="4" rowHeight="400px">
+      <mat-grid-tile *ngFor="let producto of listProducts | slice : 0 : 4"> 
+  
+          <mat-card class="card-product" routerLink="/producto/{{producto.slug}}">
+              <div class="card-product-img">
+              <img src="{{producto.url}}" >
+            </div>
+            <mat-divider></mat-divider>
+            
+              <mat-card-content class="card-product-content">
+                <p class="card-product-name">
+                  {{producto.name}}
+                </p>
+              </mat-card-content>
+              <mat-card-content>
+                <button mat-raised-button color="primary" routerLink="/detalle/{{producto.p_slug}}">Ver más</button>
+              </mat-card-content>
+              <mat-card-actions>
+              </mat-card-actions>
+            </mat-card>
+      
+      </mat-grid-tile>  
+    </mat-grid-list>
+  <h4 class="mt tc"> Ver catalogo completo </h4>
+</div>
 </section>

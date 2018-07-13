@@ -80,6 +80,7 @@ import { HomeComponent } from './components/front-end/home/home.component';
 import { ProductsComponent } from './components/front-end/products/products.component';
 import { FooterComponent } from './components/front-end/footer/footer.component';
 import { SeccionComponent } from './components/front-end/products/seccion/seccion.component';
+import { DetalleProductComponent } from './components/front-end/detalle-product/detalle-product.component';
 
 
 @NgModule({
@@ -105,6 +106,7 @@ import { SeccionComponent } from './components/front-end/products/seccion/seccio
     ProductsComponent,
     FooterComponent,
     SeccionComponent,
+    DetalleProductComponent,
   ],
   imports: [
   AppRoutingModule,
