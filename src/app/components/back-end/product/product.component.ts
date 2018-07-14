@@ -11,28 +11,16 @@ import { Product } from '../../../model/product';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private productService : ProductService) { }
+  constructor(private productService: ProductService) { }
 
-  listProducts : any[];
+  listProducts: any[];
   displayedColumns: string[] = ['select','name', 'slug', 'price', 'seccion', 'categoria','option','description'];
 
   dataSource = new MatTableDataSource<Product>();
   selection = new SelectionModel<Product>(true, []);
 
   ngOnInit() {
-    this.productService.getProduct()
-    .snapshotChanges()
-    .subscribe(item => {
-      this.listProducts = [];
-      item.forEach(element => {
-        let x = element.payload.toJSON();
-        x["$key"] = element.key;
-        if(x["status"] != 0){
-          this.listProducts.push(x);
-        }
-      });
-    this.dataSource.data = this.listProducts;
-    })
+
   }
 
   isAllSelected() {
@@ -48,15 +36,15 @@ export class ProductComponent implements OnInit {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  handleDestroy(){
-    let data = this.selection.selected;
-    data.forEach(element => { 
+  handleDestroy() {
+    const data = this.selection.selected;
+    data.forEach(element => {
       this.productService.updateStatus(element);
     });
   }
-  
+
   handleDuplicate(){
-    let data = this.selection.selected;
+    const data = this.selection.selected;
     data.forEach(element => {
       this.productService.duplicateProduct(element);
     });

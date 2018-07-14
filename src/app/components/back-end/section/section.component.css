@@ -1,0 +1,16 @@
+table, .mat-grid-tile .mat-figure  {
+
+  width: 100%;
+}
+.mat-column-select {
+  overflow: auto;
+}
+
+td{
+  width:250px;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}

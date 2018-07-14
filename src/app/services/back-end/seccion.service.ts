@@ -12,9 +12,9 @@ import { Seccion } from '../../model/seccion';
 })
 export class SeccionService {
 
-  listSeccion : AngularFireList<any>;
-  listSeccionFilter : AngularFireList<any>; //list filter
-  listCategoriaFilter : AngularFireList<any>; //list filter
+  listSeccion: AngularFireList<any>;
+  listSeccionFilter: AngularFireList<any>; // list filter
+  listCategoriaFilter: AngularFireList<any>; // list filter
 
   constructor( private fireBase: AngularFireDatabase ) { }
 
@@ -22,7 +22,7 @@ export class SeccionService {
     return this.listSeccion = this.fireBase.list('seccion');
   }
 
-  /** We are filter the seccion for add categorie */
+  /** We are filter the seccion for add category */
   getSeccionFilterToAddCategoria(key) {
     return this.listSeccionFilter = this.fireBase.list('seccion/'+key+"/categoria");
   }
@@ -52,7 +52,6 @@ export class SeccionService {
       // password: seccionObject.password
     });
   }
-    
   getJsonForName(name:string, json){
     return of(json.find((seccion => seccion.name === name)));
   }
