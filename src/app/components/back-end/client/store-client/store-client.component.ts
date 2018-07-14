@@ -28,17 +28,26 @@ export class StoreClientComponent implements OnInit {
       });
     })
   }
+  formStoreClient
+  formObjectClient
+  request
+  productToAdd
 //-----------Store----------//
   handleSendClient(){
-    // let i=0
-    // while(i<5){
-    //   if(this.objectClient[i] == null){
-    //     this.snackBar.open("Faltan completar datos");
-    //     i++
-    //   }
-    // }
+
       this.clientService.insertUser(this.objectClient);
-      this.location.back();
+
+      this.formStoreClient = document.getElementById("formStoreClient");
+        this.formObjectClient = new FormData(this.formStoreClient);
+          this.request = new XMLHttpRequest();
+          this.request.open("POST", "php/send-mail.php", true);
+          this.request.send(this.formObjectClient);
+          this.request.onload = (e) => {
+            console.log("some");
+            console.log(this.request)
+          }
+      
+      // this.location.back();
     }
   
 

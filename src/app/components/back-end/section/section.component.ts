@@ -15,7 +15,7 @@ export class SectionComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute) { }
 
-  selection = new SelectionModel<Section>(true, []);
+  selection = new SelectionModel(true, []);
   listSection: any[];
   displayedColumns: string[] = ['$key', 'name', 'img', 'editar'];
   dataSource = new MatTableDataSource();

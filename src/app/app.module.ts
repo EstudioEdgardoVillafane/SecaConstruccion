@@ -60,8 +60,6 @@ import { FrontEndComponent } from './components/front-end/front-end.component';
 import { BackEndComponent } from './components/back-end/back-end.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ProductComponent } from './components/back-end/product/product.component';
-import { StatusProductPipe } from './status-product.pipe';
-import { ProductService } from './services/back-end/product.service';
 import { StoreProductComponent } from './components/back-end/product/store-product/store-product.component';
 import { UserComponent } from './components/back-end/user/user.component';
 import { UpdateUserComponent } from './components/back-end/user/update-user/update-user.component';
@@ -89,7 +87,7 @@ import { SeccionService } from './services/back-end/seccion.service';
     StoreUserComponent,
     ClientComponent,
     StoreClientComponent,
-    UpdateClientComponent
+    UpdateClientComponent,
     SectionComponent,
     SectionAddComponent,
     SectionEditComponent,

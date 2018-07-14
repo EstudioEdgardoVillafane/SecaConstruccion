@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../../services/back-end/user.service';
+import { User } from '../../../../model/user';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update-user',
@@ -9,7 +11,7 @@ import { UserService } from '../../../../services/back-end/user.service';
 export class UpdateUserComponent implements OnInit {
 
 
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService, private location : Location) { }
 
   userList;
 
@@ -20,9 +22,11 @@ export class UpdateUserComponent implements OnInit {
     this.userList = this.userService.selectKeyUser
     console.log(this.userList)
   }
-//-----------Store----------//
-  handleSendCliente(){    
-    this.userService.updateUser(this.userList)
+//-----------Update----------//
+handleSendUser(userList : User){    
+    this.userService.updateUser(userList)
+    this.location.back();
+
   }
 //-----------Change Password-------//
   handleChangePassword(){

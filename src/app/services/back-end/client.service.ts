@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 // FireBase
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Client } from '../../model/client';
@@ -21,7 +22,8 @@ export class ClientService {
       name: clientObject.name,
       password: clientObject.password,
       mail: clientObject.mail,
-      validate : 0
+      validate : 0,
+      code: Math.random().toString(36).substring(7)
     });
   }
 
