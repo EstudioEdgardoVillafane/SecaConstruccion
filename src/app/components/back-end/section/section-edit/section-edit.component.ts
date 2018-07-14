@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {SectionService} from '../../../../services/back-end/section.service';
 import { Section } from '../../../../model/section';
+
 import { Imgupload } from '../../../../model/imgupload';
+
+
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-section-edit',

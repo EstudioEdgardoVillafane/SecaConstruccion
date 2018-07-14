@@ -5,12 +5,14 @@ import { SectionService } from '../../../../services/back-end/section.service';
 import { Location } from '@angular/common';
 import { getRandomString } from 'selenium-webdriver/safari';
 
+import { SectionService } from '../../../../services/back-end/section.service';
 @Component({
   selector: 'app-section-add',
   templateUrl: './section-add.component.html',
   styleUrls: ['./section-add.component.css']
 })
 export class SectionAddComponent implements OnInit {
+
 
   objectSection = new Section;
   selectedFiles: FileList;
@@ -54,5 +56,6 @@ listSection;
 
   }
 }
+
 
 

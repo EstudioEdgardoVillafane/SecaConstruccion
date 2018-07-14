@@ -4,6 +4,7 @@ import { SectionService } from '../../../services/back-end/section.service';
 import {SelectionModel} from '@angular/cdk/collections';
 import { Section } from '../../../model/section';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -18,6 +19,7 @@ export class SectionComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   fileUploads: any[];
+
   selection = new SelectionModel<Section>(true, []);
   listSection: any[];
   displayedColumns: string[] = ['$key', 'name', 'img', 'editar'];
@@ -50,6 +52,7 @@ export class SectionComponent implements OnInit {
   }
 
 
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
@@ -61,6 +64,7 @@ export class SectionComponent implements OnInit {
     //this.isAllSelected() ?
         //this.selection.clear() :
         // this.dataSource.data.forEach(row => this.selection.select(row));
+
   }
 
   handleDestroy() {

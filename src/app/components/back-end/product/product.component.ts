@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductService } from '../../../services/back-end/product.service';
 import {SelectionModel} from '@angular/cdk/collections';
-import {MatTableDataSource} from '@angular/material';
+import {MatTableDataSource, MatSnackBar} from '@angular/material';
 import { Product } from '../../../model/product';
+import { Router } from '@angular/router';
+import {MatPaginator, MatSort} from '@angular/material';
 
 @Component({
   selector: 'app-product',
@@ -11,16 +13,48 @@ import { Product } from '../../../model/product';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private productService: ProductService) { }
+
+  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  dataSource: MatTableDataSource<Product>;
+
+  constructor(private productService: ProductService, private router : Router, public snackBar: MatSnackBar) { 
+    this.dataSource = new MatTableDataSource();
+   }
 
   listProducts: any[];
-  displayedColumns: string[] = ['select','name', 'slug', 'price', 'seccion', 'categoria','option','description'];
+  displayedColumns: string[] = ['select','url','name', 'price', 'seccion', 'categoria','code','favorite','order'];
 
-  dataSource = new MatTableDataSource<Product>();
   selection = new SelectionModel<Product>(true, []);
 
+  
   ngOnInit() {
 
+    this.productService.getProduct()
+    .snapshotChanges()
+    .subscribe(item => {
+      this.listProducts = [];
+      item.forEach(element => {
+        let x = element.payload.toJSON();
+        x["$key"] = element.key;
+        if(x["status"] != 0){
+          this.listProducts.push(x);
+        }
+      });
+    this.dataSource.data = this.listProducts;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    })
+  }
+  applyFilter(filterValue: string) {
+    console.log(this.dataSource.filter);
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   isAllSelected() {
@@ -41,12 +75,37 @@ export class ProductComponent implements OnInit {
     data.forEach(element => {
       this.productService.updateStatus(element);
     });
+  
+  handleUpdateTemplate(){
+    const data = this.selection.selected;
+    (data.length == 1) ? this.router.navigateByUrl("backend/productos/update/"+data[0].$key) : this.openSnackBar("Elija un registro ", "Ok!");
   }
 
   handleDuplicate(){
     const data = this.selection.selected;
+    console.log(data);
     data.forEach(element => {
       this.productService.duplicateProduct(element);
+    });
+  }
+
+  handleFavorite(favorite){
+    (this.selection.selected.length == 1) ? this.updateFavorite() : this.openSnackBar("Seleccione un solo producto", "Ok!");
+  }
+  updateFavorite(){
+    var aux;
+    if(this.selection.selected[0].favorite == 1){
+      aux = 0;
+    }else{
+      aux = 1;
+    }
+    this.productService.updateProductFavorite(aux,this.selection.selected[0].$key);
+  }
+
+  /** Open SnackBar alert **/
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 6000,
     });
   }
 }

@@ -5,5 +5,6 @@ export class Section {
   name: string;
   img: string;
   categoria: string[];
+
 }
 

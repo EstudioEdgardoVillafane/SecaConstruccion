@@ -16,11 +16,14 @@ import { Imgupload } from '../../model/imgupload';
 })
 export class SectionService {
 
+
   private basePath = '/uploads';
   listSeccionFilter: AngularFireList<any>;
   auxObject = new Section;
   listSection: AngularFireList<any>;
   listCategory: AngularFireList<any>;
+  auxObject = new Section;
+  listSection: AngularFireList<any>;
 
   constructor(private fireBase: AngularFireDatabase) { }
 

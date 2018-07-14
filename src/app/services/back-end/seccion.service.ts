@@ -22,12 +22,32 @@ export class SeccionService {
     return this.listSeccion = this.fireBase.list('seccion');
   }
 
+
   /** We are filter the seccion for add category */
+
+  getEtiquetas() {
+    return this.listEtiquetas = this.fireBase.list('etiquetas', ref => ref.orderByChild("count"));
+  }
+  
+  /** We are filter the seccion for add categorie */
   getSeccionFilterToAddCategoria(key) {
     return this.listSeccionFilter = this.fireBase.list('seccion/'+key+"/categoria");
   }
+  
   getCategoriaFilterToAddOption(keySeccion, keyOption) {
     return this.listCategoriaFilter = this.fireBase.list('seccion/'+keySeccion+"/categoria/"+keyOption+"/option");
+  }
+  
+  insertEtiquetas(etiquetaName){
+    this.listEtiquetas.push({
+      name: etiquetaName,
+      count: 1
+    });
+  }
+  updateEtiqueta(countValue, key){
+    this.listEtiquetas.update(key,{
+      count: countValue
+    });
   }
 
   insertCategoria(nameCategoria){
@@ -35,11 +55,13 @@ export class SeccionService {
       name: nameCategoria
     });
   }
+
   insertOption(optionName){
     this.listCategoriaFilter.push({
       name: optionName
     });
   }
+
   insertSeccion(seccionObject) {
     this.listSeccion.push ({
       name: seccionObject.seccion,
@@ -52,8 +74,17 @@ export class SeccionService {
       // password: seccionObject.password
     });
   }
+
   getJsonForName(name:string, json){
+
     return of(json.find((seccion => seccion.name === name)));
+  }
+
+  getJsonOfCategoriaForKey(key, json){
+    return of(json.find((categoria => categoria.$key === key)));
+  }
+  getJsonOfOptionForKey(key, json){
+    return of(json.find((categoria => categoria.$key === key)));
   }
 
   deleteSeccion($key) {
