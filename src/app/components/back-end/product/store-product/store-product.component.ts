@@ -180,7 +180,8 @@ export class StoreProductComponent implements OnInit {
         }
       });
       if(boolToAdd == true){
-        this.seccionService.insertCategoria(this.categoriaToAdd);
+        this.seccionService.insertCategoria(this.categoriaToAdd,this.productToAdd.seccion);
+        this.productToAdd.categoria = this.categoriaToAdd;
       }else{
         this.openSnackBar("Esta categoria ya existe", "Ok!");
       }
@@ -191,7 +192,11 @@ export class StoreProductComponent implements OnInit {
 
   /** Insert a new option */
   handleAddOption(){
-    this.seccionService.insertOption(this.optionToAdd);
+    this.seccionService.getJsonOfCategoriaForKey(this.keyCategoriaSelected, this.listSeccionFilter)
+    .subscribe((data) => {  
+      this.seccionService.insertOption(this.optionToAdd, data.name);
+
+    });
   }
   /** Insert a new etiqueta */
   handleAddEtiqueta(){

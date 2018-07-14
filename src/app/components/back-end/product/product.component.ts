@@ -26,6 +26,7 @@ export class ProductComponent implements OnInit {
   listProducts: any[];
   displayedColumns: string[] = ['select','url','name', 'price', 'seccion', 'categoria','code','favorite','order'];
 
+  orderValue;
   selection = new SelectionModel<Product>(true, []);
 
   
@@ -100,6 +101,16 @@ export class ProductComponent implements OnInit {
     }
     this.productService.updateProductFavorite(aux,this.selection.selected[0].$key);
   }
+
+  changeOrder(element, value){
+    if(value <= 0){
+      value = 1;
+    }else{
+    this.productService.updateOrden(value,element.$key)
+    console.log(value);
+    }
+  }
+
 
   /** Open SnackBar alert **/
   openSnackBar(message: string, action: string) {

@@ -89,6 +89,11 @@ export class ProductService {
         status: 0,
       });
   }
+  updateOrden(orderValue, key){
+    this.listProducts.update(key, {
+       order: orderValue,
+     });
+ }
   duplicateProduct(productObject : Product){
     this.listProducts.push({
       name: productObject.name,

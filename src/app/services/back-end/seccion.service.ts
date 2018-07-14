@@ -48,15 +48,17 @@ export class SeccionService {
     });
   }
 
-  insertCategoria(nameCategoria){
+  insertCategoria(nameCategoria, nameSection){
     this.listSeccionFilter.push({
-      name: nameCategoria
+      name: nameCategoria,
+      section: nameSection
     });
   }
 
-  insertOption(optionName){
+  insertOption(optionName, categoriaName){
     this.listCategoriaFilter.push({
-      name: optionName
+      name: optionName,
+      categoria: categoriaName
     });
   }
 
