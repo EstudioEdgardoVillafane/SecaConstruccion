@@ -1,0 +1,28 @@
+<h2>Agregar Nueva Categoria</h2>
+<form class="example-form">
+  <div>
+    <mat-form-field class="example-full-width">
+      <input   matInput
+              placeholder="Nombre"
+              [(ngModel)]= "category"
+              name="category">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+        <mat-label>Seccion</mat-label>
+        <mat-select [(ngModel)]="objectSection.name"
+                    #fontSize
+                    name="name"
+                    >
+          <mat-option *ngFor="let list of listSection" [value]="list.name"
+                      (click)="handleSectionFilter(list.$key)">
+            {{list.name}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+  </div>
+</form>
+<button mat-raised-button color="primary" (click)="handleStoreSection()">Agregar</button>
+<button mat-raised-button color="warn" [routerLink]="['/backend/seccion']">Volver</button>
+
