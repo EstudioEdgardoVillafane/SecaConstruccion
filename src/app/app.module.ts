@@ -2,7 +2,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatAutocompleteModule,
           MatBadgeModule,
@@ -61,6 +61,7 @@ import { BackEndComponent } from './components/back-end/back-end.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ProductComponent } from './components/back-end/product/product.component';
 import { StoreProductComponent } from './components/back-end/product/store-product/store-product.component';
+
 import { UserComponent } from './components/back-end/user/user.component';
 import { UpdateUserComponent } from './components/back-end/user/update-user/update-user.component';
 import { StoreUserComponent } from './components/back-end/user/store-user/store-user.component';
@@ -73,6 +74,9 @@ import { SectionAddComponent } from './components/back-end/section/section-add/s
 import { SectionEditComponent } from './components/back-end/section/section-edit/section-edit.component';
 
 import { SeccionService } from './services/back-end/seccion.service';
+import { CategoryComponent } from './components/back-end/category/category.component';
+import { StoreCategoryComponent } from './components/back-end/category/store-category/store-category.component';
+import { UpdateCategoryComponent } from './components/back-end/category/update-category/update-category.component';
 import { ChangeSpacePipe } from './pipes/change-space.pipe';
 import { UpdateProductComponent } from './components/back-end/product/update-product/update-product.component';
 import { FavoritePipe } from './pipes/favorite.pipe';
@@ -90,6 +94,12 @@ import { DetalleProductComponent } from './components/front-end/detalle-product/
     BackEndComponent,
     ProductComponent,
     StoreProductComponent,
+    SectionComponent,
+    SectionAddComponent,
+    SectionEditComponent,
+    CategoryComponent,
+    StoreCategoryComponent,
+    UpdateCategoryComponent,
     UserComponent,
     UpdateUserComponent,
     StoreUserComponent,

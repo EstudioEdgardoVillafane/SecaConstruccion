@@ -13,6 +13,7 @@ import {MatPaginator, MatSort} from '@angular/material';
 })
 export class ProductComponent implements OnInit {
 
+
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -31,7 +32,7 @@ export class ProductComponent implements OnInit {
 
   
   ngOnInit() {
-    
+
     this.productService.getProduct()
     .snapshotChanges()
     .subscribe(item => {
@@ -75,7 +76,7 @@ export class ProductComponent implements OnInit {
     data.forEach(element => {
       this.productService.updateStatus(element);
     });
-  }
+  
   handleUpdateTemplate(){
     const data = this.selection.selected;
     (data.length == 1) ? this.router.navigateByUrl("backend/productos/update/"+data[0].$key) : this.openSnackBar("Elija un registro ", "Ok!");
