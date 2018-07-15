@@ -1,0 +1,22 @@
+.form-container, .fw{
+    width: 100%;
+    padding-bottom: 30px;
+}
+.fw{
+    clear: right;
+}
+h3{
+    padding-top: 30px;
+}
+.text-center{
+    text-align: center;
+}
+.addAny{
+    cursor: pointer;
+}
+.rg{
+    float: right;
+}
+.btn{
+    min-width: 10%!important;
+}

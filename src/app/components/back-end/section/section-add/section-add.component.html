@@ -8,8 +8,38 @@
              name="name"
     >
   </mat-form-field>
+
+
+  <!-- handleStoreSection()" -->
 </form>
-<button mat-raised-button color="primary" (click)="handleStoreSection()">Agregar</button>
+<button mat-raised-button color="primary" (click)="upload()">Agregar</button>
 <button mat-raised-button color="warn" [routerLink]="['/backend/seccion']">Volver</button>
 
+<div *ngIf="currentFileUpload" class="progress">
+    <div class="progress-bar progress-bar-info progress-bar-striped"
+      role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+      aria-valuemin="0" aria-valuemax="100"
+      [ngStyle]="{width:progress.percentage+'%'}">
+      {{progress.percentage}}%</div>
+  </div>
+ <div>
+  <input type="file" placeholder="Imagen" (change)="selectFile($event)">
+</div>
+<div>
+
+                <!--
+<div *ngIf="currentFileUpload" class="progress">
+	<div class="progress-bar progress-bar-info progress-bar-striped"
+		role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+		aria-valuemin="0" aria-valuemax="100"
+		[ngStyle]="{width:progress.percentage+'%'}">
+		{{progress.percentage}}%</div>
+</div>
+
+<label class="btn btn-default"> <input type="file"
+	(change)="selectFile($event)">
+</label>
+
+<button class="btn btn-success" [disabled]="!selectedFiles"
+	(click)="upload()">Upload</button> -->
 

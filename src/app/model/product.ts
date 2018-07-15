@@ -11,5 +11,6 @@ export class Product {
     favorite : number;
     etiqueta : any;
     code : string;
+    url : string;
     status : number;
 }

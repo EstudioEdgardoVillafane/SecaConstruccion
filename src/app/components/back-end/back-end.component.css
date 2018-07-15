@@ -4,6 +4,9 @@
 .container-sidenav{
     flex: 1;
 }
+.sidenav-content{
+    overflow: initial!important;
+}
 mat-sidenav{
     background-color: #494949;
 }

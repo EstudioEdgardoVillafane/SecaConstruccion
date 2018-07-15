@@ -4,6 +4,9 @@ import { SectionService } from '../../../services/back-end/section.service';
 import {SelectionModel} from '@angular/cdk/collections';
 import { Section } from '../../../model/section';
 import { Router, ActivatedRoute } from '@angular/router';
+
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-section',
   templateUrl: './section.component.html',
@@ -15,7 +18,11 @@ export class SectionComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute) { }
 
-  selection = new SelectionModel(true, []);
+
+  fileUploads: any[];
+
+  selection = new SelectionModel<Section>(true, []);
+
   listSection: any[];
   displayedColumns: string[] = ['$key', 'name', 'img', 'editar'];
   dataSource = new MatTableDataSource();
@@ -35,9 +42,18 @@ export class SectionComponent implements OnInit {
           this.dataSource.data = this.listSection;
         }
       });
-    })
+    });
     this.dataSource.paginator = this.paginator;
+    this.sectionService.getFileUploads(6).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe(fileUploads => {
+      this.fileUploads = fileUploads;
+    });
   }
+
+
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -47,15 +63,16 @@ export class SectionComponent implements OnInit {
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
+    //this.isAllSelected() ?
+        //this.selection.clear() :
+        // this.dataSource.data.forEach(row => this.selection.select(row));
+
   }
 
   handleDestroy() {
     const data = this.selection.selected;
     data.forEach(element => {
-      this.sectionService.delete(element);
+      this.sectionService.deleteSection(element);
     });
   }
 

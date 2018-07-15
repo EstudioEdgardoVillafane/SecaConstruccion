@@ -1,5 +1,14 @@
-.form-container > *{
+.form-container{
     width: 100%;
+    padding-bottom: 30px;
+}
+.fw{
+    clear: right;
+    width: 100%;
+    
+}
+h3{
+    padding-top: 30px;
 }
 .text-center{
     text-align: center;
@@ -11,5 +20,5 @@
     float: right;
 }
 .btn{
-    width: 25%!important;
+    min-width: 10%!important;
 }

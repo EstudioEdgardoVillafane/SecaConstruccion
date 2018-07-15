@@ -1,0 +1,7 @@
+#background-img{
+background-image: url('assets/img/fondo.webp'); height:55vh;
+background-repeat:no-repeat;
+background-size:cover;
+background-position-y:center;
+background-position-x:center;
+}
