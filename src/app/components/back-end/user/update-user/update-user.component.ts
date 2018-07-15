@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../../services/back-end/user.service';
+import { User } from '../../../../model/user';
+import { Location } from '@angular/common';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-update-user',
@@ -9,7 +12,7 @@ import { UserService } from '../../../../services/back-end/user.service';
 export class UpdateUserComponent implements OnInit {
 
 
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService, private location : Location,public snackBar: MatSnackBar) { }
 
   userList;
 
@@ -20,9 +23,16 @@ export class UpdateUserComponent implements OnInit {
     this.userList = this.userService.selectKeyUser
     console.log(this.userList)
   }
-//-----------Store----------//
-  handleSendCliente(){    
-    this.userService.updateUser(this.userList)
+//-----------Update----------//
+handleSendUser(userList : User){
+  let validation = 0;
+    (this.userList.user == "") ? this.snackBar.open("Ingrese un nombre", "Ok!"): validation++;
+    (this.userList.mail == "") ? this.snackBar.open("Ingresar contraseña", "Ok!"): validation++;
+
+    if(validation == 2){
+    this.userService.updateUser(userList)
+    this.location.back();
+    }
   }
 //-----------Change Password-------//
   handleChangePassword(){

@@ -11,22 +11,29 @@
           <mat-form-field>
             <input [(ngModel)]="clientList.mail" matInput placeholder="E-mail" name="mail" >
           </mat-form-field>
+          <br>
+          <a (click)="handleChangePassword()" >cambiar contraseña</a>
         </div>
         
         <div *ngIf="boolChangePassword">
-          <mat-form-field>
-            <input [(ngModel)]="objectUser.password" matInput placeholder="Contraseña" type="password" name="password">
-          </mat-form-field>
           
-          <mat-form-field>
-            <input matInput placeholder="Confirmar contraseña" type="password" name="passwordConfirm" >
-          </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="nueva contraseña" type="password" name="password" >
+        </mat-form-field>
           
-        </div>
+        <mat-form-field>
+          <input matInput placeholder="Confirmar contraseña" type="password" name="passwordConfirm" >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="contraseña actual" type="password" name="passwordConfirm" >
+        </mat-form-field>
         
-          <div *ngIf="boolDontChangePassword"><button mat-raised-button color="accent" (click)="handleChangePassword()">Cambiar contraseña</button></div>
-          <div *ngIf="boolChangePassword"><button mat-raised-button color="accent" (click)="handleDontChangePassword()">Cancelar</button></div>
-          <button mat-raised-button color="primary" (click)="handleSendClient()">Crear</button>
+          <br>
+          <a (click)="handleDontChangePassword()" >Cancelar</a>
+      </div>
+        
+          <button mat-raised-button color="primary" (click)="handleSendClient(clientList)">Editar</button>
           <button mat-raised-button color="danger" [routerLink]="['/backend/cliente']">Volver</button>
       </div>
     </mat-grid-tile>

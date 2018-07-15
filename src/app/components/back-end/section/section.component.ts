@@ -18,9 +18,11 @@ export class SectionComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute) { }
 
+
   fileUploads: any[];
 
   selection = new SelectionModel<Section>(true, []);
+
   listSection: any[];
   displayedColumns: string[] = ['$key', 'name', 'img', 'editar'];
   dataSource = new MatTableDataSource();

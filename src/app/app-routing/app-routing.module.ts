@@ -6,6 +6,7 @@ import { Routes, RouterModule} from '@angular/router';
 import { BackEndComponent } from '../components/back-end/back-end.component';
 import { ProductComponent } from '../components/back-end/product/product.component';
 import { StoreProductComponent } from '../components/back-end/product/store-product/store-product.component';
+
 import { StoreCategoryComponent } from '../components/back-end/category/store-category/store-category.component';
 import { CategoryComponent } from '../components/back-end/category/category.component';
 import { UpdateCategoryComponent } from '../components/back-end/category/update-category/update-category.component';
@@ -14,6 +15,7 @@ import { UpdateCategoryComponent } from '../components/back-end/category/update-
 import { SectionAddComponent } from '../components/back-end/section/section-add/section-add.component';
 import { SectionComponent } from '../components/back-end/section/section.component';
 import { SectionEditComponent } from '../components/back-end/section/section-edit/section-edit.component';
+
 
 import { UserComponent } from '../components/back-end/user/user.component';
 import { StoreUserComponent } from '../components/back-end/user/store-user/store-user.component';

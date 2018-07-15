@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../../services/back-end/user.service';
 import { Location } from '@angular/common';
 import { User } from '../../../../model/user';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-store-user',
@@ -10,7 +11,7 @@ import { User } from '../../../../model/user';
 })
 export class StoreUserComponent implements OnInit {
 
-  constructor(private userService : UserService, private location: Location) { }
+  constructor(private userService : UserService, private location: Location,public snackBar: MatSnackBar) { }
 
   objectUser = new User();
   userList: any[];
@@ -28,8 +29,15 @@ export class StoreUserComponent implements OnInit {
     })
   }
 //-----------Store----------//
-  handleSendUser(){    
+  handleSendUser(){
+    let validation = 0;
+    (this.objectUser.user == null) ? this.snackBar.open("Ingrese un nombre", "Ok!"): validation++;
+    (this.objectUser.password == null) ? this.snackBar.open("Ingresar contraseña", "Ok!"): validation++;
+    (this.objectUser.confirm != this.objectUser.password ) ? this.snackBar.open("las contraseñas no coinsiden", "Ok!"): validation++;
+    (this.objectUser.mail == null) ? this.snackBar.open("Ingrese un mail", "Ok!"): validation++;
+    if(validation == 4){
     this.userService.insertUser(this.objectUser);
     this.location.back();
+    }
   }
 }
