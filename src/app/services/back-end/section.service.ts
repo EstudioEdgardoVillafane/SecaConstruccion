@@ -22,8 +22,7 @@ export class SectionService {
   auxObject = new Section;
   listSection: AngularFireList<any>;
   listCategory: AngularFireList<any>;
-  auxObject = new Section;
-  listSection: AngularFireList<any>;
+  
 
   constructor(private fireBase: AngularFireDatabase) { }
 

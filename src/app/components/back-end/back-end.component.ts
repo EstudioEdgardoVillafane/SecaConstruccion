@@ -25,9 +25,8 @@ export class BackEndComponent implements OnInit {
   goUser(){
     this.router.navigate(['usuarios'], {relativeTo: this.route});
   }
-  goSection(){
-    this.router.navigate(['seccion'], {relativeTo: this.route});
-  }
+  
+  
   goProductos(){
     this.router.navigate(['productos'], {relativeTo: this.route});
   }

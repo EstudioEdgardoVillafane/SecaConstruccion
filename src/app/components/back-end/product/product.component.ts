@@ -76,7 +76,7 @@ export class ProductComponent implements OnInit {
     data.forEach(element => {
       this.productService.updateStatus(element);
     });
-  
+  }
   handleUpdateTemplate(){
     const data = this.selection.selected;
     (data.length == 1) ? this.router.navigateByUrl("backend/productos/update/"+data[0].$key) : this.openSnackBar("Elija un registro ", "Ok!");

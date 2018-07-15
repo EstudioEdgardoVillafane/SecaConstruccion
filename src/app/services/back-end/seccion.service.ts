@@ -11,7 +11,7 @@ import { Seccion } from '../../model/seccion';
   providedIn: 'root'
 })
 export class SeccionService {
-
+  listEtiquetas : AngularFireList<any>;
   listSeccion: AngularFireList<any>;
   listSeccionFilter: AngularFireList<any>; // list filter
   listCategoriaFilter: AngularFireList<any>; // list filter
@@ -66,7 +66,7 @@ export class SeccionService {
 
   insertSeccion(seccionObject) {
     this.listSeccion.push ({
-      name: seccionObject.seccion,
+      name: seccionObject.seccion.replace(/ /g, '-'),
     });
   }
 
@@ -78,7 +78,6 @@ export class SeccionService {
   }
 
   getJsonForName(name:string, json){
-
     return of(json.find((seccion => seccion.name === name)));
   }
 

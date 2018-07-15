@@ -5,7 +5,6 @@ import { SectionService } from '../../../../services/back-end/section.service';
 import { Location } from '@angular/common';
 import { getRandomString } from 'selenium-webdriver/safari';
 
-import { SectionService } from '../../../../services/back-end/section.service';
 @Component({
   selector: 'app-section-add',
   templateUrl: './section-add.component.html',

@@ -116,7 +116,7 @@ export class StoreProductComponent implements OnInit {
       //  We are saving the seccion to filter categories
       // this.productToAdd.seccion get the value of the ngModel
 
-      this.seccionService.getJsonOfSeccionForName(this.productToAdd.seccion,this.listSeccion)
+      this.seccionService.getJsonForName(this.productToAdd.seccion,this.listSeccion)
       .subscribe((data) => {
         this.keySeccionSelected = data.$key;
         this.filterSeccion(data.$key)
@@ -283,6 +283,8 @@ export class StoreProductComponent implements OnInit {
         }
       });
       this.productToAdd.url = this.request.responseText;
+      this.productToAdd.slug = this.productToAdd.slug.replace(/ /g, '-');
+      this.productToAdd.seccion = this.productToAdd.seccion.replace(/ /g, '-');
       this.productService.insertProduct(this.productToAdd);
       this.router.navigateByUrl("/");
     }
