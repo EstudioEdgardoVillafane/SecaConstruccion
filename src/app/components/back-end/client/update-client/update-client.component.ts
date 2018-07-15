@@ -17,19 +17,25 @@ export class UpdateClientComponent implements OnInit {
   clientList;
   boolChangePassword = false;
   boolDontChangePassword = true;
+  password
 
   ngOnInit() {
     this.clientList = this.clientService.selectKeyClient
     console.log(this.clientList)
+    this.password = this.clientList.password;
   }
 //-----------Store----------//
 handleSendClient(clientList : Client){
+  let validation = 0;
+    (this.clientList.name == "") ? this.snackBar.open("Ingrese un nombre", "Ok!"): validation++;
+    (this.clientList.mail == "") ? this.snackBar.open("Ingresar contraseña", "Ok!"): validation++;
 
-  // (clientList.name == null) ? this.snackBar
-
-    this.clientService.updateUser(clientList)
-    this.location.back();
-
+console.log(validation)
+    if(validation == 2){
+      this.clientService.updateUser(clientList)
+      this.location.back();
+    }
+    
   }
 //-----------Change Password-------//
   handleChangePassword(){

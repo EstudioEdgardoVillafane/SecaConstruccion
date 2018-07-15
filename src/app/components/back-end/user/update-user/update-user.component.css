@@ -1,9 +1,13 @@
-.example-container {
+/* .example-container {
     display: flex;
     flex-direction: column;
   }
   
   .example-container > * {
     width: 100%;
-  }
+  } */
+  a{
+    color: rgb(0, 110, 255);
+    cursor: pointer;
+}
   

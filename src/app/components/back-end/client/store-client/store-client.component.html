@@ -14,7 +14,7 @@
     </mat-form-field>
     
         <mat-form-field>
-          <input matInput placeholder="Confirmar contraseña" type="password" name="passwordConfirm" >
+          <input [(ngModel)]="objectClient.confirm" matInput placeholder="Confirmar contraseña" type="password" name="passwordConfirm" >
         </mat-form-field>
         
         <mat-form-field>
@@ -23,7 +23,7 @@
         
       </form>
        
-          <button mat-raised-button color="primary" (click)="handleSendClient(objectClient)">Crear</button>
+          <button mat-raised-button color="primary" (click)="handleSendClient()">Crear</button>
           <button mat-raised-button color="danger" [routerLink]="['/backend/cliente']">Volver</button>
       </div>
     </mat-grid-tile>
