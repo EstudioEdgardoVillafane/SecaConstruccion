@@ -11,7 +11,7 @@ export class UserService {
   constructor( private fireBase: AngularFireDatabase ) { }
   
   listUser: AngularFireList<any>;
-  selectKeyUser = new User();
+  jsonUser = new User();
   getUser() {
     return this.listUser = this.fireBase.list('user');
   }
