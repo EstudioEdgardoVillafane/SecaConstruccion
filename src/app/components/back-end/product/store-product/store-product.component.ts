@@ -286,7 +286,7 @@ export class StoreProductComponent implements OnInit {
       this.productToAdd.slug = this.productToAdd.slug.replace(/ /g, '-');
       this.productToAdd.seccion = this.productToAdd.seccion.replace(/ /g, '-');
       this.productService.insertProduct(this.productToAdd);
-      this.router.navigateByUrl("/");
+      this.router.navigateByUrl("/backend");
     }
   }
 

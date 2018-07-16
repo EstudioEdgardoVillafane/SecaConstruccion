@@ -85,6 +85,8 @@ import { ProductsComponent } from './components/front-end/products/products.comp
 import { FooterComponent } from './components/front-end/footer/footer.component';
 import { SeccionComponent } from './components/front-end/products/seccion/seccion.component';
 import { DetalleProductComponent } from './components/front-end/detalle-product/detalle-product.component';
+import { LoginFrontComponent } from './components/front-end/login-front/login-front.component';
+import { SessionService } from './services/global/session.service';
 
 
 @NgModule({
@@ -117,6 +119,7 @@ import { DetalleProductComponent } from './components/front-end/detalle-product/
     FooterComponent,
     SeccionComponent,
     DetalleProductComponent,
+    LoginFrontComponent,
   ],
   imports: [
   AppRoutingModule,
@@ -166,7 +169,8 @@ import { DetalleProductComponent } from './components/front-end/detalle-product/
   providers: [
     ProductService,
     UserService,
-    SeccionService
+    SeccionService,
+    SessionService
   ],
   bootstrap: [AppComponent]
 })

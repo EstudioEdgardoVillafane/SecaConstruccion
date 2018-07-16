@@ -27,6 +27,7 @@ import { UpdateProductComponent } from '../components/back-end/product/update-pr
 import { FrontEndComponent } from '../components/front-end/front-end.component';
 import { HomeComponent } from '../components/front-end/home/home.component';
 import { DetalleProductComponent } from '../components/front-end/detalle-product/detalle-product.component';
+import { LoginFrontComponent } from '../components/front-end/login-front/login-front.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -50,7 +51,8 @@ const routes: Routes = [
   children: [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
-    { path: 'producto/:slug', component: DetalleProductComponent }
+    { path: 'producto/:slug', component: DetalleProductComponent },
+    { path: 'login', component: LoginFrontComponent}
   ]}
 ];
 

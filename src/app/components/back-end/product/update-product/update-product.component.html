@@ -24,7 +24,7 @@
           <mat-option *ngFor="let option of listFilter" [value]="option">{{option}}</mat-option>
         </mat-autocomplete>
         <button mat-raised-button color="primary" class="mr" (click)="goNextPage()"> Siguiente </button>
-        <button mat-raised-button color="warn" routerLink="/" > Volver al listado </button> 
+        <button mat-raised-button color="warn" routerLink="/backend" > Volver al listado </button> 
   
     </div>
     <div class="form-container" *ngIf="!booleanNextPage">
@@ -66,7 +66,7 @@
         <br>
         
         
-        <form id="formIMG mt">
+        <form id="formIMG">
         Foto del producto: <input class="fw mt" (change)="handleGenerateUrlIMG()" name="uploadedfile" type="file">
         </form>
   
@@ -78,8 +78,8 @@
         </mat-form-field>
         <br>
         <span class="pb">
-          <button mat-raised-button color="primary" class="mr" (click)="updateProduct()"> Agregar producto </button>
-          <button mat-raised-button color="warn" routerLink="/" > Volver al listado </button>
+          <button mat-raised-button color="primary" class="mr" (click)="updateProduct()"> Editar producto </button>
+          <button mat-raised-button color="warn" routerLink="/backend" > Volver al listado </button>
         </span>
       </div>
       

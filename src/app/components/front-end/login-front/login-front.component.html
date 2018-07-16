@@ -1,0 +1,122 @@
+<div class="container"> 
+   <mat-grid-list cols="2" rowHeight="600">  
+
+      <mat-grid-tile class='login-element'>
+          <div class="login-container">
+  
+                <!-- Template Header starts -->
+              <div class="login-box-header">
+                  <a>¿Ya tenes una cuenta? ¡Inicia sesion!</a>
+              </div>
+              <!-- Template Header ends -->
+  
+              <!-- Template Body starts -->
+              <div class="login-box-body">
+  
+                  <!-- Markup for getting Username starts -->
+                  <mat-grid-list cols="9" rowHeight="75px">
+                      <mat-grid-tile [rowspan]="1" class="login-icon">
+                          <mat-icon>lock</mat-icon>
+                      </mat-grid-tile>
+                      <mat-grid-tile [colspan]="7">
+                          <mat-form-field class="justifier">
+                              <input matInput [(ngModel)]="clienteObject.mail" placeholder="Email" text="text" >
+                          </mat-form-field>
+                      </mat-grid-tile>
+                  </mat-grid-list>
+                  <!-- Markup for getting Username ends -->
+  
+                  <!-- Markup for getting Password starts -->
+                  <mat-grid-list cols="9" rowHeight="100px">
+                      <mat-grid-tile [rowspan]="1"  class="login-icon">
+                          <mat-icon>remove_red_eye</mat-icon>
+                      </mat-grid-tile>
+                      <mat-grid-tile [colspan]="7">
+                          <mat-form-field class="justifier">
+                              <input matInput placeholder="Contraseña" [type]="'password'" [(ngModel)]="clienteObject.password">
+                          </mat-form-field>
+                      </mat-grid-tile>
+                  </mat-grid-list>
+                  <!-- Markup for getting Password ends -->
+  
+                  <button mat-raised-button class="login-button" color="primary" (click)="handleSearchUserInBD()">
+                      <mat-icon>input</mat-icon> Login
+                  </button>
+  
+              </div>
+              <!-- Template Body ends -->
+  
+          </div>
+      </mat-grid-tile>
+  
+  
+  <mat-grid-tile class='login-element' style="margin-top: 20px;">
+    <div class="create-container">
+
+          <!-- Template Header starts -->
+        <div class="create-box-header">
+            <a>¿Todavia no tenes una cuenta? ¡Crea una!</a>
+        </div>
+        <!-- Template Header ends -->
+
+        <!-- Template Body starts -->
+        <div class="login-box-body">
+
+            <!-- Markup for getting Username starts -->
+            <mat-grid-list cols="9" rowHeight="75px">
+                <mat-grid-tile [rowspan]="1" class="login-icon">
+                    <mat-icon>person</mat-icon>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="7">
+                    <mat-form-field class="justifier">
+                        <input matInput placeholder="Nombre y Apellido" text="text" >
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <mat-grid-list cols="9" rowHeight="75px">
+              <mat-grid-tile [rowspan]="1" class="login-icon">
+                  <mat-icon>email</mat-icon>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="7">
+                  <mat-form-field class="justifier">
+                      <input matInput placeholder="Email" text="text" >
+                  </mat-form-field>
+              </mat-grid-tile>
+          </mat-grid-list>
+            <!-- Markup for getting Username ends -->
+
+            <!-- Markup for getting Password starts -->
+            <mat-grid-list cols="9" rowHeight="100px">
+                <mat-grid-tile [rowspan]="1"  class="login-icon">
+                    <mat-icon>lock</mat-icon>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="7">
+                    <mat-form-field class="justifier">
+                        <input matInput placeholder="Contraseña" [type]="'password'">
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <mat-grid-list cols="9" rowHeight="100px">
+              <mat-grid-tile [rowspan]="1"  class="login-icon">
+                  <mat-icon>lock</mat-icon>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="7">
+                  <mat-form-field class="justifier">
+                      <input matInput placeholder="Confirmar Contraseña" [type]="'password'">
+                  </mat-form-field>
+              </mat-grid-tile>
+          </mat-grid-list>
+            <!-- Markup for getting Password ends -->
+
+            <button mat-raised-button class="login-button" color="warn">
+                <mat-icon>accessibility_new</mat-icon> Crear cuenta
+            </button>
+
+        </div>
+        <!-- Template Body ends -->
+
+    </div>
+</mat-grid-tile>
+
+</mat-grid-list>
+</div>

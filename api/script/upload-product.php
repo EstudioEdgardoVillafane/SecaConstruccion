@@ -4,13 +4,14 @@
 	@$tmp = $_FILES['uploadedfile']['tmp_name'];
     @$file_name = $_FILES['uploadedfile']['name'];
     
-    $ancho_fijo=1920;
-	$alto_fijo=1080;
+    $ancho_fijo=480;
+	$alto_fijo=270;
 	$ext=explode('/',$tipo);
 	$aleatorio=rand(0,999999999);
 	$nuevo_nombre="port-".$aleatorio.'.'.$ext[1];
 	$ruta="../../uploads";
 	$URL = "uploads/".$nuevo_nombre;
+	
 	if($tamano){
 		if($tipo == "image/pjpeg" || $tipo == "image/jpeg"){
 			$nueva_img = @imagecreatefromjpeg($tmp);
