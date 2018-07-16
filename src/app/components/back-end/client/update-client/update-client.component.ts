@@ -3,6 +3,7 @@ import { ClientService } from '../../../../services/back-end/client.service';
 import { Location } from '@angular/common';
 import { Client } from '../../../../model/client';
 import {MatSnackBar} from '@angular/material';
+import { Password } from '../../../../model/password';
 
 
 @Component({
@@ -17,25 +18,32 @@ export class UpdateClientComponent implements OnInit {
   clientList;
   boolChangePassword = false;
   boolDontChangePassword = true;
-  password
-
+  changePassword = new Password;
+  
   ngOnInit() {
     this.clientList = this.clientService.selectKeyClient
-    console.log(this.clientList)
-    this.password = this.clientList.password;
   }
 //-----------Store----------//
-handleSendClient(clientList : Client){
+handleUpdateClient(){
   let validation = 0;
     (this.clientList.name == "") ? this.snackBar.open("Ingrese un nombre", "Ok!"): validation++;
     (this.clientList.mail == "") ? this.snackBar.open("Ingresar contraseña", "Ok!"): validation++;
 
-console.log(validation)
     if(validation == 2){
-      this.clientService.updateUser(clientList)
+      this.clientService.updateUser(this.clientList)
       this.location.back();
     }
-    
+  }
+  handleUpdateClientPassword(){
+    let validation = 0;
+    (this.changePassword.new != this.changePassword.confirm) ? this.snackBar.open("Contraseñas distintas", "Ok!"): validation++;
+    (this.changePassword.old != this.clientList.password) ? this.snackBar.open("Ingresar la contraseña actual", "Ok!"): validation++;
+
+    if(validation == 2 ){
+      this.clientList.password = this.changePassword.new
+      this.clientService.updateUser(this.clientList)
+      this.location.back();
+    }
   }
 //-----------Change Password-------//
   handleChangePassword(){

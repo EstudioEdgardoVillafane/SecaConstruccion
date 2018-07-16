@@ -13,3 +13,27 @@ table {
   .mat-column-select {
     overflow: initial;
   }
+  .rigth{
+    float: right;
+    padding-top: 25px;
+}
+.btn-u-d{
+    position: relative;
+    top:6px;
+}
+table, .mat-grid-tile .mat-figure  {
+
+  width: 100%;
+}
+.mat-column-select {
+  overflow: auto;
+}
+
+td{
+  width:250px;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
