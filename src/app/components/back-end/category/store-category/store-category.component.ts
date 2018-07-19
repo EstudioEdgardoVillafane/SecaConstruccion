@@ -38,7 +38,7 @@ export class StoreCategoryComponent implements OnInit {
   }
 
   handleSectionFilter(key) {
-    this.sectionService.getSeccionFilterToAddCategoria(key)
+    this.sectionService.getCategoria(key)
     .snapshotChanges()
     .subscribe(item => {
       this.listCategoria = [];

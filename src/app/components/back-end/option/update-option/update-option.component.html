@@ -1,0 +1,12 @@
+<h2>Editar la opcion </h2>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input   matInput
+             placeholder="Nombre"
+             [(ngModel)]= "option.name"
+             name="name">
+  </mat-form-field>
+</form>
+<button mat-raised-button color="primary" (click)="handleEditOption()">Modificar</button>
+<button mat-raised-button color="warn" [routerLink]="['/backend/seccion']">Volver</button>
+

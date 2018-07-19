@@ -1,0 +1,28 @@
+<h2>Agregar Nueva Opcion</h2>
+<form class="example-form">
+  <div>
+    <mat-form-field class="example-full-width">
+      <input   matInput
+              placeholder="Nombre"
+              [(ngModel)]= "option"
+              name="option">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <mat-select [(ngModel)]="objectSection.name"
+                    #fontSize
+                    name="name"
+                    >
+          <mat-option *ngFor="let list of listCategoria" [value]="list.name"
+                      (click)="handleSectionFilter(list)">
+            {{list.name}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+  </div>
+</form>
+<button mat-raised-button color="primary" (click)="handleStoreOption()">Agregar</button>
+<button mat-raised-button color="warn" [routerLink]="['/backend/seccion']">Volver</button>
+
