@@ -113,6 +113,7 @@ export class ProductComponent implements OnInit {
     }else{
     this.productService.updateOrden(value,element.$key)
     }
+    this.selection.clear();
   }
 
 

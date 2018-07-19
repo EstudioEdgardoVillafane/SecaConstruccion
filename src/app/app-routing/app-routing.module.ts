@@ -49,7 +49,10 @@ const routes: Routes = [
       { path: 'seccion/agregar', component: SectionAddComponent },
       { path: 'seccion/editar', component: SectionEditComponent },
       { path: 'preguntas', component: AskComponent },
-      { path: 'preguntas/response/:key', component: StoreAskComponent }
+      { path: 'preguntas/response/:key', component: StoreAskComponent },
+      { path: 'categorias', component: CategoryComponent},
+      { path: 'categorias/agregar', component: StoreCategoryComponent },
+      { path: 'categorias/editar', component: UpdateCategoryComponent },
     ]},
     { path: '',component: FrontEndComponent,
   children: [
