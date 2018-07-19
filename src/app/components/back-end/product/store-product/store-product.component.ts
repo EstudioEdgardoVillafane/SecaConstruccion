@@ -30,6 +30,7 @@ export class StoreProductComponent implements OnInit {
   listFilter : any[];
   listFilterEtiqueta : any[];
   listEtiquetas : any[];
+  
   arrayCheckbox : string[];
   arrayEtiquetasSelected = new Array();
 

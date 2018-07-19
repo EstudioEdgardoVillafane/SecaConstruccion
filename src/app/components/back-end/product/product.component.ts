@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductService } from '../../../services/back-end/product.service';
-import {SelectionModel} from '@angular/cdk/collections';
-import {MatTableDataSource, MatSnackBar} from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource, MatSnackBar } from '@angular/material';
 import { Product } from '../../../model/product';
 import { Router } from '@angular/router';
-import {MatPaginator, MatSort} from '@angular/material';
+import { MatPaginator, MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-product',
@@ -12,8 +12,6 @@ import {MatPaginator, MatSort} from '@angular/material';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-
-
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -32,7 +30,6 @@ export class ProductComponent implements OnInit {
 
   
   ngOnInit() {
-
     this.productService.getProduct()
     .snapshotChanges()
     .subscribe(item => {
@@ -43,12 +40,13 @@ export class ProductComponent implements OnInit {
         if(x["status"] != 0){
           this.listProducts.push(x);
         }
-      });
+      });      
     this.dataSource.data = this.listProducts;
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    })
+-    this.dataSource.sort = this.sort;
+    });
   }
+
   applyFilter(filterValue: string) {
     console.log(this.dataSource.filter);
     this.dataSource.filter = filterValue.trim().toLowerCase();
