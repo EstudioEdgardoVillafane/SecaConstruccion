@@ -4,8 +4,8 @@
       <span class="right">
         <mat-form-field appearance="legacy">
           <mat-label>Buscar producto</mat-label>
-          <input matInput placeholder="" [(ngModel)]="valueToSearch" name="value">
-          <mat-icon (click)="goToSearch()" matSuffix class="icon-search">search</mat-icon>
+          <input matInput placeholder="" name="value">
+          <mat-icon  matSuffix class="icon-search">search</mat-icon>
           
         </mat-form-field>
       </span>
@@ -19,7 +19,10 @@
       <mat-sidenav #snav position="end">
         <mat-nav-list>
           <mat-list dense>
-  
+
+            <mat-list-item routerLink="/home">
+              <mat-icon>home</mat-icon> <a> Inicio</a> 
+           </mat-list-item>
               <mat-list-item routerLink="/categorias">
                  <mat-icon>dashboard</mat-icon> <a >Categorias</a> 
               </mat-list-item>
@@ -33,15 +36,20 @@
                </mat-list-item>
   
                <mat-divider class="my-2"></mat-divider>
-  
+               
+               <span *ngIf="clientOnline == undefined">
                <mat-list-item routerLink="/login">
                  <mat-icon>supervised_user_circle</mat-icon> Iniciar sesión
                </mat-list-item>
-  
-               <mat-list-item>
-                 <mat-icon>label_important</mat-icon> Crea tu cuenta
-               </mat-list-item>
-               
+              </span>
+              <span *ngIf="clientOnline != undefined">
+                <mat-list-item>
+                  <mat-icon>supervised_user_circle</mat-icon> {{clientOnline}}
+                </mat-list-item>
+                <mat-list-item (click)="handleExitSession()">
+                    <mat-icon>label_important</mat-icon> Cerrar session
+                  </mat-list-item>
+              </span>
   </mat-list>
         </mat-nav-list>
       </mat-sidenav>

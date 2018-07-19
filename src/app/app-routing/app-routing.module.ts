@@ -6,6 +6,7 @@ import { Routes, RouterModule} from '@angular/router';
 import { BackEndComponent } from '../components/back-end/back-end.component';
 import { ProductComponent } from '../components/back-end/product/product.component';
 import { StoreProductComponent } from '../components/back-end/product/store-product/store-product.component';
+
 import { StoreCategoryComponent } from '../components/back-end/category/store-category/store-category.component';
 import { CategoryComponent } from '../components/back-end/category/category.component';
 import { UpdateCategoryComponent } from '../components/back-end/category/update-category/update-category.component';
@@ -14,6 +15,7 @@ import { UpdateCategoryComponent } from '../components/back-end/category/update-
 import { SectionAddComponent } from '../components/back-end/section/section-add/section-add.component';
 import { SectionComponent } from '../components/back-end/section/section.component';
 import { SectionEditComponent } from '../components/back-end/section/section-edit/section-edit.component';
+
 
 import { UserComponent } from '../components/back-end/user/user.component';
 import { StoreUserComponent } from '../components/back-end/user/store-user/store-user.component';
@@ -28,6 +30,10 @@ import { DetalleProductComponent } from '../components/front-end/detalle-product
 import { OptionComponent } from '../components/back-end/option/option.component';
 import { AddOptionComponent } from '../components/back-end/option/add-option/add-option.component';
 import { UpdateOptionComponent } from '../components/back-end/option/update-option/update-option.component';
+
+import { LoginFrontComponent } from '../components/front-end/login-front/login-front.component';
+import { AskComponent } from '../components/back-end/ask/ask.component';
+import { StoreAskComponent } from '../components/back-end/ask/store-ask/store-ask.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -46,18 +52,23 @@ const routes: Routes = [
       { path: 'seccion', component: SectionComponent },
       { path: 'seccion/agregar', component: SectionAddComponent },
       { path: 'seccion/editar', component: SectionEditComponent },
-      { path: 'categoria', component: CategoryComponent},
-      { path: 'categoria/store', component: StoreCategoryComponent},
+     
       { path: 'opcion', component: OptionComponent},
       { path: 'opcion/editar', component: UpdateOptionComponent},
       { path: 'opcion/store', component: AddOptionComponent},
-      //  { path: 'opcion/editar', component: },
+ 
+      { path: 'preguntas', component: AskComponent },
+      { path: 'preguntas/response/:key', component: StoreAskComponent },
+      { path: 'categorias', component: CategoryComponent},
+      { path: 'categorias/agregar', component: StoreCategoryComponent },
+      { path: 'categorias/editar', component: UpdateCategoryComponent },
     ]},
     { path: '', component: FrontEndComponent,
   children: [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
-    { path: 'producto/:slug', component: DetalleProductComponent }
+    { path: 'producto/:slug', component: DetalleProductComponent },
+    { path: 'login', component: LoginFrontComponent}
   ]}
 ];
 

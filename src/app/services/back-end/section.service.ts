@@ -139,7 +139,6 @@ private saveFileData(fileUpload: Imgupload) {
   // this.fireBase.list(`${this.basePath}/`).push(fileUpload);
 }
 
-
 getFileUploads(numberItems): AngularFireList<Imgupload> {
   return this.fireBase.list(this.basePath, ref =>
     ref.limitToLast(numberItems));

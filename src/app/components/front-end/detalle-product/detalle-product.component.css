@@ -8,7 +8,13 @@
     padding-top: 30px;
   }
   
-  
+  .contenedor-imagen{
+    height: max-content!important;
+  }
+  .contenedor-imagen > img {
+    max-width: 100%;
+    max-height: 100%;
+  }
   .medios-pago{
     padding-left: 30px;
     padding-top: 30px;
@@ -46,9 +52,15 @@
   
   .container{
     background-color:white!important;
-
+    box-shadow: 1px 1px 1px #dadada;
   }
   
+  .alert-ask{
+    font-size: 13px;
+    color:red;
+    position: relative;
+    bottom:30px;
+  }
   
   .escribir-consulta{
     width: 500px;

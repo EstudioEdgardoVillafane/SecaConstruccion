@@ -1,13 +1,12 @@
-<h2 align="center">Tabla de Usuarios</h2>
-
-<hr>
 <!-- search engine -->
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
 </mat-form-field>
 <!-- buttons -->
-  <button mat-raised-button color="primary" (click)="handleGoStoreForm()"><mat-icon>add_circle_outline</mat-icon> Agregar</button>
-  <button mat-raised-button color="warn" class="mr-1" (click)="handleDeleteUser()"><mat-icon>delete</mat-icon>Borrar</button>
+<div class="rigth mb">
+  <button mat-raised-button color="primary" class="mr" (click)="handleGoStoreForm()"><mat-icon>add_circle_outline</mat-icon> Agregar</button>
+  <button mat-raised-button color="warn" class="mr" (click)="handleDeleteUser()"><mat-icon>delete</mat-icon>Borrar</button>
+</div>
 
 
   <!-- Table -->

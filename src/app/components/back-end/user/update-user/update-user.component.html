@@ -1,34 +1,42 @@
-<mat-grid-list cols="3" rowHeight="500px" >
-  <mat-grid-tile></mat-grid-tile>
-  <mat-grid-tile>
 
-    <div class="example-container">
-      <div *ngIf="boolDontChangePassword">
-        <mat-form-field>
-          <input [(ngModel)]="userList.user" matInput placeholder="Nombre de usuario" name="user" >
-        </mat-form-field>
-        
-        <mat-form-field>
-          <input [(ngModel)]="userList.mail" matInput placeholder="E-mail" name="mail" >
-        </mat-form-field>
-      </div>
-      
-      <div *ngIf="boolChangePassword">
-        <mat-form-field>
-          <input [(ngModel)]="objectUser.password" matInput placeholder="Contraseña" type="password" name="password">
-        </mat-form-field>
-        
-        <mat-form-field>
-          <input matInput placeholder="Confirmar contraseña" type="password" name="passwordConfirm" >
-        </mat-form-field>
-        
-      </div>
-      
-        <div *ngIf="boolDontChangePassword"><button mat-raised-button color="accent" (click)="handleChangePassword()">Cambiar contraseña</button></div>
-        <div *ngIf="boolChangePassword"><button mat-raised-button color="accent" (click)="handleDontChangePassword()">Cancelar</button></div>
-        <button mat-raised-button color="primary" (click)="handleSendUser()">Crear</button>
-        <button mat-raised-button color="danger" [routerLink]="['/backend/usuarios']">Volver</button>
-    </div>
-  </mat-grid-tile>
-  <mat-grid-tile></mat-grid-tile>
-</mat-grid-list>
+<h1 class="text-center">Editar Usuario</h1>
+
+<div class="example-container">
+
+  <div *ngIf="boolDontChangePassword">
+    <mat-form-field class="fw">
+      <input [(ngModel)]="userList.user" matInput placeholder="Nombre de usuario" name="name" >
+    </mat-form-field>
+
+    <mat-form-field class="fw">
+      <input [(ngModel)]="userList.mail" matInput placeholder="E-mail" name="mail" >
+    </mat-form-field>
+   <br>
+      <a (click)="handleChangePassword()" >cambiar contraseña</a>
+    <br>
+    <button mat-raised-button color="primary" (click)="handleUpdateUser()">Editar</button>
+    <button mat-raised-button color="danger" [routerLink]="['/backend/usuarios']">Volver</button>
+  </div>
+
+  <div *ngIf="boolChangePassword">
+    <mat-form-field class="fw">
+      <input [(ngModel)]="changePassword.new" matInput placeholder="nueva contraseña" type="password" name="password" >
+    </mat-form-field>
+
+    <mat-form-field class="fw">
+      <input [(ngModel)]="changePassword.confirm" matInput placeholder="Confirmar contraseña" type="password" name="passwordConfirm" >
+    </mat-form-field>
+
+    <mat-form-field class="fw">
+      <input [(ngModel)]="changePassword.old" matInput placeholder="contraseña actual" type="password" name="passwordConfirm" >
+    </mat-form-field>
+
+    <br>
+      <a (click)="handleDontChangePassword()" >Cancelar</a>
+    <br>
+      <button mat-raised-button color="primary" (click)="handleUpdateUserPassword()">Editar</button>
+      <button mat-raised-button color="danger" [routerLink]="['/backend/usuarios']">Volver</button>
+  </div>
+
+</div>
+

@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../../../services/back-end/client.service';
+import { Location } from '@angular/common';
+import { Client } from '../../../../model/client';
+import {MatSnackBar} from '@angular/material';
+import { Password } from '../../../../model/password';
+
+
 @Component({
   selector: 'app-update-client',
   templateUrl: './update-client.component.html',
@@ -7,19 +13,37 @@ import { ClientService } from '../../../../services/back-end/client.service';
 })
 export class UpdateClientComponent implements OnInit {
 
-  constructor(private clientService: ClientService) { }
+  constructor(private clientService: ClientService, private location : Location,public snackBar: MatSnackBar) { }
 
   clientList;
   boolChangePassword = false;
   boolDontChangePassword = true;
-
+  changePassword = new Password;
+  
   ngOnInit() {
     this.clientList = this.clientService.selectKeyClient
-    console.log(this.clientList)
   }
 //-----------Store----------//
-  handleSendUser(){    
-    this.clientService.updateUser(this.clientList)
+handleUpdateClient(){
+  let validation = 0;
+    (this.clientList.name == "") ? this.snackBar.open("Ingrese un nombre", "Ok!"): validation++;
+    (this.clientList.mail == "") ? this.snackBar.open("Ingresar contraseña", "Ok!"): validation++;
+
+    if(validation == 2){
+      this.clientService.updateUser(this.clientList)
+      this.location.back();
+    }
+  }
+  handleUpdateClientPassword(){
+    let validation = 0;
+    (this.changePassword.new != this.changePassword.confirm) ? this.snackBar.open("Contraseñas distintas", "Ok!"): validation++;
+    (this.changePassword.old != this.clientList.password) ? this.snackBar.open("Ingresar la contraseña actual", "Ok!"): validation++;
+
+    if(validation == 2 ){
+      this.clientList.password = this.changePassword.new
+      this.clientService.updateUser(this.clientList)
+      this.location.back();
+    }
   }
 //-----------Change Password-------//
   handleChangePassword(){

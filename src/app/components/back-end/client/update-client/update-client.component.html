@@ -1,35 +1,41 @@
-<mat-grid-list cols="3" rowHeight="500px" >
-    <mat-grid-tile></mat-grid-tile>
-    <mat-grid-tile>
+<h1 class="text-center">Editar Cliente</h1>
+
+<div class="example-container">
+<div *ngIf="boolDontChangePassword">
+
+  <mat-form-field class="fw">
+  <input [(ngModel)]="clientList.name" matInput placeholder="Nombre de usuario" name="name" >
+  </mat-form-field>
+
+  <mat-form-field class="fw">
+  <input [(ngModel)]="clientList.mail" matInput placeholder="E-mail" name="mail" >
+  </mat-form-field>
   
-      <div class="example-container">
-        <div *ngIf="boolDontChangePassword">
-          <mat-form-field>
-            <input [(ngModel)]="clientList.name" matInput placeholder="Nombre de usuario" name="name" >
-          </mat-form-field>
-          
-          <mat-form-field>
-            <input [(ngModel)]="clientList.mail" matInput placeholder="E-mail" name="mail" >
-          </mat-form-field>
-        </div>
-        
-        <div *ngIf="boolChangePassword">
-          <mat-form-field>
-            <input [(ngModel)]="objectUser.password" matInput placeholder="Contraseña" type="password" name="password">
-          </mat-form-field>
-          
-          <mat-form-field>
-            <input matInput placeholder="Confirmar contraseña" type="password" name="passwordConfirm" >
-          </mat-form-field>
-          
-        </div>
-        
-          <div *ngIf="boolDontChangePassword"><button mat-raised-button color="accent" (click)="handleChangePassword()">Cambiar contraseña</button></div>
-          <div *ngIf="boolChangePassword"><button mat-raised-button color="accent" (click)="handleDontChangePassword()">Cancelar</button></div>
-          <button mat-raised-button color="primary" (click)="handleSendClient()">Crear</button>
-          <button mat-raised-button color="danger" [routerLink]="['/backend/cliente']">Volver</button>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile></mat-grid-tile>
-  </mat-grid-list>
-  
+  <br>
+    <a (click)="handleChangePassword()" >cambiar contraseña</a>
+  <br>
+    <button mat-raised-button color="primary" (click)="handleUpdateClient()">Editar</button>
+    <button mat-raised-button color="danger" [routerLink]="['/backend/cliente']">Volver</button>
+</div>
+<div *ngIf="boolChangePassword">
+
+  <mat-form-field class="fw">
+  <input [(ngModel)]="changePassword.new" matInput placeholder="nueva contraseña" type="password" name="password" >
+  </mat-form-field>
+
+  <mat-form-field class="fw">
+  <input [(ngModel)]="changePassword.confirm" matInput placeholder="Confirmar contraseña" type="password" name="passwordConfirm" >
+  </mat-form-field>
+
+  <mat-form-field class="fw">
+  <input [(ngModel)]="changePassword.old" matInput placeholder="contraseña actual" type="password" name="passwordConfirm" >
+  </mat-form-field>
+
+  <br>
+    <a (click)="handleDontChangePassword()" >Cancelar</a>
+  <br>
+    <button mat-raised-button color="primary" (click)="handleUpdateClientPassword()">Editar</button>
+    <button mat-raised-button color="danger" [routerLink]="['/backend/cliente']">Volver</button>
+</div>
+
+</div>

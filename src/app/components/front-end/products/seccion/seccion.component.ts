@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SeccionService } from '../../../../services/back-end/seccion.service';
+import { SessionService } from '../../../../services/global/session.service';
 
 @Component({
   selector: 'app-seccion',
@@ -23,6 +24,7 @@ export class SeccionComponent implements OnInit {
         this.listSeccion.push(x);
       });
     });
+    
   }
 
 }

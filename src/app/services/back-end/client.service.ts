@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs/observable/of';
+
 // FireBase
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Client } from '../../model/client';
@@ -16,12 +18,17 @@ export class ClientService {
     return this.listClient = this.fireBase.list('client');
   }
 
+  getJsonForName(mail:string, json){
+    return of(json.find((client => client.mail === mail)));
+  }
+
   insertUser(clientObject: Client) {
     this.listClient.push ({
       name: clientObject.name,
       password: clientObject.password,
       mail: clientObject.mail,
-      validate : 0
+      validate : 0,
+      code: Math.random().toString(36).substring(7)
     });
   }
 

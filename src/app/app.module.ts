@@ -88,6 +88,10 @@ import { DetalleProductComponent } from './components/front-end/detalle-product/
 import { OptionComponent } from './components/back-end/option/option.component';
 import { AddOptionComponent } from './components/back-end/option/add-option/add-option.component';
 import { UpdateOptionComponent } from './components/back-end/option/update-option/update-option.component';
+import { LoginFrontComponent } from './components/front-end/login-front/login-front.component';
+import { SessionService } from './services/global/session.service';
+import { AskComponent } from './components/back-end/ask/ask.component';
+import { StoreAskComponent } from './components/back-end/ask/store-ask/store-ask.component';
 
 
 @NgModule({
@@ -123,6 +127,9 @@ import { UpdateOptionComponent } from './components/back-end/option/update-optio
     OptionComponent,
     AddOptionComponent,
     UpdateOptionComponent,
+    LoginFrontComponent,
+    AskComponent,
+    StoreAskComponent,
   ],
   imports: [
   AppRoutingModule,
@@ -172,7 +179,8 @@ import { UpdateOptionComponent } from './components/back-end/option/update-optio
   providers: [
     ProductService,
     UserService,
-    SeccionService
+    SeccionService,
+    SessionService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,11 @@
+<div class="form-container">
+  <h4>Pregunta del cliente</h4>
+  <p>{{askSelected.ask}}</p>
+  <h4>Repuesta: </h4>
+  <mat-form-field class="fw">
+    <textarea matInput placeholder="Escribi tu respuesta acá" [(ngModel)]="askSelected.response" name="response"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="mr" (click)="handleUpdateAskResponse()"><mat-icon>message</mat-icon>Contestar mensaje</button>
+  <button mat-raised-button color="warn" routerLink="/backend/preguntas">Volver</button>
+
+</div>

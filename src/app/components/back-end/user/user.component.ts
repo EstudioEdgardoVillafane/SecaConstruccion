@@ -43,7 +43,7 @@ export class UserComponent implements OnInit {
     // let aux = this.selection.selected;
     
     // if( aux ){
-      this.userService.selectKeyUser = user ;
+      this.userService.jsonUser = user ;
     this.router.navigate(['update'], {relativeTo: this.route});
     // }
   }
