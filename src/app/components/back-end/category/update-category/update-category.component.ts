@@ -26,7 +26,7 @@ export class UpdateCategoryComponent implements OnInit {
       item.forEach(element => {
         const x = element.payload.toJSON();
         // console.log(x);
-        this.sectionService.getcategoria(element.key)
+        this.sectionService.getCategoria(element.key)
         .snapshotChanges()
         .subscribe(itemm => {
           itemm.forEach(elementt => {

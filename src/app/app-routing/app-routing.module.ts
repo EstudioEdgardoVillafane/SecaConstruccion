@@ -27,13 +27,17 @@ import { UpdateProductComponent } from '../components/back-end/product/update-pr
 import { FrontEndComponent } from '../components/front-end/front-end.component';
 import { HomeComponent } from '../components/front-end/home/home.component';
 import { DetalleProductComponent } from '../components/front-end/detalle-product/detalle-product.component';
+import { OptionComponent } from '../components/back-end/option/option.component';
+import { AddOptionComponent } from '../components/back-end/option/add-option/add-option.component';
+import { UpdateOptionComponent } from '../components/back-end/option/update-option/update-option.component';
+
 import { LoginFrontComponent } from '../components/front-end/login-front/login-front.component';
 import { AskComponent } from '../components/back-end/ask/ask.component';
 import { StoreAskComponent } from '../components/back-end/ask/store-ask/store-ask.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
-  { path: 'backend',component: BackEndComponent,
+  { path: 'backend', component: BackEndComponent,
   children: [
       { path: '', redirectTo: 'productos', pathMatch: 'full'},
       { path: 'productos', component: ProductComponent },
@@ -41,20 +45,25 @@ const routes: Routes = [
       { path: 'productos/update/:key', component: UpdateProductComponent },
       { path: 'usuarios', component: UserComponent},
       { path: 'usuarios/update', component: UpdateUserComponent},
-      { path: 'usuarios/store', component: StoreUserComponent},  
+      { path: 'usuarios/store', component: StoreUserComponent},
       { path: 'cliente', component: ClientComponent},
       { path: 'cliente/store', component: StoreClientComponent},
       { path: 'cliente/update', component: UpdateClientComponent},
       { path: 'seccion', component: SectionComponent },
       { path: 'seccion/agregar', component: SectionAddComponent },
       { path: 'seccion/editar', component: SectionEditComponent },
+     
+      { path: 'opcion', component: OptionComponent},
+      { path: 'opcion/editar', component: UpdateOptionComponent},
+      { path: 'opcion/store', component: AddOptionComponent},
+ 
       { path: 'preguntas', component: AskComponent },
       { path: 'preguntas/response/:key', component: StoreAskComponent },
       { path: 'categorias', component: CategoryComponent},
       { path: 'categorias/agregar', component: StoreCategoryComponent },
       { path: 'categorias/editar', component: UpdateCategoryComponent },
     ]},
-    { path: '',component: FrontEndComponent,
+    { path: '', component: FrontEndComponent,
   children: [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },

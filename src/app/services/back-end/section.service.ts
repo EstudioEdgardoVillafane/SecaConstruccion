@@ -1,5 +1,5 @@
 import { Injectable, Query } from '@angular/core';
-
+import { of } from 'rxjs/observable/of';
 
 // FireBase
 import { AngularFireDatabase, AngularFireList,  } from 'angularfire2/database';
@@ -18,11 +18,11 @@ export class SectionService {
 
 
   private basePath = '/uploads';
-  listSeccionFilter: AngularFireList<any>;
   auxObject = new Section;
   listSection: AngularFireList<any>;
   listCategory: AngularFireList<any>;
-  
+  listOption: AngularFireList<any>;
+  listOptiontoList: AngularFireList<any>;
 
   constructor(private fireBase: AngularFireDatabase) { }
 
@@ -32,24 +32,33 @@ export class SectionService {
       img: objectSection.img,
     });
   }
-
   storeCategory(category, sectionName) {
-    this.listSeccionFilter.push ({
+    this.listCategory.push ({
       name: category,
       section: sectionName,
     });
   }
-  getcategoria(key) {
+  storeOption(option, category) {
+    this.listOption.push ({
+      name: option,
+      category: category,
+    });
+  }
+
+  getCategoria(key) {
     return this.listCategory = this.fireBase.list('seccion/' + key + '/categoria');
   }
   getSection() {
       return this.listSection = this.fireBase.list('seccion');
 
   }
+  getOption(sectionKey, categoryKey) {
+    return this.listOption = this.fireBase.list('seccion/' + sectionKey + '/categoria/' + categoryKey + '/opcion');
+}
+  getOptiontoList(sectionKey, categoryKey) {
+    return this.listOptiontoList = this.fireBase.list('seccion/' + sectionKey + '/categoria/' + categoryKey + '/opcion');
+}
 
-  getSeccionFilterToAddCategoria(key) {
-    return this.listSeccionFilter = this.fireBase.list('seccion/' + key + '/categoria');
-  }
 
   deleteSection($key) {
     this.listSection.remove($key);
@@ -57,20 +66,45 @@ export class SectionService {
   deleteCategory($key) {
     this.listCategory.remove($key);
   }
+  deleteOption($key) {
+    this.listOptiontoList.remove($key);
+    console.log($key);
+  }
 
   updateSection(sectionObject) {
     this.listSection.update(sectionObject.$key, {
       name: sectionObject.name,
   });
+  this.auxObject = null;
   }
 
   updateCategory(sectionObject) {
     console.log(sectionObject);
     this.listCategory.update(sectionObject.$key, {
       name: sectionObject.name,
+      section: sectionObject.section
   });
+  this.auxObject = null;
   }
 
+
+  updateOption(name, key, category) {
+    this.listOptiontoList.update(key, {
+      name: name,
+      category: category
+  });
+  this.auxObject = null;
+  }
+
+  getJsonOfOptionForName(name, json) {
+    return of(json.find((categoria => categoria.name === name)));
+  }
+  getJsonOfOptionForSection(name, json) {
+    return of(json.find((section => section.name === name)));
+  }
+  getJsonOfOptionForOption($key, json) {
+    return of(json.find((option => option.$key === $key)));
+  }
 // this methods listed beside are for storing the img of the section
 
 pushFileToStorage(fileUpload: Imgupload, progress: { percentage: number }, section: Section) {

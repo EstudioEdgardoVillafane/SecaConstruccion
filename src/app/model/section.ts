@@ -4,7 +4,7 @@ export class Section {
   $key: string;
   name: string;
   img: string;
-  categoria: string[];
+  category: string;
 
 }
 

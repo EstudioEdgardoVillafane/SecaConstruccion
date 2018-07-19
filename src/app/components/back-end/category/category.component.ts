@@ -34,7 +34,7 @@ export class CategoryComponent implements OnInit {
       item.forEach(element => {
         const x = element.payload.toJSON();
         // console.log(x);
-        this.sectionService.getcategoria(element.key)
+        this.sectionService.getCategoria(element.key)
         .snapshotChanges()
         .subscribe(itemm => {
           itemm.forEach(elementt => {
@@ -47,19 +47,17 @@ export class CategoryComponent implements OnInit {
         });
         x['$key'] = element.key;
           this.listSection.push(x);
-
       });
-      console.log(this.dataSource.data);
       this.dataSource.paginator = this.paginator;
-      console.log(this.listCategoria);
-      console.log(this.listSection);
     });
   }
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
+
     return numSelected === numRows;
+
   }
 
   handleEdit(categoria) {
