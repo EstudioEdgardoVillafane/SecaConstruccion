@@ -85,6 +85,9 @@ import { ProductsComponent } from './components/front-end/products/products.comp
 import { FooterComponent } from './components/front-end/footer/footer.component';
 import { SeccionComponent } from './components/front-end/products/seccion/seccion.component';
 import { DetalleProductComponent } from './components/front-end/detalle-product/detalle-product.component';
+import { OptionComponent } from './components/back-end/option/option.component';
+import { AddOptionComponent } from './components/back-end/option/add-option/add-option.component';
+import { UpdateOptionComponent } from './components/back-end/option/update-option/update-option.component';
 
 
 @NgModule({
@@ -117,6 +120,9 @@ import { DetalleProductComponent } from './components/front-end/detalle-product/
     FooterComponent,
     SeccionComponent,
     DetalleProductComponent,
+    OptionComponent,
+    AddOptionComponent,
+    UpdateOptionComponent,
   ],
   imports: [
   AppRoutingModule,

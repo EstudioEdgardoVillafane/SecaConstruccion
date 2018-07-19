@@ -11,7 +11,7 @@ import { Seccion } from '../../model/seccion';
   providedIn: 'root'
 })
 export class SeccionService {
-  listEtiquetas : AngularFireList<any>;
+  listEtiquetas: AngularFireList<any>;
   listSeccion: AngularFireList<any>;
   listSeccionFilter: AngularFireList<any>; // list filter
   listCategoriaFilter: AngularFireList<any>; // list filter
@@ -28,36 +28,36 @@ export class SeccionService {
   getEtiquetas() {
     return this.listEtiquetas = this.fireBase.list('etiquetas', ref => ref.orderByChild("count"));
   }
-  
+
   /** We are filter the seccion for add categorie */
   getSeccionFilterToAddCategoria(key) {
     return this.listSeccionFilter = this.fireBase.list('seccion/'+key+"/categoria");
   }
-  
+
   getCategoriaFilterToAddOption(keySeccion, keyOption) {
     return this.listCategoriaFilter = this.fireBase.list('seccion/'+keySeccion+"/categoria/"+keyOption+"/option");
   }
-  
-  insertEtiquetas(etiquetaName){
+
+  insertEtiquetas(etiquetaName) {
     this.listEtiquetas.push({
       name: etiquetaName,
       count: 1
     });
   }
-  updateEtiqueta(countValue, key){
-    this.listEtiquetas.update(key,{
+  updateEtiqueta(countValue, key) {
+    this.listEtiquetas.update(key, {
       count: countValue
     });
   }
 
-  insertCategoria(nameCategoria, nameSection){
+  insertCategoria(nameCategoria, nameSection) {
     this.listSeccionFilter.push({
       name: nameCategoria,
       section: nameSection
     });
   }
 
-  insertOption(optionName, categoriaName){
+  insertOption(optionName, categoriaName) {
     this.listCategoriaFilter.push({
       name: optionName,
       categoria: categoriaName
@@ -70,21 +70,21 @@ export class SeccionService {
     });
   }
 
-  updateSeccion(seccionObject : Seccion) {
+  updateSeccion(seccionObject: Seccion) {
     this.listSeccion.update(seccionObject.$key, {
       name: seccionObject.name,
       // password: seccionObject.password
     });
   }
 
-  getJsonForName(name:string, json){
+  getJsonForName(name: string, json) {
     return of(json.find((seccion => seccion.name === name)));
   }
 
-  getJsonOfCategoriaForKey(key, json){
+  getJsonOfCategoriaForKey(key, json) {
     return of(json.find((categoria => categoria.$key === key)));
   }
-  getJsonOfOptionForKey(key, json){
+  getJsonOfOptionForKey(key, json) {
     return of(json.find((categoria => categoria.$key === key)));
   }
 
