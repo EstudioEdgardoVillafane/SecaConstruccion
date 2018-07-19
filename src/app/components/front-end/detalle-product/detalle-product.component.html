@@ -78,16 +78,19 @@
             <h6>Realice las preguntas que considere necesarias, a la brevedad le responderemos!</h6>
             <form class="form-consulta">
                 <mat-form-field class="escribir-consulta">
-                  <textarea matInput placeholder="Consulta" name="messageAsk"></textarea>
+                  <textarea matInput placeholder="Consulta" [(ngModel)]="objectToSendAsk.ask" name="messageAsk"></textarea>
                 </mat-form-field>
                 <button mat-raised-button color="primary" (click)="handdleAsk()">Enviar</button>
               </form>
-    
+              <p class="alert-ask" *ngIf="boolAlertAsk">Ingrese una pregunta.</p>
+              <p class="alert-ask" *ngIf="boolAlertSession">Debe estar logeado para poder realizar una pregunta.</p>
+
     
             <h5>Ultimas preguntas</h5>
             <div *ngFor="let preguntas of listAsk | slice : 0 : 10">
               <p>
-                  <mat-icon>mail</mat-icon> 
+                  <mat-icon>mail</mat-icon>
+                  {{preguntas.ask}}
               </p>
               <p class="text-muted">
                   <mat-icon>message</mat-icon>

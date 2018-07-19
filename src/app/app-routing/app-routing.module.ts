@@ -28,6 +28,8 @@ import { FrontEndComponent } from '../components/front-end/front-end.component';
 import { HomeComponent } from '../components/front-end/home/home.component';
 import { DetalleProductComponent } from '../components/front-end/detalle-product/detalle-product.component';
 import { LoginFrontComponent } from '../components/front-end/login-front/login-front.component';
+import { AskComponent } from '../components/back-end/ask/ask.component';
+import { StoreAskComponent } from '../components/back-end/ask/store-ask/store-ask.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -46,6 +48,8 @@ const routes: Routes = [
       { path: 'seccion', component: SectionComponent },
       { path: 'seccion/agregar', component: SectionAddComponent },
       { path: 'seccion/editar', component: SectionEditComponent },
+      { path: 'preguntas', component: AskComponent },
+      { path: 'preguntas/response/:key', component: StoreAskComponent }
     ]},
     { path: '',component: FrontEndComponent,
   children: [

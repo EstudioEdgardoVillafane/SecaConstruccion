@@ -1,0 +1,56 @@
+<div>
+
+<span class="rigth mb">
+  <button mat-raised-button color="warn" class="mr" (click)="handleArchivar()">Archivar</button>
+</span>
+</div>
+<table mat-table [dataSource]="dataSource">
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+      (change)="$event ? selection.toggle(row) : null"
+      [checked]="selection.isSelected(row)">
+    </mat-checkbox>
+  </td>
+</ng-container>
+<ng-container matColumnDef="ask">
+  <th mat-header-cell *matHeaderCellDef> Pregunta </th>
+  <td mat-cell *matCellDef="let element"> {{element.ask}} </td>
+</ng-container>
+<ng-container matColumnDef="product">
+  <th mat-header-cell *matHeaderCellDef> Producto </th>
+  <td mat-cell *matCellDef="let element"> {{element.product}} </td>
+</ng-container>
+<ng-container matColumnDef="client">
+    <th mat-header-cell *matHeaderCellDef> Cliente </th>
+    <td mat-cell *matCellDef="let element"> {{element.client}} </td>
+  </ng-container>
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Fecha del mensaje </th>
+    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+  </ng-container>
+  <ng-container matColumnDef="estado">
+    <th mat-header-cell *matHeaderCellDef> Estado </th>
+    <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+  </ng-container>
+  <ng-container matColumnDef="$key">
+      <th mat-header-cell *matHeaderCellDef> Responder </th>
+      <td mat-cell *matCellDef="let element"> <button mat-raised-button color="primary" routerLink="response/{{element.$key}}" *ngIf="element.estado === Sin responder">Responder mensaje</button> <a *ngIf="element.estado !== Sin responder">¡Enviado!</a></td>
+    </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="selection.toggle(row)">
+  </tr>
+  
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

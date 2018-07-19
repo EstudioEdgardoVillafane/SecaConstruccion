@@ -87,6 +87,8 @@ import { SeccionComponent } from './components/front-end/products/seccion/seccio
 import { DetalleProductComponent } from './components/front-end/detalle-product/detalle-product.component';
 import { LoginFrontComponent } from './components/front-end/login-front/login-front.component';
 import { SessionService } from './services/global/session.service';
+import { AskComponent } from './components/back-end/ask/ask.component';
+import { StoreAskComponent } from './components/back-end/ask/store-ask/store-ask.component';
 
 
 @NgModule({
@@ -120,6 +122,8 @@ import { SessionService } from './services/global/session.service';
     SeccionComponent,
     DetalleProductComponent,
     LoginFrontComponent,
+    AskComponent,
+    StoreAskComponent,
   ],
   imports: [
   AppRoutingModule,

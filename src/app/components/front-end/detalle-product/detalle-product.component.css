@@ -55,6 +55,12 @@
     box-shadow: 1px 1px 1px #dadada;
   }
   
+  .alert-ask{
+    font-size: 13px;
+    color:red;
+    position: relative;
+    bottom:30px;
+  }
   
   .escribir-consulta{
     width: 500px;

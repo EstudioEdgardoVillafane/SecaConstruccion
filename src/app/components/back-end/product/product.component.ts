@@ -75,7 +75,9 @@ export class ProductComponent implements OnInit {
     const data = this.selection.selected;
     data.forEach(element => {
       this.productService.updateStatus(element);
+      
     });
+    this.selection.clear()
   }
   handleUpdateTemplate(){
     const data = this.selection.selected;
@@ -88,6 +90,7 @@ export class ProductComponent implements OnInit {
     data.forEach(element => {
       this.productService.duplicateProduct(element);
     });
+    this.selection.clear()
   }
 
   handleFavorite(favorite){
@@ -101,6 +104,7 @@ export class ProductComponent implements OnInit {
       aux = 1;
     }
     this.productService.updateProductFavorite(aux,this.selection.selected[0].$key);
+    this.selection.clear()
   }
 
   changeOrder(element, value){
@@ -108,7 +112,6 @@ export class ProductComponent implements OnInit {
       value = 1;
     }else{
     this.productService.updateOrden(value,element.$key)
-    console.log(value);
     }
   }
 
