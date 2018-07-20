@@ -1,4 +1,4 @@
-<mat-grid-list cols="4" rowHeight="400px">
+<mat-grid-list cols="4" rowHeight="440px">
     <mat-grid-tile *ngFor="let seccion of listSeccion | slice : 0 : 8"> 
 
         <mat-card class="card-product">
@@ -13,7 +13,7 @@
               </p>
             </mat-card-content>
             <mat-card-content>
-              <button mat-raised-button color="primary" routerLink="/detalle/{{seccion.p_slug}}">Ver productos</button>
+              <button mat-raised-button color="primary" routerLink="/seccion/{{seccion.name}}">Ver productos</button>
             </mat-card-content>
             <mat-card-actions>
             </mat-card-actions>

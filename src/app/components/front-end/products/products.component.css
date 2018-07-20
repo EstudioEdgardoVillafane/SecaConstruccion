@@ -5,10 +5,12 @@
 .container-img{
     align-content: center!important;
     text-align: center!important;
+    background-color: white;
 }
 .card-product{
     width:250px;
     height: 340px;
+    margin-top: 1rem!important;
 }
 .card-product-img{
     height: 200px;

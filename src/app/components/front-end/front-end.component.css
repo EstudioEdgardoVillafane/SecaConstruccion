@@ -190,12 +190,10 @@
     top:80px;
   }
  
-  .frontend{
-      min-height: 100vh;
-      width: 100%;
-      padding-left:50px;
-        padding-right:50px;
-        padding-top: 25px;
+  #frontend{
+
+        background-color: #f5f5f5;
+
   }
   
   

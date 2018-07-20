@@ -7,6 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { User } from '../../model/user';
 import { Product } from '../../model/product';
+import { AngularFireAction } from 'angularfire2/database/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,6 @@ export class ProductService {
 
   listProducts : AngularFireList<any>;
   listEtiquetas : AngularFireList<any>;
-
 
   constructor( private fireBase: AngularFireDatabase ) { }
 

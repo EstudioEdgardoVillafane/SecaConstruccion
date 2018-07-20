@@ -29,7 +29,7 @@ export class SeccionService {
     return this.listEtiquetas = this.fireBase.list('etiquetas', ref => ref.orderByChild("count"));
   }
 
-  /** We are filter the seccion for add categorie */
+  /** We are filter the seccion for add categorie -- GET SOME CATEGORY */
   getSeccionFilterToAddCategoria(key) {
     return this.listSeccionFilter = this.fireBase.list('seccion/'+key+"/categoria");
   }

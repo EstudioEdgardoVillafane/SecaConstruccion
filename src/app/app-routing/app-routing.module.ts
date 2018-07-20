@@ -34,6 +34,7 @@ import { UpdateOptionComponent } from '../components/back-end/option/update-opti
 import { LoginFrontComponent } from '../components/front-end/login-front/login-front.component';
 import { AskComponent } from '../components/back-end/ask/ask.component';
 import { StoreAskComponent } from '../components/back-end/ask/store-ask/store-ask.component';
+import { ProductSearchComponent } from '../components/front-end/product-search/product-search.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -52,11 +53,9 @@ const routes: Routes = [
       { path: 'seccion', component: SectionComponent },
       { path: 'seccion/agregar', component: SectionAddComponent },
       { path: 'seccion/editar', component: SectionEditComponent },
-     
       { path: 'opcion', component: OptionComponent},
       { path: 'opcion/editar', component: UpdateOptionComponent},
       { path: 'opcion/store', component: AddOptionComponent},
- 
       { path: 'preguntas', component: AskComponent },
       { path: 'preguntas/response/:key', component: StoreAskComponent },
       { path: 'categorias', component: CategoryComponent},
@@ -68,7 +67,8 @@ const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
     { path: 'producto/:slug', component: DetalleProductComponent },
-    { path: 'login', component: LoginFrontComponent}
+    { path: 'login', component: LoginFrontComponent },
+    { path: 'seccion/:name', component: ProductSearchComponent }
   ]}
 ];
 
