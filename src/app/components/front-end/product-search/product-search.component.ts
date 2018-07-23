@@ -14,7 +14,6 @@ import { ViewChild } from '@angular/core';
 })
 export class ProductSearchComponent implements OnInit {
 
-
   listProducts : any[];
   listCategory : any[];
   listEtiquetas : any[];

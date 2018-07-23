@@ -4,5 +4,6 @@ export class Client {
     password : string;
     confirm : string;
     mail : string;
+    code : string;
     validate: number;
 }

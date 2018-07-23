@@ -19,10 +19,11 @@ export class SectionEditComponent implements OnInit {
 
   ngOnInit() {
     this.section = this.sectionService.auxObject;
-    console.log(this.section);
   }
 
   handleEditSection() {
+    this.section.name = this.section.name.replace(/ /g,'-');
+
     this.sectionService.updateSection(this.section);
     this.location.back();
   }

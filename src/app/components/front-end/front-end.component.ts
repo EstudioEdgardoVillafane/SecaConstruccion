@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../services/global/session.service';
 import { ClientService } from '../../services/back-end/client.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-front-end',
@@ -9,10 +10,7 @@ import { ClientService } from '../../services/back-end/client.service';
 })
 export class FrontEndComponent implements OnInit {
 
-  constructor(private sessionService : SessionService, private clientService : ClientService) { 
-    console.log("carga again");
-    
-  }
+  constructor(private sessionService : SessionService, private clientService : ClientService, private route : Router) {}
 
   clientOnline : string;
   listClient : any[];
@@ -29,7 +27,6 @@ export class FrontEndComponent implements OnInit {
       });
       
       let y = localStorage.getItem("aux");
-      console.log(y);
         if(y != undefined){ 
           this.clientService.getJsonForName(y, this.listClient)
           .subscribe( result => {
@@ -37,9 +34,23 @@ export class FrontEndComponent implements OnInit {
           });
         }     
     });
+    
   }
   handleExitSession(){
     localStorage.removeItem("aux");
     this.clientOnline = undefined;
+  }
+  handleSearchProduct(inputSearch){
+    // this.route.navigateByUrl("/busqueda/"+inputSearch.value)
+    if (this.route.navigated === false) {
+      // Case when route was not used yet
+      this.route.navigateByUrl("/busqueda/"+inputSearch.value);
+    } else {
+      // Case when route was used once or more
+      this.route.navigateByUrl('/home').then(
+        () => {
+          this.route.navigateByUrl("/busqueda/"+inputSearch.value);
+        });
+    }
   }
 }

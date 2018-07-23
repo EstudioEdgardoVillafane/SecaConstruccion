@@ -16,7 +16,6 @@ export class StoreClientComponent implements OnInit {
   objectClient = new Client();
   clientList: any[];
   objectClientAux = new Object;
-
   ngOnInit() {
     this.clientService.getUser()
     .snapshotChanges()
@@ -28,6 +27,7 @@ export class StoreClientComponent implements OnInit {
         this.clientList.push(x);
       });
     })
+    this.objectClient.code = Math.random().toString(36).substring(7);
   }
   formStoreClient
   formObjectClient
@@ -42,15 +42,15 @@ handleSendClient(){
     if(validation == 4){
 
       this.clientService.insertUser(this.objectClient);
-      // this.formStoreClient = document.getElementById("formStoreClient");
-      // this.formObjectClient = new FormData(this.formStoreClient);
-      // this.request = new XMLHttpRequest();
-      // this.request.open("POST", "php/send-mail.php", true);
-      // this.request.send(this.formObjectClient);
-      // this.request.onload = (e) => {
-        //   console.log("some");
-        //   console.log(this.request)
-      // }
+      this.formStoreClient = document.getElementById("formStoreClient");
+      this.formObjectClient = new FormData(this.formStoreClient);
+      this.request = new XMLHttpRequest();
+      this.request.open("POST", "api/script/send-mail.php", true);
+      this.request.send(this.formObjectClient);
+      this.request.onload = (e) => {
+          console.log("some");
+          console.log(this.request)
+      }
       this.location.back();
     }
   }

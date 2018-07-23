@@ -46,6 +46,7 @@ export class ProductService {
       status: 1
     });
   }
+  
   updateProductFavorite(favoriteValue, key){
     this.listProducts.update(key,{
       favorite: favoriteValue 

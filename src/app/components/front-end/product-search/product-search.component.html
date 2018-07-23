@@ -4,11 +4,10 @@
   </div>
   <div  class="content-catalogo ">
   <div class="left-content">
-    <h2>Seccion  de {{nameSeccion}}</h2>
+    <h2>Seccion  de {{nameSeccion | changeSpace}}</h2>
     <b class="font-product">Cantidad de productos : {{listProducts.length}}</b>
     <h3>Categorias</h3>
-    <p class="font-product" *ngFor="let name of listCategory">{{name.name}}</p>
-   
+    <p class="font-product cp" *ngFor="let name of listCategory" routerLink="/categoria/{{name.name}}">{{name.name | changeSpace}}</p>
   </div>
   <div class="rigth-content">
       <mat-grid-list cols="3" rowHeight="400px">
@@ -36,9 +35,9 @@
           </mat-grid-tile>
        </mat-grid-list>
   </div>
-  <div style="clear:both">
-    <mat-paginator [pageSize]="9"></mat-paginator>
-  </div>
 </div>
 </div>
+      <div style="clear:both">
+        <mat-paginator [pageSize]="9"></mat-paginator>
+      </div>
 <app-footer></app-footer>

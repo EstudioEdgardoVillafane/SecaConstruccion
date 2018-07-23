@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AskService } from '../../services/back-end/ask.service';
 
 @Component({
   selector: 'app-back-end',
@@ -9,10 +10,33 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class BackEndComponent implements OnInit {
 
-  constructor(private route : ActivatedRoute, private router : Router) { }
+  Messages : number;
 
-  ngOnInit() {}
+  constructor(private route : ActivatedRoute, private router : Router, private askService : AskService) { }
 
+  ngOnInit() {
+    this.askService.getAsk()
+    .snapshotChanges()
+    .subscribe(item => {
+      const listAsk = [];
+      item.forEach(element => {
+        let x = element.payload.toJSON();
+        x["$key"] = element.key;
+        if(x["estado"] !== "Respondido" && x["status"] !== 0){
+          listAsk.push(x);
+        }
+      });
+      this.Messages = listAsk.length;    
+    });
+  }
+
+  handleExitSession(){
+
+  }
+
+  goHome(){
+
+  }
   goClient(){
     this.router.navigate(['cliente'], {relativeTo: this.route});    
   }

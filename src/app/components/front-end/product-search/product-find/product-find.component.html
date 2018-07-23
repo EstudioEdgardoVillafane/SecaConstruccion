@@ -1,0 +1,45 @@
+<div class="conteiner-search">
+  <div class="etiquetas">
+    <b>Etiquetas relacionadas: </b> <a *ngFor="let etiqueta of listEtiquetas | slice : 0 : 14" class="mr">{{etiqueta.name}}</a> 
+  </div>
+  <div  class="content-catalogo ">
+  <div class="left-content">
+    <h2>
+      Resultados de la busqueda de {{ nameSearch }}
+    </h2>
+    <b class="font-product">Cantidad de productos : {{dataSource.data.length}}</b>
+    <h3>Secciones populares</h3>
+    <p class="font-product cp" *ngFor="let name of listSeccions" routerLink="/seccion/{{name.name}}">{{name.name | upperCaracter | changeSpace}}</p>
+  </div>
+  <div class="rigth-content">
+        <mat-grid-list cols="3" rowHeight="400px" >
+          <mat-grid-tile *ngFor="let product of dataSource.data"> 
+              <mat-card class="card-product">
+                  <div class="card-product-img">
+                  <img src="{{product.url}}">
+                </div>
+                <mat-divider></mat-divider>
+                
+                  <mat-card-content class="card-product-content">
+                    <p class="card-product-name">
+                      {{product.name}}
+                    </p>
+                    <p>
+                      $ {{product.price}}
+                    </p>
+                  </mat-card-content>
+                  <mat-card-content>
+                    <button mat-raised-button color="primary" routerLink="/producto/{{product.slug}}">Ver más</button>
+                  </mat-card-content>
+                  <mat-card-actions>
+                  </mat-card-actions>
+                </mat-card> 
+          </mat-grid-tile>
+       </mat-grid-list>
+  </div>
+</div>
+</div>
+      <div style="clear:both">
+        <mat-paginator [pageSize]="9"></mat-paginator>
+      </div>
+<app-footer></app-footer>
