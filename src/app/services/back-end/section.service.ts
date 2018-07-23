@@ -35,13 +35,13 @@ export class SectionService {
   storeCategory(category, sectionName) {
     this.listCategory.push ({
       name: category,
-      section: sectionName,
+      seccion: sectionName,
     });
   }
   storeOption(option, category) {
     this.listOption.push ({
       name: option,
-      category: category,
+      categoria: category,
     });
   }
 
@@ -82,7 +82,7 @@ export class SectionService {
     console.log(sectionObject);
     this.listCategory.update(sectionObject.$key, {
       name: sectionObject.name,
-      section: sectionObject.section
+      seccion: sectionObject.section
   });
   this.auxObject = null;
   }
@@ -91,7 +91,7 @@ export class SectionService {
   updateOption(name, key, category) {
     this.listOptiontoList.update(key, {
       name: name,
-      category: category
+      categoria: category
   });
   this.auxObject = null;
   }

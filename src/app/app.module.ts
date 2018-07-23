@@ -94,6 +94,11 @@ import { AskComponent } from './components/back-end/ask/ask.component';
 import { StoreAskComponent } from './components/back-end/ask/store-ask/store-ask.component';
 import { ProductSearchComponent } from './components/front-end/product-search/product-search.component';
 import { ValidateAccountComponent } from './components/front-end/validate-account/validate-account.component';
+import { CategorySearchComponent } from './components/front-end/product-search/category-search/category-search.component';
+import { ProductFindComponent } from './components/front-end/product-search/product-find/product-find.component';
+import { UpperCaracterPipe } from './upper-caracter.pipe';
+import { LoginBackendComponent } from './components/back-end/login-backend/login-backend.component';
+
 
 
 @NgModule({
@@ -134,6 +139,10 @@ import { ValidateAccountComponent } from './components/front-end/validate-accoun
     StoreAskComponent,
     ProductSearchComponent,
     ValidateAccountComponent,
+    CategorySearchComponent,
+    ProductFindComponent,
+    UpperCaracterPipe,
+    LoginBackendComponent,
   ],
   imports: [
   AppRoutingModule,

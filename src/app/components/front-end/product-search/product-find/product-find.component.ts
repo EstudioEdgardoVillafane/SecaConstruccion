@@ -1,23 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductService } from '../../../services/back-end/product.service';
-import { Product } from '../../../model/product';
-import { SeccionService } from '../../../services/back-end/seccion.service';
-import { Categoria } from '../../../model/categoria';
+import { ProductService } from '../../../../services/back-end/product.service';
+import { SeccionService } from '../../../../services/back-end/seccion.service';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-product-search',
-  templateUrl: './product-search.component.html',
-  styleUrls: ['./product-search.component.css']
+  selector: 'app-product-find',
+  templateUrl: './product-find.component.html',
+  styleUrls: ['./product-find.component.css']
 })
-export class ProductSearchComponent implements OnInit {
+export class ProductFindComponent implements OnInit {
 
   listProducts : any[];
-  listCategory : any[];
+  listSeccions : any[];
   listEtiquetas : any[];
-  nameSeccion : string;
+  nameSearch : string = "todos los productos";
+ 
   @ViewChild(MatPaginator)  paginator: MatPaginator;
   dataSource = new MatTableDataSource();
 
@@ -28,9 +26,20 @@ export class ProductSearchComponent implements OnInit {
   ){}
 
   ngOnInit() {
-    const name = this._activatedRoute.snapshot.paramMap.get('name');
-    this.nameSeccion = name;
-
+    const valueToFind = this._activatedRoute.snapshot.paramMap.get("product");
+    let valueToSearch = "";
+    if(valueToFind  !== "all"){
+      if(valueToFind === ""){
+        this.nameSearch = "todos los productos";
+        valueToSearch = "";
+      }else{
+        this.nameSearch = valueToFind;
+        valueToSearch = this.nameSearch;
+      }
+    }else{
+      this.nameSearch = "todos los productos";
+      valueToSearch = "";
+    }
     /** Product Get List started */
     this.productService.getProduct()
     .snapshotChanges()
@@ -39,8 +48,10 @@ export class ProductSearchComponent implements OnInit {
       item.forEach(element => {
         let x = element.payload.toJSON();
         x["$key"] = element.key;
-        if(x["seccion"] === name && x["status"] === 1){
-          this.listProducts.push(x);
+        if(x["status"] === 1){
+          if(x["name"].toUpperCase().match(valueToSearch)){ 
+            this.listProducts.push(x);
+          }
         }
       });
       this.dataSource.data = this.listProducts;
@@ -52,26 +63,14 @@ export class ProductSearchComponent implements OnInit {
     this.seccionService.getSeccion()
     .snapshotChanges()
     .subscribe(item => {
+      this.listSeccions = [];
       item.forEach(element => {
           let x = element.payload.toJSON();
           x["$key"] = element.key;
-          aux.push(x);
+          this.listSeccions.push(x);
         });
-      /** Get any key to do a list of the category */
-      this.seccionService.getJsonForName(this.nameSeccion, aux)
-      .subscribe(data => {
-        this.seccionService.getSeccionFilterToAddCategoria(data.$key)
-        .snapshotChanges()
-        .subscribe(item => {
-          this.listCategory = [];
-          item.forEach(element => {
-            let x = element.payload.toJSON();
-            x["$key"] = element.key;
-            this.listCategory.push(x);
-          });
-        });
-      });  
-    });
+      });
+        
     /** Finished */
     this.seccionService.getEtiquetas()
     .snapshotChanges()
@@ -83,5 +82,6 @@ export class ProductSearchComponent implements OnInit {
         this.listEtiquetas.push(x);
       });
     });
-  }
+  
+}
 }

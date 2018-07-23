@@ -32,9 +32,9 @@ export class StoreCategoryComponent implements OnInit {
   }
 
   handleStoreSection() {
+    this.category = this.category.replace(/ /g,'-');
     this.sectionService.storeCategory(this.category, this.objectSection.name);
     this.location.back();
-    console.log(this.category);
   }
 
   handleSectionFilter(key) {
