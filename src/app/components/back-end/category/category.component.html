@@ -1,7 +1,8 @@
 <h2>Tabla de Categorias</h2>
-
-<button mat-raised-button color="primary" routerLink="store">Agregar</button>
-<button mat-raised-button color="warn" (click)="handleDestroy()">Borrar</button>
+<div class="rigth mb">
+  <button mat-raised-button color="primary" routerLink="store">Agregar</button>
+  <button mat-raised-button color="warn" (click)="handleDestroy()">Borrar</button>
+</div>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="$key">
