@@ -29,8 +29,8 @@ handleUpdateUser(){
   let validation = 0;
   if(  this.boolChangePassword == false  ){
 
-    (this.userList.user == "") ? this.snackBar.open("Ingrese un nombre", "Ok!"): validation++;
-    (this.userList.mail == "") ? this.snackBar.open("Ingresar contraseña", "Ok!"): validation++;
+    (this.userList.user == "") ? this.snackBar.open("Ingrese un nombre", "Ok!",{  duration: 1000}): validation++;
+    (this.userList.mail == "") ? this.snackBar.open("Ingresar contraseña", "Ok!",{  duration: 1000}): validation++;
     
     
     if(validation == 2 ){
@@ -38,8 +38,8 @@ handleUpdateUser(){
       this.location.back();
     }
     }else{
-      (this.changePassword.new != this.changePassword.confirm) ? this.snackBar.open("Contraseñas distintas", "Ok!"): validation++;
-      (this.changePassword.old != this.userList.password) ? this.snackBar.open("Ingresar la contraseña actual", "Ok!"): validation++;
+      (this.changePassword.new != this.changePassword.confirm) ? this.snackBar.open("Contraseñas distintas", "Ok!",{  duration: 1000}): validation++;
+      (this.changePassword.old != this.userList.password) ? this.snackBar.open("Ingresar la contraseña actual", "Ok!",{  duration: 1000}): validation++;
 
       if(validation == 2 ){
         this.userList.password = this.changePassword.new

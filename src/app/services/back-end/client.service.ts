@@ -25,6 +25,9 @@ export class ClientService {
   getJsonByCode(code:string, json){
     return of(json.find((client => client.code === code)));
   }
+  getJsonByMail(mail:string,json){
+    return of(json.find((client => client.mail === mail)));
+  }
   insertUser(clientObject: Client) {
     this.listClient.push ({
       name: clientObject.name,
