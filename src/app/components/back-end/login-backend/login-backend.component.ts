@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class LoginBackendComponent implements OnInit {
 
   constructor() { }
-
+  hide = true;
   ngOnInit() {
   }
+  handleSendData(){
 
+  }
 }
