@@ -4,8 +4,8 @@
       <span class="right">
         <mat-form-field appearance="legacy">
           <mat-label>Buscar producto</mat-label>
-          <input matInput placeholder="" name="value">
-          <mat-icon  matSuffix class="icon-search">search</mat-icon>
+          <input matInput placeholder="" name="value" #inputSearch>
+          <mat-icon  matSuffix class="icon-search" (click)="handleSearchProduct(inputSearch)">search</mat-icon>
           
         </mat-form-field>
       </span>

@@ -37,7 +37,6 @@ listSection;
 
   handleStoreSection() {
     this.upload();
-    // this.sectionService.storeSection(this.objectSection);
     this.location.back();
   }
 
@@ -50,7 +49,7 @@ listSection;
     this.selectedFiles = undefined;
     this.currentFileUpload = new Imgupload(file);
     this.currentFileUpload.$key = Math.random();
-
+    this.objectSection.name = this.objectSection.name.replace(/ /g,'-');
     this.sectionService.pushFileToStorage(this.currentFileUpload, this.progress, this.objectSection);
 
   }

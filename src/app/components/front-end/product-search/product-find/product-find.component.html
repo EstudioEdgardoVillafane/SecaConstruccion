@@ -4,14 +4,16 @@
   </div>
   <div  class="content-catalogo ">
   <div class="left-content">
-    <h2>Seccion  de {{nameSeccion | changeSpace}}</h2>
-    <b class="font-product">Cantidad de productos : {{listProducts.length}}</b>
-    <h3>Categorias</h3>
-    <p class="font-product cp" *ngFor="let name of listCategory" routerLink="/categoria/{{name.name}}">{{name.name | changeSpace}}</p>
+    <h2>
+      Resultados de la busqueda de {{ nameSearch }}
+    </h2>
+    <b class="font-product">Cantidad de productos : {{dataSource.data.length}}</b>
+    <h3>Secciones populares</h3>
+    <p class="font-product cp" *ngFor="let name of listSeccions" routerLink="/seccion/{{name.name}}">{{name.name | upperCaracter | changeSpace}}</p>
   </div>
   <div class="rigth-content">
-      <mat-grid-list cols="3" rowHeight="400px">
-          <mat-grid-tile *ngFor="let product of dataSource.data"> 
+        <mat-grid-list cols="3" rowHeight="400px" *ngFor="let product of dataSource.data">
+          <mat-grid-tile > 
               <mat-card class="card-product">
                   <div class="card-product-img">
                   <img src="{{product.url}}">

@@ -35,9 +35,13 @@ import { LoginFrontComponent } from '../components/front-end/login-front/login-f
 import { AskComponent } from '../components/back-end/ask/ask.component';
 import { StoreAskComponent } from '../components/back-end/ask/store-ask/store-ask.component';
 import { ProductSearchComponent } from '../components/front-end/product-search/product-search.component';
+import { CategorySearchComponent } from '../components/front-end/product-search/category-search/category-search.component';
+import { ProductFindComponent } from '../components/front-end/product-search/product-find/product-find.component';
+import { LoginBackendComponent } from '../components/back-end/login-backend/login-backend.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: 'admin771', component: LoginBackendComponent},
   { path: 'backend', component: BackEndComponent,
   children: [
       { path: '', redirectTo: 'productos', pathMatch: 'full'},
@@ -56,8 +60,8 @@ const routes: Routes = [
       { path: 'opcion', component: OptionComponent},
       { path: 'opcion/editar', component: UpdateOptionComponent},
       { path: 'opcion/store', component: AddOptionComponent},
-      { path: 'preguntas', component: AskComponent },
-      { path: 'preguntas/response/:key', component: StoreAskComponent },
+      { path: 'mensajes', component: AskComponent },
+      { path: 'mensajes/response/:key', component: StoreAskComponent },
       { path: 'categorias', component: CategoryComponent},
       { path: 'categorias/agregar', component: StoreCategoryComponent },
       { path: 'categorias/editar', component: UpdateCategoryComponent },
@@ -68,7 +72,9 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'producto/:slug', component: DetalleProductComponent },
     { path: 'login', component: LoginFrontComponent },
-    { path: 'seccion/:name', component: ProductSearchComponent }
+    { path: 'seccion/:name', component: ProductSearchComponent },
+    { path: 'categoria/:name', component: CategorySearchComponent},
+    { path: 'busqueda/:product', component: ProductFindComponent},
   ]}
 ];
 

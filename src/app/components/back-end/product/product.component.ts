@@ -23,7 +23,7 @@ export class ProductComponent implements OnInit {
    }
 
   listProducts: any[];
-  displayedColumns: string[] = ['select','url','name', 'price', 'seccion', 'categoria','code','favorite','order'];
+  displayedColumns: string[] = ['select','url','name', 'price', 'seccion', 'categoria','code','favorite','order','edit'];
 
   orderValue;
   selection = new SelectionModel<Product>(true, []);
@@ -43,7 +43,7 @@ export class ProductComponent implements OnInit {
       });      
     this.dataSource.data = this.listProducts;
     this.dataSource.paginator = this.paginator;
--    this.dataSource.sort = this.sort;
+    this.dataSource.sort = this.sort;
     });
   }
 
@@ -77,9 +77,8 @@ export class ProductComponent implements OnInit {
     });
     this.selection.clear()
   }
-  handleUpdateTemplate(){
-    const data = this.selection.selected;
-    (data.length == 1) ? this.router.navigateByUrl("backend/productos/update/"+data[0].$key) : this.openSnackBar("Elija un registro ", "Ok!");
+  handleUpdateTemplate(element){
+    this.router.navigateByUrl("backend/productos/update/"+element.$key);
   }
 
   handleDuplicate(){
@@ -91,7 +90,7 @@ export class ProductComponent implements OnInit {
     this.selection.clear()
   }
 
-  handleFavorite(favorite){
+  handleFavorite(){
     (this.selection.selected.length == 1) ? this.updateFavorite() : this.openSnackBar("Seleccione un solo producto", "Ok!");
   }
   updateFavorite(){
