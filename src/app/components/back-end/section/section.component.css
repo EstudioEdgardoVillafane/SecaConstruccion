@@ -15,3 +15,7 @@ td{
   display: flex;
   flex-direction: column;
 }
+.rigth{
+  float: right;
+  padding-top: 25px;
+}
