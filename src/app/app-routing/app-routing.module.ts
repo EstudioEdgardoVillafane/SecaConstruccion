@@ -16,7 +16,7 @@ import { SectionAddComponent } from '../components/back-end/section/section-add/
 import { SectionComponent } from '../components/back-end/section/section.component';
 import { SectionEditComponent } from '../components/back-end/section/section-edit/section-edit.component';
 
-
+import { ValidateAccountComponent } from '../components/front-end/validate-account/validate-account.component';
 import { UserComponent } from '../components/back-end/user/user.component';
 import { StoreUserComponent } from '../components/back-end/user/store-user/store-user.component';
 import { UpdateUserComponent } from '../components/back-end/user/update-user/update-user.component';
@@ -75,6 +75,7 @@ const routes: Routes = [
     { path: 'seccion/:name', component: ProductSearchComponent },
     { path: 'categoria/:name', component: CategorySearchComponent},
     { path: 'busqueda/:product', component: ProductFindComponent},
+    { path: 'validate', component: ValidateAccountComponent}
   ]}
 ];
 

@@ -21,14 +21,17 @@ export class ClientService {
   getJsonForName(mail:string, json){
     return of(json.find((client => client.mail === mail)));
   }
-
+  
+  getJsonByCode(code:string, json){
+    return of(json.find((client => client.code === code)));
+  }
   insertUser(clientObject: Client) {
     this.listClient.push ({
       name: clientObject.name,
       password: clientObject.password,
       mail: clientObject.mail,
-      validate : 0,
-      code: Math.random().toString(36).substring(7)
+      validate : false,
+      code: clientObject.code
     });
   }
 
@@ -40,6 +43,11 @@ export class ClientService {
     });
   }
 
+  validateClient(clientObject: Client) {
+    this.listClient.update(clientObject.$key, {
+      validate: true
+    });
+  }
   deleteUser($key) {
     this.listClient.remove($key);
   }

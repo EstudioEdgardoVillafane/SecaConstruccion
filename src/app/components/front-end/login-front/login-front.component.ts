@@ -4,6 +4,7 @@ import { Client } from '../../../model/client';
 import { SessionService } from '../../../services/global/session.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-login-front',
@@ -14,8 +15,8 @@ export class LoginFrontComponent implements OnInit {
 
   clienteObject = new Client();
   listClient : any[];
-
-  constructor(private clienteService : ClientService, private sessionService : SessionService, private router : Router, private activatedRoute : ActivatedRoute ) { }
+  createclienteObject = new Client();
+  constructor(private clienteService : ClientService, private sessionService : SessionService, private router : Router, private activatedRoute : ActivatedRoute, public snackBar: MatSnackBar ) { }
 
 
   ngOnInit() {
@@ -33,6 +34,8 @@ export class LoginFrontComponent implements OnInit {
       this.listClient.push(x);
       });
     });
+    this.createclienteObject.code = Math.random().toString(36).substring(7);
+
   }
   
   handleSearchUserInBD(){
@@ -49,5 +52,27 @@ export class LoginFrontComponent implements OnInit {
     localStorage.setItem("aux", client.name);
     location.href ="/";
   }
+  formStoreClient
+  formObjectClient
+  request
+  handleStoreClient(){
+    let validation = 0;
+    (this.createclienteObject.name == null) ? this.snackBar.open("Ingrese un nombre", "Ok!"): validation++;
+    (this.createclienteObject.password == null) ? this.snackBar.open("Ingresar contraseña", "Ok!"): validation++;
+    (this.createclienteObject.confirm != this.createclienteObject.password ) ? this.snackBar.open("las contraseñas no coinsiden", "Ok!"): validation++;
+    (this.createclienteObject.mail == null) ? this.snackBar.open("Ingrese un mail", "Ok!"): validation++;
+    if(validation == 4){
 
+      this.clienteService.insertUser(this.createclienteObject);
+      this.formStoreClient = document.getElementById("formStoreClient");
+      this.formObjectClient = new FormData(this.formStoreClient);
+      this.request = new XMLHttpRequest();
+      this.request.open("POST", "api/script/send-mail.php", true);
+      this.request.send(this.formObjectClient);
+      this.request.onload = (e) => {
+          console.log(this.request)
+      }
+      // this.location.back();
+    }
+  }
 }

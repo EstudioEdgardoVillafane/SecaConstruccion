@@ -60,29 +60,30 @@
         <!-- Template Header ends -->
 
         <!-- Template Body starts -->
-        <div class="login-box-body">
+        <div id="" class="login-box-body">
+<form id="formStoreClient">
 
-            <!-- Markup for getting Username starts -->
-            <mat-grid-list cols="9" rowHeight="75px">
-                <mat-grid-tile [rowspan]="1" class="login-icon">
-                    <mat-icon>person</mat-icon>
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="7">
-                    <mat-form-field class="justifier">
-                        <input matInput placeholder="Nombre y Apellido" text="text" >
-                    </mat-form-field>
-                </mat-grid-tile>
-            </mat-grid-list>
-            <mat-grid-list cols="9" rowHeight="75px">
-              <mat-grid-tile [rowspan]="1" class="login-icon">
-                  <mat-icon>email</mat-icon>
-              </mat-grid-tile>
-              <mat-grid-tile [colspan]="7">
-                  <mat-form-field class="justifier">
-                      <input matInput placeholder="Email" text="text" >
-                  </mat-form-field>
-              </mat-grid-tile>
-          </mat-grid-list>
+    <!-- Markup for getting Username starts -->
+    <mat-grid-list cols="9" rowHeight="75px">
+        <mat-grid-tile [rowspan]="1" class="login-icon">
+            <mat-icon>person</mat-icon>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="7">
+            <mat-form-field class="justifier">
+                <input [(ngModel)]="createclienteObject.name" matInput placeholder="Nombre y Apellido" text="text" name="name" >
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="9" rowHeight="75px">
+        <mat-grid-tile [rowspan]="1" class="login-icon">
+            <mat-icon>email</mat-icon>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="7">
+            <mat-form-field class="justifier">
+                <input [(ngModel)]="createclienteObject.mail" matInput placeholder="Email" text="text" name="mail">
+            </mat-form-field>
+        </mat-grid-tile>
+    </mat-grid-list>
             <!-- Markup for getting Username ends -->
 
             <!-- Markup for getting Password starts -->
@@ -92,29 +93,31 @@
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="7">
                     <mat-form-field class="justifier">
-                        <input matInput placeholder="Contraseña" [type]="'password'">
+                        <input [(ngModel)]="createclienteObject.password" matInput placeholder="Contraseña" [type]="'password'" name="password">
                     </mat-form-field>
                 </mat-grid-tile>
             </mat-grid-list>
             <mat-grid-list cols="9" rowHeight="100px">
-              <mat-grid-tile [rowspan]="1"  class="login-icon">
-                  <mat-icon>lock</mat-icon>
-              </mat-grid-tile>
-              <mat-grid-tile [colspan]="7">
-                  <mat-form-field class="justifier">
-                      <input matInput placeholder="Confirmar Contraseña" [type]="'password'">
-                  </mat-form-field>
-              </mat-grid-tile>
-          </mat-grid-list>
+                <mat-grid-tile [rowspan]="1"  class="login-icon">
+                    <mat-icon>lock</mat-icon>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="7">
+                    <mat-form-field class="justifier">
+                        <input [(ngModel)]="createclienteObject.confirm" matInput placeholder="Confirmar Contraseña" [type]="'password'" name="confirm">
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <input [(ngModel)]="createclienteObject.code" type="hidden" name="code" >
             <!-- Markup for getting Password ends -->
-
-            <button mat-raised-button class="login-button" color="warn">
+        </form>
+            
+            <button mat-raised-button class="login-button" color="warn" (click)="handleStoreClient()">
                 <mat-icon>accessibility_new</mat-icon> Crear cuenta
             </button>
-
+            
         </div>
         <!-- Template Body ends -->
-
+        
     </div>
 </mat-grid-tile>
 
