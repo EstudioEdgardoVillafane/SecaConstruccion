@@ -49,7 +49,7 @@ export class LoginFrontComponent implements OnInit {
   }
 
   saveUser(client){
-    localStorage.setItem("aux", client.name);
+    localStorage.setItem("aux", client.mail);
     location.href ="/";
   }
   formStoreClient

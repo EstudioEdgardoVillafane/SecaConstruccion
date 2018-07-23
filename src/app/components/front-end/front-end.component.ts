@@ -21,12 +21,14 @@ export class FrontEndComponent implements OnInit {
     .subscribe(item => {
       this.listClient = [];
       item.forEach(element => {
-      const x = element.payload.toJSON();
-      x['$key'] = element.key;
-      this.listClient.push(x);
+        const x = element.payload.toJSON();
+        x['$key'] = element.key;
+        this.listClient.push(x);
       });
       
       let y = localStorage.getItem("aux");
+      console.log("usuario")
+      console.log(y);
         if(y != undefined){ 
           this.clientService.getJsonForName(y, this.listClient)
           .subscribe( result => {
