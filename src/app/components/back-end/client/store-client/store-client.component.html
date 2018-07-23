@@ -2,7 +2,7 @@
 <h1 class="text-center">Agregar Cliente</h1>
 
 <div class="example-container">
-  <form name="formStoreClient" action="">
+  <form id="formStoreClient" >
     <mat-form-field class="fw">
       <input [(ngModel)]="objectClient.name" matInput placeholder="Nombre de usuario" name="name">
     </mat-form-field>
@@ -18,6 +18,7 @@
     <mat-form-field class="fw">
       <input [(ngModel)]="objectClient.mail" matInput placeholder="E-mail" name="mail">
     </mat-form-field>
+    <input [(ngModel)]="objectClient.code" type="hidden" name="code" >
   </form>
 
   <button mat-raised-button color="primary" (click)="handleSendClient()">Crear</button>

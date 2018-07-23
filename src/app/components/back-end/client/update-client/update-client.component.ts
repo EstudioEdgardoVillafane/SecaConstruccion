@@ -26,25 +26,27 @@ export class UpdateClientComponent implements OnInit {
 //-----------Store----------//
 handleUpdateClient(){
   let validation = 0;
+  if( this.boolChangePassword == false){
+
     (this.clientList.name == "") ? this.snackBar.open("Ingrese un nombre", "Ok!"): validation++;
     (this.clientList.mail == "") ? this.snackBar.open("Ingresar contraseña", "Ok!"): validation++;
-
+    
     if(validation == 2){
       this.clientService.updateUser(this.clientList)
       this.location.back();
     }
-  }
-  handleUpdateClientPassword(){
-    let validation = 0;
-    (this.changePassword.new != this.changePassword.confirm) ? this.snackBar.open("Contraseñas distintas", "Ok!"): validation++;
-    (this.changePassword.old != this.clientList.password) ? this.snackBar.open("Ingresar la contraseña actual", "Ok!"): validation++;
+  }else{
+      (this.changePassword.new != this.changePassword.confirm) ? this.snackBar.open("Contraseñas distintas", "Ok!"): validation++;
+      (this.changePassword.old != this.clientList.password) ? this.snackBar.open("Ingresar la contraseña actual", "Ok!"): validation++;
 
-    if(validation == 2 ){
-      this.clientList.password = this.changePassword.new
-      this.clientService.updateUser(this.clientList)
-      this.location.back();
+      if(validation == 2 ){
+        this.clientList.password = this.changePassword.new
+        this.clientService.updateUser(this.clientList)
+        this.location.back();
+      }
     }
   }
+ 
 //-----------Change Password-------//
   handleChangePassword(){
     this.boolChangePassword = true;

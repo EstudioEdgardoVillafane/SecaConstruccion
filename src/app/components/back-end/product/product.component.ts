@@ -43,7 +43,7 @@ export class ProductComponent implements OnInit {
       });      
     this.dataSource.data = this.listProducts;
     this.dataSource.paginator = this.paginator;
--    this.dataSource.sort = this.sort;
+    this.dataSource.sort = this.sort;
     });
   }
 
