@@ -5,6 +5,7 @@ footer{
     padding-left: 60px;
     padding-right: 60px;
     padding-bottom: 15px;
+    clear: both;
 }
 .container-footer{
     width: 100%;

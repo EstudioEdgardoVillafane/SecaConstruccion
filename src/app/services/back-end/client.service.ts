@@ -25,12 +25,19 @@ export class ClientService {
     return of(json.find((client => client.name === name)));
   }
 
+
+  
+  getJsonByCode(code:string, json){
+    return of(json.find((client => client.code === code)));
+  }
+  getJsonByMail(mail:string,json){
+    return of(json.find((client => client.mail === mail)));
+  }
   insertUser(clientObject: Client) {
     this.listClient.push ({
       name: clientObject.name,
       password: clientObject.password,
       mail: clientObject.mail,
-      validate : 0,
       code: Math.random().toString(36).substring(7),
       surname: '' ,
       phone: '',
@@ -39,7 +46,9 @@ export class ClientService {
       pc: '',
       country: '',
       location: '',
-      offers: ''
+      offers: '',
+      validate : false,
+      code: clientObject.code
     });
   }
 
@@ -59,6 +68,11 @@ export class ClientService {
     });
   }
 
+  validateClient(clientObject: Client) {
+    this.listClient.update(clientObject.$key, {
+      validate: true
+    });
+  }
   deleteUser($key) {
     this.listClient.remove($key);
   }

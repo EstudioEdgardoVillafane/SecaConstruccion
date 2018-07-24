@@ -42,6 +42,7 @@ export class UpdateCategoryComponent implements OnInit {
   }
 
   handleEditCategory() {
+    this.section.name = this.section.name.replace(/ /g,'-');
     this.sectionService.updateCategory(this.section);
     console.log(this.section);
     this.location.back();

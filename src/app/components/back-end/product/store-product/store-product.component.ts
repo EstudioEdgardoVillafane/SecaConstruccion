@@ -30,6 +30,7 @@ export class StoreProductComponent implements OnInit {
   listFilter : any[];
   listFilterEtiqueta : any[];
   listEtiquetas : any[];
+  
   arrayCheckbox : string[];
   arrayEtiquetasSelected = new Array();
 
@@ -283,6 +284,7 @@ export class StoreProductComponent implements OnInit {
         }
       });
       this.productToAdd.url = this.request.responseText;
+      this.productToAdd.categoria = this.productToAdd.categoria.replace(/ /g, '-');
       this.productToAdd.slug = this.productToAdd.slug.replace(/ /g, '-');
       this.productToAdd.seccion = this.productToAdd.seccion.replace(/ /g, '-');
       this.productService.insertProduct(this.productToAdd);

@@ -96,4 +96,28 @@
   #preguntas p{
       overflow: hidden;
   }
-  
+  @media (max-width: 768px) {
+    .container{
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+    .medios-pago{
+      padding-left: 0px;
+    }
+    .preguntas{
+      padding-top:100px;
+    }
+    .contenedor-venta{
+      padding-left: 12px;
+    }
+    .form-consulta > button{
+      margin-left: 0px;
+    }
+    .contenedor-venta > button {
+      margin-top: 0px; 
+      padding-top: 0px;
+      padding-bottom: 0px;
+  }
+}

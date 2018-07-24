@@ -72,3 +72,23 @@
     padding-right: 80px;
     min-height: 110vh;
 }
+@media (max-width: 768px) {
+  .container{
+      padding-top:15px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom:80px;    
+  }
+  .login-box-header{
+    height: 23%;
+  }
+  .login-button{
+    width: 91%;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding:0px;
+  }
+  .create-box-header{
+    height: 18%;
+  }
+}

@@ -31,10 +31,10 @@ export class StoreUserComponent implements OnInit {
 //-----------Store----------//
   handleSendUser(){
     let validation = 0;
-    (this.objectUser.user == null) ? this.snackBar.open("Ingrese un nombre", "Ok!"): validation++;
-    (this.objectUser.password == null) ? this.snackBar.open("Ingresar contraseña", "Ok!"): validation++;
-    (this.objectUser.confirm != this.objectUser.password ) ? this.snackBar.open("las contraseñas no coinsiden", "Ok!"): validation++;
-    (this.objectUser.mail == null) ? this.snackBar.open("Ingrese un mail", "Ok!"): validation++;
+    (this.objectUser.user == null) ? this.snackBar.open("Ingrese un nombre", "Ok!",{duration: 1000}): validation++;
+    (this.objectUser.password == null) ? this.snackBar.open("Ingresar contraseña", "Ok!",{duration: 1000}): validation++;
+    (this.objectUser.confirm != this.objectUser.password ) ? this.snackBar.open("las contraseñas no coinsiden", "Ok!",{duration: 1000}): validation++;
+    (this.objectUser.mail == null) ? this.snackBar.open("Ingrese un mail", "Ok!",{duration: 1000}): validation++;
     if(validation == 4){
     this.userService.insertUser(this.objectUser);
     this.location.back();

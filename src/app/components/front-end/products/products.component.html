@@ -8,7 +8,7 @@
 <section class="container">
 <div class="py-cards">
   <h2 class="title mb">Nuestros productos más vendidos</h2>
-  <mat-grid-list cols="4" rowHeight="400px">
+  <mat-grid-list [cols]="tamCard" rowHeight="430px" (window:resize)="onResize($event)">
     <mat-grid-tile *ngFor="let producto of listFavorite | slice : 0 : 4"> 
 
         <mat-card class="card-product">
@@ -19,11 +19,11 @@
           
             <mat-card-content class="card-product-content">
               <p class="card-product-name">
-                {{producto.name}}
+                {{producto.name | upperCaracter}}
               </p>
             </mat-card-content>
             <mat-card-content>
-              <button mat-raised-button color="primary" routerLink="/detalle/{{producto.p_slug}}">Ver más</button>
+              <button mat-raised-button color="primary" routerLink="/producto/{{producto.slug}}">Ver más</button>
             </mat-card-content>
             <mat-card-actions>
             </mat-card-actions>
@@ -35,7 +35,7 @@
 
 <div class="py-cards">
     <h2 class="title mb">Etiquetas más usadas</h2>
-    <button mat-raised-button color="primary" *ngFor="let etiqueta of listEtiquetas | slice : 0 : 20" class="mt-2 mr-1"  routerLink="/producto-etiqueta/{{etiqueta.e_nombre}}"><mat-icon>loyalty</mat-icon><a class="h7">{{etiqueta.name}}</a></button>
+    <button mat-raised-button color="primary" *ngFor="let etiqueta of listEtiquetas | slice : 0 : 20" class="mt-2 mr-1"  routerLink="/producto-etiqueta/{{etiqueta.name}}"><mat-icon>loyalty</mat-icon><a class="h7">{{etiqueta.name}}</a></button>
 </div>
 
 <div class="py-cards">
@@ -44,10 +44,10 @@
 </div>
 <div class="py-cards">
   <h2 class="title mb tc"> Nuestro catalogo </h2>
-  <mat-grid-list cols="4" rowHeight="400px">
+  <mat-grid-list [cols]="tamCard" rowHeight="440px" (window:resize)="onResize($event)">
       <mat-grid-tile *ngFor="let producto of listProducts | slice : 0 : 4"> 
   
-          <mat-card class="card-product" routerLink="/producto/{{producto.slug}}">
+          <mat-card class="card-product">
               <div class="card-product-img">
               <img src="{{producto.url}}" >
             </div>
@@ -55,11 +55,11 @@
             
               <mat-card-content class="card-product-content">
                 <p class="card-product-name">
-                  {{producto.name}}
+                  {{producto.name | upperCaracter}}
                 </p>
               </mat-card-content>
               <mat-card-content>
-                <button mat-raised-button color="primary" routerLink="/detalle/{{producto.p_slug}}">Ver más</button>
+                <button mat-raised-button color="primary" routerLink="/producto/{{producto.slug}}">Ver más</button>
               </mat-card-content>
               <mat-card-actions>
               </mat-card-actions>
@@ -67,6 +67,6 @@
       
       </mat-grid-tile>  
     </mat-grid-list>
-  <h4 class="mt tc"> Ver catalogo completo </h4>
+  <h4 class="mt tc" routerLink="/busqueda/all"> Ver catalogo completo </h4>
 </div>
 </section>

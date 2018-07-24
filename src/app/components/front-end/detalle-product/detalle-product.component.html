@@ -34,7 +34,7 @@
     
     
       <!-- segunda fila, contiene descripcion del producto y metodos de pagos -->
-      <mat-grid-list cols="2" rowHeight="300px">
+      <mat-grid-list [cols]="tamDetalle" (window:resize)="onResize($event)" rowHeight="300px">
         <!-- descripcion del producto -->
         <mat-grid-tile>
           <div class="descripcion">

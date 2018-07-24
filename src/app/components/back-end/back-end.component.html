@@ -13,25 +13,31 @@
     <mat-sidenav #snav opened mode="side">
       <mat-nav-list>
         <mat-list dense>
-            <mat-list-item (click)="goHome()">
-                <mat-icon>home</mat-icon> <a>Home</a>
-              </mat-list-item>
-        <mat-list-item (click)="goUser()">
-          <mat-icon>account_circle</mat-icon> <a>Usuarios</a> 
-        </mat-list-item>
-
-        <mat-list-item (click)="goProductos()">
+          <mat-list-item (click)="goHome()">
+            <mat-icon>home</mat-icon> <a>Home</a>
+          </mat-list-item>
+          <mat-list-item (click)="goUser()">
+            <mat-icon>account_circle</mat-icon> <a>Usuarios</a> 
+          </mat-list-item>
+          
+          <mat-list-item (click)="goProductos()">
             <mat-icon>store</mat-icon> <a>Productos</a> 
           </mat-list-item>
-
-        <mat-list-item (click)="goSection()">
+          <mat-list-item (click)="goClient()">
+              <mat-icon>supervisor_account</mat-icon> <a>Clientes</a> 
+            </mat-list-item>
+            <mat-list-item routerLink="mensajes">
+                <mat-icon>mail_outline</mat-icon> <a>Mensajes</a> 
+              </mat-list-item>
+          
+          <mat-list-item (click)="goSection()">
           <mat-icon>assignment</mat-icon> <a>Seccion</a>
         </mat-list-item>
         <mat-list-item (click)="goCategoria()">
-            <mat-icon>assignment</mat-icon> <a>Categorias</a>
+            <mat-icon>list_alt</mat-icon> <a>Categorias</a>
           </mat-list-item>
-        <mat-list-item (click)="goClient()">
-            <mat-icon>supervisor_account</mat-icon> <a>Clientes</a> 
+          <mat-list-item (click)="goOpciones()">
+            <mat-icon>sort</mat-icon> <a>Opciones</a>
           </mat-list-item>
       </mat-list>
       </mat-nav-list>

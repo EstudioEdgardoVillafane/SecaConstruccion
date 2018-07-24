@@ -93,6 +93,15 @@ import { SessionService } from './services/global/session.service';
 import { AskComponent } from './components/back-end/ask/ask.component';
 import { StoreAskComponent } from './components/back-end/ask/store-ask/store-ask.component';
 import { UpdateAccountComponent } from './components/front-end/update-account/update-account.component';
+import { ProductSearchComponent } from './components/front-end/product-search/product-search.component';
+import { ValidateAccountComponent } from './components/front-end/validate-account/validate-account.component';
+import { CategorySearchComponent } from './components/front-end/product-search/category-search/category-search.component';
+import { ProductFindComponent } from './components/front-end/product-search/product-find/product-find.component';
+import { UpperCaracterPipe } from './upper-caracter.pipe';
+import { LoginBackendComponent } from './components/back-end/login-backend/login-backend.component';
+import { NotificationComponent } from './components/front-end/notification/notification.component';
+import { NotificationService } from './services/front-end/notification.service';
+
 
 
 @NgModule({
@@ -132,6 +141,13 @@ import { UpdateAccountComponent } from './components/front-end/update-account/up
     AskComponent,
     StoreAskComponent,
     UpdateAccountComponent,
+    ProductSearchComponent,
+    ValidateAccountComponent,
+    CategorySearchComponent,
+    ProductFindComponent,
+    UpperCaracterPipe,
+    LoginBackendComponent,
+    NotificationComponent,
   ],
   imports: [
   AppRoutingModule,
@@ -182,7 +198,8 @@ import { UpdateAccountComponent } from './components/front-end/update-account/up
     ProductService,
     UserService,
     SeccionService,
-    SessionService
+    SessionService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

@@ -16,7 +16,7 @@ import { SectionAddComponent } from '../components/back-end/section/section-add/
 import { SectionComponent } from '../components/back-end/section/section.component';
 import { SectionEditComponent } from '../components/back-end/section/section-edit/section-edit.component';
 
-
+import { ValidateAccountComponent } from '../components/front-end/validate-account/validate-account.component';
 import { UserComponent } from '../components/back-end/user/user.component';
 import { StoreUserComponent } from '../components/back-end/user/store-user/store-user.component';
 import { UpdateUserComponent } from '../components/back-end/user/update-user/update-user.component';
@@ -35,9 +35,15 @@ import { LoginFrontComponent } from '../components/front-end/login-front/login-f
 import { AskComponent } from '../components/back-end/ask/ask.component';
 import { StoreAskComponent } from '../components/back-end/ask/store-ask/store-ask.component';
 import { UpdateAccountComponent } from '../components/front-end/update-account/update-account.component';
+import { ProductSearchComponent } from '../components/front-end/product-search/product-search.component';
+import { CategorySearchComponent } from '../components/front-end/product-search/category-search/category-search.component';
+import { ProductFindComponent } from '../components/front-end/product-search/product-find/product-find.component';
+import { LoginBackendComponent } from '../components/back-end/login-backend/login-backend.component';
+import { NotificationComponent } from '../components/front-end/notification/notification.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: 'admin771', component: LoginBackendComponent},
   { path: 'backend', component: BackEndComponent,
   children: [
       { path: '', redirectTo: 'productos', pathMatch: 'full'},
@@ -53,24 +59,29 @@ const routes: Routes = [
       { path: 'seccion', component: SectionComponent },
       { path: 'seccion/agregar', component: SectionAddComponent },
       { path: 'seccion/editar', component: SectionEditComponent },
-
       { path: 'opcion', component: OptionComponent},
       { path: 'opcion/editar', component: UpdateOptionComponent},
       { path: 'opcion/store', component: AddOptionComponent},
-
       { path: 'preguntas', component: AskComponent },
       { path: 'preguntas/response/:key', component: StoreAskComponent },
+      { path: 'mensajes', component: AskComponent },
+      { path: 'mensajes/response/:key', component: StoreAskComponent },
       { path: 'categorias', component: CategoryComponent},
       { path: 'categorias/agregar', component: StoreCategoryComponent },
-      { path: 'categorias/editar', component: UpdateCategoryComponent },
+      { path: 'categorias/editar', component: UpdateCategoryComponent }
     ]},
     { path: '', component: FrontEndComponent,
   children: [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
     { path: 'producto/:slug', component: DetalleProductComponent },
-    { path: 'login', component: LoginFrontComponent},
-    { path: 'mi-cuenta', component: UpdateAccountComponent}
+    { path: 'mi-cuenta', component: UpdateAccountComponent},
+    { path: 'login', component: LoginFrontComponent },
+    { path: 'seccion/:name', component: ProductSearchComponent },
+    { path: 'categoria/:name', component: CategorySearchComponent},
+    { path: 'busqueda/:product', component: ProductFindComponent},
+    { path: 'validar', component: ValidateAccountComponent},
+    { path: 'notificaciones', component: NotificationComponent}    
   ]}
 ];
 

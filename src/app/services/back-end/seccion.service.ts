@@ -29,13 +29,13 @@ export class SeccionService {
     return this.listEtiquetas = this.fireBase.list('etiquetas', ref => ref.orderByChild("count"));
   }
 
-  /** We are filter the seccion for add categorie */
+  /** We are filter the seccion for add categorie -- GET SOME CATEGORY */
   getSeccionFilterToAddCategoria(key) {
     return this.listSeccionFilter = this.fireBase.list('seccion/'+key+"/categoria");
   }
 
   getCategoriaFilterToAddOption(keySeccion, keyOption) {
-    return this.listCategoriaFilter = this.fireBase.list('seccion/'+keySeccion+"/categoria/"+keyOption+"/option");
+    return this.listCategoriaFilter = this.fireBase.list('seccion/'+keySeccion+"/categoria/"+keyOption+"/opcion");
   }
 
   insertEtiquetas(etiquetaName) {
@@ -79,6 +79,10 @@ export class SeccionService {
 
   getJsonForName(name: string, json) {
     return of(json.find((seccion => seccion.name === name)));
+  }
+
+  getJsonForNameCategory(name, json) {
+    return of(json.find((categoria => categoria.name === name)));
   }
 
   getJsonOfCategoriaForKey(key, json) {

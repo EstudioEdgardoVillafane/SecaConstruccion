@@ -5,10 +5,12 @@
 .container-img{
     align-content: center!important;
     text-align: center!important;
+    background-color: white;
 }
 .card-product{
     width:250px;
     height: 340px;
+    margin-top: 1rem!important;
 }
 .card-product-img{
     height: 200px;
@@ -39,4 +41,14 @@
 }
 .title{
     font-size:35px;
+}
+@media (max-width: 768px) {
+    .container{
+        padding-top:15px;
+        padding-left: 15px;
+        padding-right: 15px;    
+    }
+    .container-img > img{
+        width: 70%!important;   
+    }
 }

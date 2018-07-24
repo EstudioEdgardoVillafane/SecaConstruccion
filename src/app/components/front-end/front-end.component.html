@@ -4,13 +4,15 @@
       <span class="right">
         <mat-form-field appearance="legacy">
           <mat-label>Buscar producto</mat-label>
-          <input matInput placeholder="" name="value">
-          <mat-icon  matSuffix class="icon-search">search</mat-icon>
+
+          <input matInput placeholder="" name="value" #inputSearch>
+          <mat-icon  matSuffix class="icon-search" (click)="handleSearchProduct(inputSearch)">search</mat-icon>
 
         </mat-form-field>
       </span>
       <button mat-icon-button (click)="snav.toggle()">
-        <mat-icon id="menu">menu</mat-icon>
+        <mat-icon *ngIf="clientOnline != undefined" id="menu" matBadge="{{notifications}}" matBadgePosition="before" matBadgeColor="primary">menu</mat-icon>
+        <mat-icon *ngIf="clientOnline == undefined" id="menu">menu </mat-icon>
       </button>
 
     </mat-toolbar>
@@ -46,9 +48,12 @@
                 <mat-list-item>
                   <mat-icon>supervised_user_circle</mat-icon> {{clientOnline}}
                 </mat-list-item>
-                <mat-list-item [routerLink]="['/mi-cuenta']">
+                <mat-list-item routerLink="/mi-cuenta">
                   <mat-icon>account_box</mat-icon> Mi cuenta
                 </mat-list-item>
+                <mat-list-item routerLink="/notificaciones">
+                    <mat-icon matBadge="{{notifications}}" matBadgePosition="before" matBadgeColor="primary">messages</mat-icon> <b>Notificaciones</b>
+                  </mat-list-item>
                 <mat-list-item (click)="handleExitSession()">
                     <mat-icon>label_important</mat-icon> Cerrar session
                   </mat-list-item>

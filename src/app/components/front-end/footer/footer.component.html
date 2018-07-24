@@ -1,5 +1,5 @@
 <footer>
-    <mat-grid-list cols="3" rowHeight="250px">
+    <mat-grid-list [cols]="tamGrid" rowHeight="280px" (window:resize)="onResize($event)">
         <mat-grid-tile>
           <div class="container-footer"> 
             <h2>Información de contacto</h2>
@@ -10,12 +10,7 @@
               </p>
           </div>
         </mat-grid-tile> 
-        <mat-grid-tile></mat-grid-tile> 
-        <mat-grid-tile>
-            <div class="container-footer"> 
-              <h5>Derechos reservados por SecaConstrucciones</h5>
-            </div>
-          </mat-grid-tile> 
+  
 
       </mat-grid-list>
 </footer>

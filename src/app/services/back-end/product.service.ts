@@ -7,6 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { User } from '../../model/user';
 import { Product } from '../../model/product';
+import { AngularFireAction } from 'angularfire2/database/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,6 @@ export class ProductService {
 
   listProducts : AngularFireList<any>;
   listEtiquetas : AngularFireList<any>;
-
 
   constructor( private fireBase: AngularFireDatabase ) { }
 
@@ -46,6 +46,7 @@ export class ProductService {
       status: 1
     });
   }
+  
   updateProductFavorite(favoriteValue, key){
     this.listProducts.update(key,{
       favorite: favoriteValue 
@@ -74,6 +75,9 @@ export class ProductService {
   }
   getProductForSlug(slug, json){
     return of(json.find((producto => producto.slug === slug)));
+  }
+  getProductForName(name, json){
+    return of(json.find((producto => producto.name === name)));
   }
  
  

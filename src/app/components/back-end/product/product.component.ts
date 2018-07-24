@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductService } from '../../../services/back-end/product.service';
-import {SelectionModel} from '@angular/cdk/collections';
-import {MatTableDataSource, MatSnackBar} from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource, MatSnackBar } from '@angular/material';
 import { Product } from '../../../model/product';
 import { Router } from '@angular/router';
-import {MatPaginator, MatSort} from '@angular/material';
+import { MatPaginator, MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-product',
@@ -12,8 +12,6 @@ import {MatPaginator, MatSort} from '@angular/material';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-
-
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -25,14 +23,13 @@ export class ProductComponent implements OnInit {
    }
 
   listProducts: any[];
-  displayedColumns: string[] = ['select','url','name', 'price', 'seccion', 'categoria','code','favorite','order'];
+  displayedColumns: string[] = ['select','url','name', 'price', 'seccion', 'categoria','code','favorite','order','edit'];
 
   orderValue;
   selection = new SelectionModel<Product>(true, []);
 
   
   ngOnInit() {
-
     this.productService.getProduct()
     .snapshotChanges()
     .subscribe(item => {
@@ -43,12 +40,13 @@ export class ProductComponent implements OnInit {
         if(x["status"] != 0){
           this.listProducts.push(x);
         }
-      });
+      });      
     this.dataSource.data = this.listProducts;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    })
+    });
   }
+
   applyFilter(filterValue: string) {
     console.log(this.dataSource.filter);
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -79,9 +77,8 @@ export class ProductComponent implements OnInit {
     });
     this.selection.clear()
   }
-  handleUpdateTemplate(){
-    const data = this.selection.selected;
-    (data.length == 1) ? this.router.navigateByUrl("backend/productos/update/"+data[0].$key) : this.openSnackBar("Elija un registro ", "Ok!");
+  handleUpdateTemplate(element){
+    this.router.navigateByUrl("backend/productos/update/"+element.$key);
   }
 
   handleDuplicate(){
@@ -93,7 +90,7 @@ export class ProductComponent implements OnInit {
     this.selection.clear()
   }
 
-  handleFavorite(favorite){
+  handleFavorite(){
     (this.selection.selected.length == 1) ? this.updateFavorite() : this.openSnackBar("Seleccione un solo producto", "Ok!");
   }
   updateFavorite(){
