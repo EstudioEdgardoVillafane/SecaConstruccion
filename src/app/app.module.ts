@@ -92,6 +92,7 @@ import { LoginFrontComponent } from './components/front-end/login-front/login-fr
 import { SessionService } from './services/global/session.service';
 import { AskComponent } from './components/back-end/ask/ask.component';
 import { StoreAskComponent } from './components/back-end/ask/store-ask/store-ask.component';
+import { UpdateAccountComponent } from './components/front-end/update-account/update-account.component';
 
 
 @NgModule({
@@ -130,6 +131,7 @@ import { StoreAskComponent } from './components/back-end/ask/store-ask/store-ask
     LoginFrontComponent,
     AskComponent,
     StoreAskComponent,
+    UpdateAccountComponent,
   ],
   imports: [
   AppRoutingModule,

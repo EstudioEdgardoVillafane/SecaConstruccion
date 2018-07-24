@@ -1,0 +1,123 @@
+<div class="s">
+  <mat-grid-list cols = "3" rowHeight = "50px" style="margin-bottom: 30px; margin-top: 30px;">
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile>
+        <div class="title">
+            <h2 *ngIf = "showEditPassBool == false">Informacion de Usuario</h2>
+            <h2 *ngIf = "showEditPassBool == true">Cambiar contrasena</h2>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="4" rowHeight = "400px">
+    <mat-grid-tile></mat-grid-tile>
+
+    <!-- obligatory info -->
+    <mat-grid-tile class="infoo" *ngIf = "showEditPassBool == false">
+      <div class="obligatory">
+        <h4>Mis Datos</h4>
+        <div class="info">
+            <mat-form-field>
+              <input matInput [(ngModel)] = "client.name" placeholder="Nombre">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)] = "client.surname" placeholder="Apellido">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)] = "client.organization" placeholder="Empresa">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)] = "client.mail" placeholder="Email">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)] = "client.phone" placeholder="Telefono">
+            </mat-form-field>
+          </div>
+      </div>
+    </mat-grid-tile>
+
+    <!-- aditional info -->
+    <mat-grid-tile class="infoo" *ngIf = "showEditPassBool == false">
+      <div class="obligatory">
+        <h4>Informacion Adicional</h4>
+        <div class="aditional">
+          <mat-form-field>
+              <input matInput [(ngModel)] = "client.direction" placeholder="Direccion">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [(ngModel)] = "client.pc" placeholder="Codigo Postal">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput  [(ngModel)] = "client.country" placeholder="Pais">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [(ngModel)] = "client.location" placeholder="Provincia">
+            </mat-form-field>
+
+            <mat-slide-toggle [(ngModel)] = "client.offers" color = "primary" (click)="checked()">Deseo que me envien informacion de ofertas</mat-slide-toggle>
+        </div>
+      </div>
+    </mat-grid-tile>
+
+    <!-- actual pass -->
+    <mat-grid-tile class="infoo" *ngIf = "showEditPassBool == true">
+        <div class="obligatory">
+          <h4>Contrasena actual</h4>
+          <div class="aditional">
+            <mat-form-field>
+                <input matInput [(ngModel)] = "pass1" placeholder="Contrasena actual">
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput [(ngModel)] = "pass2" placeholder="Repetir Contrasena">
+              </mat-form-field>
+          </div>
+        </div>
+    </mat-grid-tile>
+
+      <!-- new pass -->
+    <mat-grid-tile class="infoo" *ngIf = "showEditPassBool == true">
+          <div class="obligatory">
+            <h4>Nueva contrasena</h4>
+            <div class="aditional">
+              <mat-form-field>
+                  <input matInput [(ngModel)] = "newPass" placeholder="Nueva Contrasena">
+                </mat-form-field>
+
+            </div>
+          </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div class="obligatory" style="text-align: center; margin-top:0px;" >
+          <button  mat-raised-button color="primary"
+                  (click)="updateUserInfo()"
+                  *ngIf = "showEditPassBool == false">
+                  Guardar cambios
+                </button>
+                <button  mat-raised-button color="primary"
+                  (click)="updatePassword()"
+                  *ngIf = "showEditPassBool == true">
+                  Cambiar contrasena
+                </button>
+                <div>
+                    <button mat-raised-button color="warn" routerLink="/">Volver</button>
+                  </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="3" rowHeight ="60px">
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile>
+        <div>
+            <button mat-raised-button color="primary" *ngIf = "showEditPassBool == false" (click)="change()">
+                Editar Contrasena
+            </button>
+            <button mat-raised-button color="primary" *ngIf = "showEditPassBool == true" (click)="change()">
+              Editar datos usuario
+            </button>
+          </div>
+    </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+  </mat-grid-list>
+
+</div>

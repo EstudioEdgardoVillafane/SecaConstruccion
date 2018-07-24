@@ -21,7 +21,7 @@ export class LoginFrontComponent implements OnInit {
   ngOnInit() {
     // if(localStorage.getItem("aux") != undefined){
     //   this.router.navigateByUrl("/home");
-    // } 
+    // }
     let y = localStorage.getItem("aux");
     this.clienteService.getUser()
     .snapshotChanges()
@@ -34,19 +34,19 @@ export class LoginFrontComponent implements OnInit {
       });
     });
   }
-  
+
   handleSearchUserInBD(){
     this.clienteService.getJsonForName(this.clienteObject.mail, this.listClient)
     .subscribe( result => {
       if(result != undefined){
-        (result.password === this.clienteObject.password) ? this.saveUser(result) : console.log("error") ; 
+        (result.password === this.clienteObject.password) ? this.saveUser(result) : console.log("error") ;
       }
     });
 
   }
 
   saveUser(client){
-    localStorage.setItem("aux", client.name);
+    localStorage.setItem("aux", client.mail);
     location.href ="/";
   }
 
