@@ -23,10 +23,12 @@ export class LoginFrontComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.tamGrid = (screen.width <= 768) ? 1 : 2;
     if(localStorage.getItem("aux") != undefined){
       this.router.navigateByUrl("/home");
     } 
+
     let y = localStorage.getItem("aux");
     this.clienteService.getUser()
     .snapshotChanges()
@@ -41,12 +43,12 @@ export class LoginFrontComponent implements OnInit {
     this.createclienteObject.code = Math.random().toString(36).substring(7);
 
   }
-  
+
   handleSearchUserInBD(){
     this.clienteService.getJsonForName(this.clienteObject.mail, this.listClient)
     .subscribe( result => {
       if(result != undefined){
-        (result.password === this.clienteObject.password) ? this.saveUser(result) : console.log("error") ; 
+        (result.password === this.clienteObject.password) ? this.saveUser(result) : console.log("error") ;
       }
     });
 

@@ -34,6 +34,7 @@ import { UpdateOptionComponent } from '../components/back-end/option/update-opti
 import { LoginFrontComponent } from '../components/front-end/login-front/login-front.component';
 import { AskComponent } from '../components/back-end/ask/ask.component';
 import { StoreAskComponent } from '../components/back-end/ask/store-ask/store-ask.component';
+import { UpdateAccountComponent } from '../components/front-end/update-account/update-account.component';
 import { ProductSearchComponent } from '../components/front-end/product-search/product-search.component';
 import { CategorySearchComponent } from '../components/front-end/product-search/category-search/category-search.component';
 import { ProductFindComponent } from '../components/front-end/product-search/product-find/product-find.component';
@@ -61,17 +62,20 @@ const routes: Routes = [
       { path: 'opcion', component: OptionComponent},
       { path: 'opcion/editar', component: UpdateOptionComponent},
       { path: 'opcion/store', component: AddOptionComponent},
+      { path: 'preguntas', component: AskComponent },
+      { path: 'preguntas/response/:key', component: StoreAskComponent },
       { path: 'mensajes', component: AskComponent },
       { path: 'mensajes/response/:key', component: StoreAskComponent },
       { path: 'categorias', component: CategoryComponent},
       { path: 'categorias/agregar', component: StoreCategoryComponent },
-      { path: 'categorias/editar', component: UpdateCategoryComponent },
+      { path: 'categorias/editar', component: UpdateCategoryComponent }
     ]},
     { path: '', component: FrontEndComponent,
   children: [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
     { path: 'producto/:slug', component: DetalleProductComponent },
+    { path: 'mi-cuenta', component: UpdateAccountComponent},
     { path: 'login', component: LoginFrontComponent },
     { path: 'seccion/:name', component: ProductSearchComponent },
     { path: 'categoria/:name', component: CategorySearchComponent},
