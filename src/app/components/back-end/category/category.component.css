@@ -12,3 +12,44 @@ td{
   float: right;
   padding-top: 25px;
 }
+.btn-u-d{
+  position: relative;
+  top:6px;
+}
+
+
+hr{
+  width: 70%;
+}
+.mat-form-field {
+font-size: 14px;
+width: 40%;
+}
+.mat-column-select {
+overflow: initial;
+}
+.rigth{
+float: right;
+padding-top: 25px;
+}
+.btn-u-d{
+position: relative;
+top:6px;
+}
+
+table, .mat-grid-tile .mat-figure  {
+
+width: 100%;
+}
+.mat-column-select {
+overflow: auto;
+}
+
+td{
+width:250px;
+}
+
+.example-container {
+display: flex;
+flex-direction: column;
+}

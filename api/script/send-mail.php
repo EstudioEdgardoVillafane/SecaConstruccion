@@ -28,7 +28,9 @@ $mensaje = "$fecha";
 // Datos de la cuenta de correo utilizada para enviar vía SMTP
 $smtpHost = "c1090159.ferozo.com";  // Dominio alternativo brindado en el email de alta 
 $smtpUsuario = "admin@seca.com.ar";  // Mi cuenta de correo se 
+
 $smtpClave = "xxx";  // Mi contraseñaMAtias!!!!
+
 // Email donde se enviaran los datos cargados en el formulario de contacto
 
 $emailDestino = "$Email";
@@ -47,7 +49,7 @@ $mail->AddAddress($emailDestino); // Esta es la dirección a donde enviamos los 
 $mail->AddReplyTo($Email); // Esto es para que al recibir el correo y poner Responder, lo haga a la cuenta del visitante. 
 $mail->Subject = "Seca Construcciones - confirmacion de Cuenta"; // Este es el titulo del email.
 $mensajeHtml = nl2br($mensaje);
-$mail->Body = "hola $name. Tu codigo es $Code  "; // Texto del email en formato HTML
+$mail->Body = "hola $name. Tu codigo es $Code <a href='http://localhost:4200/validar'>click aca</a> "; // Texto del email en formato HTML
 $mail->AltBody = "asdasasdasd ?????"; // Texto sin formato HTML
 // FIN - VALORES A MODIFICAR //
 $mail->SMTPOptions = array(
