@@ -12,10 +12,15 @@ export class ProductsComponent implements OnInit {
   listFavorite : any[];
   listEtiquetas : any[];
   listProducts : any[];
-  
+  tamCard = 4;
   constructor(private productService : ProductService, private seccionService : SeccionService) { }
 
+  onResize(event) {
+    this.tamCard = (event.target.innerWidth <= 768) ? 2 : 4;
+  }
+
   ngOnInit() {
+    this.tamCard = (screen.width <= 768) ? 2 : 4;
     this.productService.getProduct()
     .snapshotChanges()
     .subscribe(item => {
@@ -32,19 +37,17 @@ export class ProductsComponent implements OnInit {
         }
       });
     });
+
     this.seccionService.getEtiquetas()
     .snapshotChanges()
     .subscribe(item => {
       this.listEtiquetas = [];
-      item.forEach(element => {
-        
+      item.forEach(element => {     
         let x = element.payload.toJSON();
         x["$key"] = element.key;
         this.listEtiquetas.push(x);
       });
       this.listEtiquetas.reverse();
     });
-
   }
-
 }

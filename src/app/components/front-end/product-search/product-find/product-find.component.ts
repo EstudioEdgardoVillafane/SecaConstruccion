@@ -15,7 +15,8 @@ export class ProductFindComponent implements OnInit {
   listSeccions : any[];
   listEtiquetas : any[];
   nameSearch : string = "todos los productos";
- 
+  tamCard : number;
+
   @ViewChild(MatPaginator)  paginator: MatPaginator;
   dataSource = new MatTableDataSource();
 
@@ -24,8 +25,12 @@ export class ProductFindComponent implements OnInit {
     private productService : ProductService,
     private seccionService : SeccionService
   ){}
+  onResize(event) {
+    this.tamCard = (event.target.innerWidth <= 768) ? 2 : 4;
+  }
 
   ngOnInit() {
+    this.tamCard = (screen.width <= 768) ? 2 : 4;
     const valueToFind = this._activatedRoute.snapshot.paramMap.get("product");
     let valueToSearch = "";
     if(valueToFind  !== "all"){
@@ -49,7 +54,7 @@ export class ProductFindComponent implements OnInit {
         let x = element.payload.toJSON();
         x["$key"] = element.key;
         if(x["status"] === 1){
-          if(x["name"].toUpperCase().match(valueToSearch)){ 
+          if(x["name"].toUpperCase().match(valueToSearch.toUpperCase())){ 
             this.listProducts.push(x);
           }
         }

@@ -1,4 +1,4 @@
-<mat-grid-list cols="4" rowHeight="440px">
+<mat-grid-list [cols]="tamCard" rowHeight="440px" (window:resize)="onResize($event)">
     <mat-grid-tile *ngFor="let seccion of listSeccion | slice : 0 : 8"> 
 
         <mat-card class="card-product">

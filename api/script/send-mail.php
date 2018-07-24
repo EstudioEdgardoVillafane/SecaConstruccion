@@ -28,7 +28,9 @@ $mensaje = "$fecha";
 // Datos de la cuenta de correo utilizada para enviar vía SMTP
 $smtpHost = "c1090159.ferozo.com";  // Dominio alternativo brindado en el email de alta 
 $smtpUsuario = "admin@seca.com.ar";  // Mi cuenta de correo se 
-$smtpClave = "";  // Mi contraseñaMAtias!!!!
+
+$smtpClave = "xxx";  // Mi contraseñaMAtias!!!!
+
 // Email donde se enviaran los datos cargados en el formulario de contacto
 
 $emailDestino = "$Email";

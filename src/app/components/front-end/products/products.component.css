@@ -42,3 +42,13 @@
 .title{
     font-size:35px;
 }
+@media (max-width: 768px) {
+    .container{
+        padding-top:15px;
+        padding-left: 15px;
+        padding-right: 15px;    
+    }
+    .container-img > img{
+        width: 70%!important;   
+    }
+}

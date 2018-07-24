@@ -18,6 +18,7 @@ export class ProductSearchComponent implements OnInit {
   listCategory : any[];
   listEtiquetas : any[];
   nameSeccion : string;
+  tamCard : number;
   @ViewChild(MatPaginator)  paginator: MatPaginator;
   dataSource = new MatTableDataSource();
 
@@ -26,8 +27,12 @@ export class ProductSearchComponent implements OnInit {
     private productService : ProductService,
     private seccionService : SeccionService
   ){}
+  onResize(event) {
+    this.tamCard = (event.target.innerWidth <= 768) ? 2 : 4;
+  }
 
   ngOnInit() {
+    this.tamCard = (screen.width <= 768) ? 2 : 4;
     const name = this._activatedRoute.snapshot.paramMap.get('name');
     this.nameSeccion = name;
 

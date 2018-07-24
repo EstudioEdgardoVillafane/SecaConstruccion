@@ -11,7 +11,7 @@
      
     </div>
     <div class="rigth-content">
-        <mat-grid-list cols="3" rowHeight="400px">
+        <mat-grid-list [cols]="tamCard" rowHeight="400px" (window:resize)="onResize($event)">
             <mat-grid-tile *ngFor="let product of dataSource.data"> 
                 <mat-card class="card-product">
                     <div class="card-product-img">

@@ -98,6 +98,8 @@ import { CategorySearchComponent } from './components/front-end/product-search/c
 import { ProductFindComponent } from './components/front-end/product-search/product-find/product-find.component';
 import { UpperCaracterPipe } from './upper-caracter.pipe';
 import { LoginBackendComponent } from './components/back-end/login-backend/login-backend.component';
+import { NotificationComponent } from './components/front-end/notification/notification.component';
+import { NotificationService } from './services/front-end/notification.service';
 
 
 
@@ -143,6 +145,7 @@ import { LoginBackendComponent } from './components/back-end/login-backend/login
     ProductFindComponent,
     UpperCaracterPipe,
     LoginBackendComponent,
+    NotificationComponent,
   ],
   imports: [
   AppRoutingModule,
@@ -193,7 +196,8 @@ import { LoginBackendComponent } from './components/back-end/login-backend/login
     ProductService,
     UserService,
     SeccionService,
-    SessionService
+    SessionService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

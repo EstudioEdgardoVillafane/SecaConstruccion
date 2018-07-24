@@ -10,10 +10,14 @@ import { SessionService } from '../../../../services/global/session.service';
 export class SeccionComponent implements OnInit {
 
   listSeccion : any[];
-
+  tamCard : number;
   constructor(private seccionService : SeccionService) { }
+  onResize(event) {
+    this.tamCard = (event.target.innerWidth <= 768) ? 2 : 4;
+  }
 
   ngOnInit() {
+    this.tamCard = (screen.width <= 768) ? 2 : 4;
     this.seccionService.getSeccion()
     .snapshotChanges()
     .subscribe(item => {
