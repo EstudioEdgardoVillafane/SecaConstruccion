@@ -1,5 +1,5 @@
 <div class="container"> 
-   <mat-grid-list cols="2" rowHeight="600">  
+   <mat-grid-list [cols]="tamGrid" rowHeight="600" (window:risize)="onResize($event)">  
 
       <mat-grid-tile class='login-element'>
           <div class="login-container">

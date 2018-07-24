@@ -22,13 +22,17 @@ export class DetalleProductComponent implements OnInit {
 
   boolAlertAsk = false;
   boolAlertSession = false;
-
+  tamDetalle : number;
   
   objectToSendAsk = new Ask();
   fecha = new Date();
   aux;
+  onResize(event) {
+    this.tamDetalle = (event.target.innerWidth <= 768) ? 1 : 2;
+  }
 
   ngOnInit() {
+    this.tamDetalle = (screen.width <= 768) ? 1 : 2;
     const slug = this._activatedRoute.snapshot.paramMap.get('slug');
     this.productoService.getProduct()
     .snapshotChanges()

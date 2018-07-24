@@ -8,7 +8,7 @@
 <section class="container">
 <div class="py-cards">
   <h2 class="title mb">Nuestros productos más vendidos</h2>
-  <mat-grid-list cols="4" rowHeight="430px">
+  <mat-grid-list [cols]="tamCard" rowHeight="430px" (window:resize)="onResize($event)">
     <mat-grid-tile *ngFor="let producto of listFavorite | slice : 0 : 4"> 
 
         <mat-card class="card-product">
@@ -23,7 +23,7 @@
               </p>
             </mat-card-content>
             <mat-card-content>
-              <button mat-raised-button color="primary" routerLink="/producto/{{producto.p_slug}}">Ver más</button>
+              <button mat-raised-button color="primary" routerLink="/producto/{{producto.slug}}">Ver más</button>
             </mat-card-content>
             <mat-card-actions>
             </mat-card-actions>
@@ -44,7 +44,7 @@
 </div>
 <div class="py-cards">
   <h2 class="title mb tc"> Nuestro catalogo </h2>
-  <mat-grid-list cols="4" rowHeight="440px">
+  <mat-grid-list [cols]="tamCard" rowHeight="440px" (window:resize)="onResize($event)">
       <mat-grid-tile *ngFor="let producto of listProducts | slice : 0 : 4"> 
   
           <mat-card class="card-product">

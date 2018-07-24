@@ -12,17 +12,21 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./login-front.component.css']
 })
 export class LoginFrontComponent implements OnInit {
-
+  tamGrid : number;
   clienteObject = new Client();
   listClient : any[];
   createclienteObject = new Client();
   constructor(private clienteService : ClientService, private sessionService : SessionService, private router : Router, private activatedRoute : ActivatedRoute, public snackBar: MatSnackBar ) { }
 
+  onResize(event) {
+    this.tamGrid = (event.target.innerWidth <= 768) ? 1 : 2;
+  }
 
   ngOnInit() {
-    // if(localStorage.getItem("aux") != undefined){
-    //   this.router.navigateByUrl("/home");
-    // } 
+    this.tamGrid = (screen.width <= 768) ? 1 : 2;
+    if(localStorage.getItem("aux") != undefined){
+      this.router.navigateByUrl("/home");
+    } 
     let y = localStorage.getItem("aux");
     this.clienteService.getUser()
     .snapshotChanges()

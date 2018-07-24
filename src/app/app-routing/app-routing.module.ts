@@ -38,6 +38,7 @@ import { ProductSearchComponent } from '../components/front-end/product-search/p
 import { CategorySearchComponent } from '../components/front-end/product-search/category-search/category-search.component';
 import { ProductFindComponent } from '../components/front-end/product-search/product-find/product-find.component';
 import { LoginBackendComponent } from '../components/back-end/login-backend/login-backend.component';
+import { NotificationComponent } from '../components/front-end/notification/notification.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -75,6 +76,7 @@ const routes: Routes = [
     { path: 'seccion/:name', component: ProductSearchComponent },
     { path: 'categoria/:name', component: CategorySearchComponent},
     { path: 'busqueda/:product', component: ProductFindComponent},
+    { path: 'notificaciones', component: NotificationComponent},    
     { path: 'validate', component: ValidateAccountComponent}
   ]}
 ];

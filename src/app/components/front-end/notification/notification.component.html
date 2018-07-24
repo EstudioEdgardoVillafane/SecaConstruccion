@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="left-content">  
+    <h2>Nuevas notificaciones</h2>
+  <mat-grid-list cols="1" rowHeight="145px" >
+      <mat-grid-tile *ngFor="let notification of listNewNotification">
+          <div class="card-notification">
+            <mat-icon class="archive" (click)="handleDoArchive(notification)">archive</mat-icon>
+          <div class="content-img">
+            <img src="{{notification.img}}">
+          </div>
+          <div class="new-notification">
+            <b class="title" routerLink="/producto/{{notification.slug}}">{{notification.publication}}</b>
+            <br>
+            <b class="ask">Respondieron a tu pregunta</b>
+            <p class="ask">{{notification.response}}</p>
+          </div>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+    <div class="right-content">
+      <h2>Notificaciones archivadas</h2>
+      <mat-grid-list cols="1" rowHeight="145px" >
+        <mat-grid-tile *ngFor="let notification of listNotification">
+          <div class="card-notification">
+              <mat-icon class="archive" (click)="handleDoDelete(notification)">clear</mat-icon>
+              <div class="content-img">
+                <img src="{{notification.img}}">
+              </div>
+              <div class="new-notification">
+                <b class="title" routerLink="/producto/{{notification.slug}}">{{notification.publication}}</b>
+                <br>
+                <b class="ask">Respondieron a tu pregunta</b>
+                <p class="ask">{{notification.response}}</p>
+              </div>
+              </div>
+            </mat-grid-tile>
+      </mat-grid-list>
+  </div>
+</div>
+<app-footer></app-footer>
