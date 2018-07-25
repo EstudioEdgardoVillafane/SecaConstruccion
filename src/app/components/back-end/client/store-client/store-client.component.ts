@@ -35,7 +35,6 @@ export class StoreClientComponent implements OnInit {
   //-----------Store----------//
   handleSendClient(){
     let validation = 0;
-    this.validateEmail();
     (this.objectClient.name == null) ? this.snackBar.open("Ingrese un nombre", "Ok!",{duration: 1000}): validation++;
     (this.objectClient.password == null) ? this.snackBar.open("Ingresar contraseña", "Ok!",{duration: 1000}): validation++;
     (this.objectClient.confirm != this.objectClient.password ) ? this.snackBar.open("las contraseñas no coinsiden", "Ok!",{duration: 1000}): validation++;
@@ -56,11 +55,16 @@ export class StoreClientComponent implements OnInit {
     }
   }
   
-  validateEmail(){
+  validateEmail(button){
     const mail = this.objectClient.mail;
     this.clientService.getJsonByMail(mail,this.clientList)
     .subscribe((data)=>{
-        (data != null) ? this.snackBar.open("El mail ya esta registrado", "Ok!",{duration: 1000}): "" ;
+        if(data != null){
+        this.snackBar.open("El mail ya esta registrado", "Ok!",{duration: 1000})
+        button.disabled = true;
+      }else{
+        button.disabled = false;
+      }
     });
   }
 }

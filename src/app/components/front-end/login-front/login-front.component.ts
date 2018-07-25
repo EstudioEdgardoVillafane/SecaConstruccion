@@ -79,4 +79,16 @@ export class LoginFrontComponent implements OnInit {
       // this.location.back();
     }
   }
+  validateEmail(button){
+    const mail = this.createclienteObject.mail;
+    this.clienteService.getJsonByMail(mail,this.listClient)
+    .subscribe((data)=>{
+        if(data != null){
+        this.snackBar.open("El mail ya esta registrado", "Ok!",{duration: 1000})
+        button.disabled = true;
+      }else{
+        button.disabled = false;
+      }
+    });
+  }
 }
