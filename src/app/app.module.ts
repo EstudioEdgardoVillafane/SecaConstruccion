@@ -92,6 +92,7 @@ import { LoginFrontComponent } from './components/front-end/login-front/login-fr
 import { SessionService } from './services/global/session.service';
 import { AskComponent } from './components/back-end/ask/ask.component';
 import { StoreAskComponent } from './components/back-end/ask/store-ask/store-ask.component';
+import { UpdateAccountComponent } from './components/front-end/update-account/update-account.component';
 import { ProductSearchComponent } from './components/front-end/product-search/product-search.component';
 import { ValidateAccountComponent } from './components/front-end/validate-account/validate-account.component';
 import { CategorySearchComponent } from './components/front-end/product-search/category-search/category-search.component';
@@ -139,6 +140,7 @@ import { NotificationService } from './services/front-end/notification.service';
     LoginFrontComponent,
     AskComponent,
     StoreAskComponent,
+    UpdateAccountComponent,
     ProductSearchComponent,
     ValidateAccountComponent,
     CategorySearchComponent,

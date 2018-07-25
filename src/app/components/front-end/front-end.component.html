@@ -4,40 +4,41 @@
       <span class="right">
         <mat-form-field appearance="legacy">
           <mat-label>Buscar producto</mat-label>
+
           <input matInput placeholder="" name="value" #inputSearch>
           <mat-icon  matSuffix class="icon-search" (click)="handleSearchProduct(inputSearch)">search</mat-icon>
-          
+
         </mat-form-field>
       </span>
       <button mat-icon-button (click)="snav.toggle()">
         <mat-icon *ngIf="clientOnline != undefined" id="menu" matBadge="{{notifications}}" matBadgePosition="before" matBadgeColor="primary">menu</mat-icon>
         <mat-icon *ngIf="clientOnline == undefined" id="menu">menu </mat-icon>
       </button>
-  
+
     </mat-toolbar>
-  
+
     <mat-sidenav-container class="sidenav-cont">
       <mat-sidenav #snav position="end">
         <mat-nav-list>
           <mat-list dense>
 
             <mat-list-item routerLink="/home">
-              <mat-icon>home</mat-icon> <a> Inicio</a> 
+              <mat-icon>home</mat-icon> <a> Inicio</a>
            </mat-list-item>
               <mat-list-item routerLink="/categorias">
-                 <mat-icon>dashboard</mat-icon> <a >Categorias</a> 
+                 <mat-icon>dashboard</mat-icon> <a >Categorias</a>
               </mat-list-item>
-  
+
               <mat-list-item>
-                  <mat-icon>style</mat-icon> Ofertas semanales 
+                  <mat-icon>style</mat-icon> Ofertas semanales
                 </mat-list-item>
-  
+
               <mat-list-item>
                 <mat-icon>shopping_cart</mat-icon> Tu carrito
                </mat-list-item>
-  
+
                <mat-divider class="my-2"></mat-divider>
-               
+
                <span *ngIf="clientOnline == undefined">
                <mat-list-item routerLink="/login">
                  <mat-icon>supervised_user_circle</mat-icon> Iniciar sesión
@@ -46,6 +47,9 @@
               <span *ngIf="clientOnline != undefined">
                 <mat-list-item>
                   <mat-icon>supervised_user_circle</mat-icon> {{clientOnline}}
+                </mat-list-item>
+                <mat-list-item routerLink="/mi-cuenta">
+                  <mat-icon>account_box</mat-icon> Mi cuenta
                 </mat-list-item>
                 <mat-list-item routerLink="/notificaciones">
                     <mat-icon matBadge="{{notifications}}" matBadgePosition="before" matBadgeColor="primary">messages</mat-icon> <b>Notificaciones</b>
@@ -64,4 +68,3 @@
         </mat-sidenav-content>
     </mat-sidenav-container>
   </div>
-  
