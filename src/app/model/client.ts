@@ -13,4 +13,5 @@ export class Client {
     confirm: string;
     mail: string;
     validate: number;
+    code: string;
 }

@@ -29,9 +29,9 @@ export class StoreClientComponent implements OnInit {
     })
     this.objectClient.code = Math.random().toString(36).substring(7);
   }
-  formStoreClient
-  formObjectClient
-  request
+  formStoreClient;
+  formObjectClient;
+  request;
   //-----------Store----------//
   handleSendClient(){
     let validation = 0;

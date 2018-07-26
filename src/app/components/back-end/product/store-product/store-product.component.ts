@@ -21,7 +21,7 @@ export class StoreProductComponent implements OnInit {
   
   booleanAdd : boolean;
   booleanNextPage : boolean = true;
-  
+  alertFoto : boolean = false;
   listEtiquetasFromProducts : any[];
   listOption : any[];
   listProducts : any[];
@@ -147,12 +147,14 @@ export class StoreProductComponent implements OnInit {
 
   /** This is a filter to the input of the etiquet's */
   applyFilterEtiquetas() {
+    if(this.etiquetaToAdd !== null){
     this.listFilterEtiqueta = [];
     this.listEtiquetas.forEach(element => {
       if(element.name.toUpperCase().match(this.etiquetaToAdd.toUpperCase())){
         this.listFilterEtiqueta.push(element.name);
       }
     });
+    }
   }
  
 
@@ -201,7 +203,8 @@ export class StoreProductComponent implements OnInit {
   }
   /** Insert a new etiqueta */
   handleAddEtiqueta(){
-    (this.etiquetaToAdd != "" ) ? this.addEtiqueta() : this.openSnackBar("Tenes que selecciona por lo menos una etiqueta","Ok!");
+    (this.etiquetaToAdd != "" ) ? this.addEtiqueta() : this.openSnackBar("Debe escribir una etiqueta","Ok!");
+    console.log("hola");
   }
   addEtiqueta(){
   this.listFilterEtiqueta = [];
@@ -228,7 +231,7 @@ export class StoreProductComponent implements OnInit {
       }
       this.arrayEtiquetasSelected[this.arrayEtiquetasSelected.length] = this.etiquetaToAdd;  
     }
-    this.etiquetaToAdd = "";
+    this.etiquetaToAdd = null;
   }
   
   handlePullEtiqueta(nameOfEtiquetaToHide){
@@ -270,8 +273,8 @@ export class StoreProductComponent implements OnInit {
   /** This function used SearchNameOfCategoria() and SearchNameOfOptions */
   storeProduct(){
     this.aux = 0;
+    (this.productToAdd.url == "") ? this.openSnackBar("Seleccione una imagen para su producto", "Ok!") : this.aux++;
     (this.keyCategoriaSelected == undefined ) ? this.openSnackBar("Verifique haber seleccionado una categoria y una opcion ", "Ok!") : this.searchNameOfCategoria();
-    (this.arrayEtiquetasSelected.length == 0) ? this.openSnackBar("Debe agregar etiquetas al producto", "Ok!") : this.aux++;
     (this.productToAdd.price == undefined) ? this.openSnackBar("Ingrese un precio a su producto", "Ok!") : this.aux++;
     if(this.aux == 3){
       this.productToAdd.order = this.listProducts.length+1;
@@ -295,18 +298,24 @@ export class StoreProductComponent implements OnInit {
   formObjectIMG;
   formImg;
   request;
-  handleGenerateUrlIMG(){
+  handleGenerateUrlIMG(event){
+    console.log("hola");
+    if(event.target.value === ""){
+      this.alertFoto = true; 
+    }else{  
     this.formImg = document.getElementById("formIMG");
     this.formObjectIMG = new FormData(this.formImg);
       this.request = new XMLHttpRequest();
       this.request.open("POST", "api/script/upload-product.php", true);
       this.request.send(this.formObjectIMG);
       this.request.onload = (e) => {
-        console.log("some");
+        console.log("Is upload");
      this.productToAdd.url = this.request.responseText;
         
       }
      this.productToAdd.url = this.request.responseText;
+     this.alertFoto = false; 
+    }
   }
 
   searchNameOfCategoria(){

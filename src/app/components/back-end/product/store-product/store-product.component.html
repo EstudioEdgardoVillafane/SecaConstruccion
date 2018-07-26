@@ -56,8 +56,8 @@
       </mat-expansion-panel>
       
       <mat-form-field class="fw mt">
-        <input type="text"  placeholder="Escriba etiqueta" matInput [matAutocomplete]="etiqueta" (keyup)="applyFilterEtiquetas()" [(ngModel)]="etiquetaToAdd" name="name">
-        <mat-icon matSuffix class="addAny" (click)="handleAddEtiqueta()">add_circle_outline</mat-icon>
+        <input type="text"  placeholder="Escriba etiqueta" (keyup.enter)="handleAddEtiqueta()" (blur)="handleAddEtiqueta()" matInput [matAutocomplete]="etiqueta" (keyup)="applyFilterEtiquetas()" [(ngModel)]="etiquetaToAdd" name="name">
+        <mat-icon matSuffix class="addAny">add_circle_outline</mat-icon>
       </mat-form-field>
       <mat-autocomplete class="fw" #etiqueta="matAutocomplete">
         <mat-option *ngFor="let option of listFilterEtiqueta" [value]="option" (click)="handleSaveArrayOfEtiquetas()">{{option}}</mat-option>
@@ -67,7 +67,10 @@
       
       
       <form id="formIMG">
-      Foto del producto: <input class="fw mt" (change)="handleGenerateUrlIMG()" name="uploadedfile" type="file">
+        Imagen del producto - 
+        <a *ngIf="!alertFoto"> Debe subir una imagen de formato .jpg .png .web</a>
+        <a style="color:Red" *ngIf="alertFoto"> Debe subir una imagen de formato .jpg .png .web</a>
+        <input class="fw mt" (input)="handleGenerateUrlIMG($event)" name="uploadedfile" type="file" >
       </form>
 
 

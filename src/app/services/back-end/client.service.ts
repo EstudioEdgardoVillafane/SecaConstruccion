@@ -48,7 +48,6 @@ export class ClientService {
       location: '',
       offers: '',
       validate : false,
-      code: clientObject.code
     });
   }
 
