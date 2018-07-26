@@ -16,33 +16,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./store-product.component.css']
 })
 export class StoreProductComponent implements OnInit {
-<<<<<<< HEAD
   
   constructor(private productService : ProductService, private router : Router, private seccionService : SeccionService, public snackBar: MatSnackBar) { }
   
-  booleanAdd : boolean;
-  booleanNextPage : boolean = true;
-  alertFoto : boolean = false;
-  listEtiquetasFromProducts : any[];
-  listOption : any[];
-  listProducts : any[];
-  listSeccion : any[];
-  listSeccionFilter : any[];
-  listFilter : any[];
-  listFilterEtiqueta : any[];
-  listEtiquetas : any[];
-  
-  arrayCheckbox : string[];
-=======
-
-  constructor(private productService: ProductService,
-              private router: Router,
-              private seccionService: SeccionService,
-              public snackBar: MatSnackBar) { }
-
   booleanAdd: boolean;
   booleanNextPage: boolean = true;
-
+  alertFoto: boolean  = true;
   listEtiquetasFromProducts: any[];
   listOption: any[];
   listProducts: any[];
@@ -53,7 +32,6 @@ export class StoreProductComponent implements OnInit {
   listEtiquetas: any[];
 
   arrayCheckbox: string[];
->>>>>>> c4a0e82abe15777800c1b79ac5e72d288630d04e
   arrayEtiquetasSelected = new Array();
 
   productToAdd = new Product();
@@ -225,12 +203,7 @@ export class StoreProductComponent implements OnInit {
   }
   /** Insert a new etiqueta */
   handleAddEtiqueta(){
-<<<<<<< HEAD
     (this.etiquetaToAdd != "" ) ? this.addEtiqueta() : this.openSnackBar("Debe escribir una etiqueta","Ok!");
-    console.log("hola");
-=======
-    (this.etiquetaToAdd != "" ) ? this.addEtiqueta() : this.openSnackBar("Tenes que selecciona por lo menos una etiqueta","Ok!" );
->>>>>>> c4a0e82abe15777800c1b79ac5e72d288630d04e
   }
   addEtiqueta(){
   this.listFilterEtiqueta = [];
@@ -299,14 +272,9 @@ export class StoreProductComponent implements OnInit {
   /** This function used SearchNameOfCategoria() and SearchNameOfOptions */
   storeProduct(){
     this.aux = 0;
-<<<<<<< HEAD
     (this.productToAdd.url == "") ? this.openSnackBar("Seleccione una imagen para su producto", "Ok!") : this.aux++;
     (this.keyCategoriaSelected == undefined ) ? this.openSnackBar("Verifique haber seleccionado una categoria y una opcion ", "Ok!") : this.searchNameOfCategoria();
-=======
-    (this.keyCategoriaSelected == undefined ) ?
-      this.openSnackBar("Verifique haber seleccionado una categoria y una opcion ", "Ok!") : this.searchNameOfCategoria();
     (this.arrayEtiquetasSelected.length == 0) ? this.openSnackBar("Debe agregar etiquetas al producto", "Ok!") : this.aux++;
->>>>>>> c4a0e82abe15777800c1b79ac5e72d288630d04e
     (this.productToAdd.price == undefined) ? this.openSnackBar("Ingrese un precio a su producto", "Ok!") : this.aux++;
     if(this.aux == 3){
       this.productToAdd.order = this.listProducts.length+1;
