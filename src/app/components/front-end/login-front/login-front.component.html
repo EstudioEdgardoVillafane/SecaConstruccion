@@ -1,18 +1,18 @@
-<div class="container"> 
-   <mat-grid-list [cols]="tamGrid" rowHeight="600" (window:risize)="onResize($event)">  
+<div class="container">
+   <mat-grid-list [cols]="tamGrid" rowHeight="500" (window:risize)="onResize($event)">
 
       <mat-grid-tile class='login-element'>
           <div class="login-container">
-  
+
                 <!-- Template Header starts -->
               <div class="login-box-header">
                   <a>¿Ya tenes una cuenta? ¡Inicia sesion!</a>
               </div>
               <!-- Template Header ends -->
-  
+
               <!-- Template Body starts -->
               <div class="login-box-body">
-  
+
                   <!-- Markup for getting Username starts -->
                   <mat-grid-list cols="9" rowHeight="75px">
                       <mat-grid-tile [rowspan]="1" class="login-icon">
@@ -25,7 +25,7 @@
                       </mat-grid-tile>
                   </mat-grid-list>
                   <!-- Markup for getting Username ends -->
-  
+
                   <!-- Markup for getting Password starts -->
                   <mat-grid-list cols="9" rowHeight="100px">
                       <mat-grid-tile [rowspan]="1"  class="login-icon">
@@ -38,18 +38,17 @@
                       </mat-grid-tile>
                   </mat-grid-list>
                   <!-- Markup for getting Password ends -->
-  
+
                   <button mat-raised-button class="login-button" color="primary" (click)="handleSearchUserInBD()">
                       <mat-icon>input</mat-icon> Login
                   </button>
-  
+
               </div>
               <!-- Template Body ends -->
-  
+
           </div>
       </mat-grid-tile>
-  
-  
+
   <mat-grid-tile class='login-element' style="margin-top: 20px;">
     <div class="create-container">
 
@@ -110,14 +109,14 @@
             <input [(ngModel)]="createclienteObject.code" type="hidden" name="code" >
             <!-- Markup for getting Password ends -->
         </form>
-            
+
             <button mat-raised-button class="login-button" color="warn" (click)="handleStoreClient()" #button>
                 <mat-icon>accessibility_new</mat-icon> Crear cuenta
             </button>
-            
+
         </div>
         <!-- Template Body ends -->
-        
+
     </div>
 </mat-grid-tile>
 

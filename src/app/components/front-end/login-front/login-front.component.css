@@ -47,8 +47,9 @@
 }
 
 .create-container{
+  display: block;
 	width: 90%;
-  height:515px;
+  height:100%;
   padding: 0% !important;
   background-color: white ;
 	/* background-color: rgb(201, 201, 201); */
@@ -70,14 +71,14 @@
 .container{
     padding-left:80px;
     padding-right: 80px;
-    min-height: 110vh;
+    min-height: 86.3vh;
 }
 @media (max-width: 768px) {
   .container{
       padding-top:15px;
       padding-left: 15px;
       padding-right: 15px;
-      padding-bottom:80px;    
+      /* padding-bottom:80px; */
   }
   .login-box-header{
     height: 23%;

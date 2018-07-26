@@ -26,8 +26,7 @@ export class ClientService {
   }
 
 
-  
-  getJsonByCode(code:string, json){
+  getJsonByCode(code: string, json) {
     return of(json.find((client => client.code === code)));
   }
   getJsonByMail(mail:string,json){
@@ -48,7 +47,6 @@ export class ClientService {
       location: '',
       offers: '',
       validate : false,
-      code: clientObject.code
     });
   }
 

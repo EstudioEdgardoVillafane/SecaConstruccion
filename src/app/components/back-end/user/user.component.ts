@@ -12,8 +12,7 @@ import { User } from '../../../model/user';
 })
 export class UserComponent implements OnInit {
 
-  constructor(private userService : UserService, private router : Router,private route : ActivatedRoute, private snackBar : MatSnackBar) { }
-  
+  constructor(private userService: UserService, private router : Router,private route : ActivatedRoute, private snackBar: MatSnackBar) { }
   userList: any[];
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['$key', 'user', 'mail', 'update'];
@@ -31,28 +30,27 @@ export class UserComponent implements OnInit {
         this.userList.push(x);
         this.dataSource.data = this.userList;
       });
-    })
+    });
     this.dataSource.paginator = this.paginator;
   }
-//----------------------store---------------------//
-  handleGoStoreForm(){
+// ----------------------store---------------------//
+  handleGoStoreForm() {
     this.router.navigate(['store'], {relativeTo: this.route});
   }
-//----------------------Edit----------------------//
+// ----------------------Edit----------------------//
   handleGoEditForm(user : User){
     // let aux = this.selection.selected;
-    
     // if( aux ){
       this.userService.jsonUser = user ;
     this.router.navigate(['update'], {relativeTo: this.route});
     // }
   }
- 
-//---------------------Delete--------------------//
-  handleDeleteUser(){
-    let aux = this.selection.selected;
 
-    for(let i in aux){
+// ---------------------Delete--------------------//
+  handleDeleteUser() {
+    const aux = this.selection.selected;
+
+    for(let i in aux) {
     console.log(aux[i].$key);
       this.userService.deleteUser(aux[i].$key)
     }

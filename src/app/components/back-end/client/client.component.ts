@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClientService } from '../../../services/back-end/client.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatPaginator, MatTableDataSource,MatSnackBar } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSnackBar } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Client } from '../../../model/client';
 
@@ -12,8 +12,11 @@ import { Client } from '../../../model/client';
 })
 export class ClientComponent implements OnInit {
 
-  constructor(private clientService : ClientService, private router : Router,private route : ActivatedRoute, private snackBar : MatSnackBar) { }
-  
+  constructor(private clientService: ClientService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private snackBar: MatSnackBar) { }
+
   clientList: any[];
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['$key', 'name', 'mail', 'update'];
@@ -26,39 +29,37 @@ export class ClientComponent implements OnInit {
     .subscribe(item => {
       this.clientList = [];
       item.forEach(element => {
-        let x = element.payload.toJSON();
-        x["$key"] = element.key;
+        const x = element.payload.toJSON();
+        x['$key'] = element.key;
         this.clientList.push(x);
         this.dataSource.data = this.clientList;
       });
-    })
+    });
     this.dataSource.paginator = this.paginator;
   }
-//----------------------store---------------------//
-  handleGoStoreForm(){
+// ----------------------store---------------------//
+  handleGoStoreForm() {
     this.router.navigate(['store'], {relativeTo: this.route});
   }
-//----------------------Edit----------------------//
-  handleGoEditForm(client : Client){
+// ----------------------Edit----------------------//
+  handleGoEditForm(client: Client) {
     // let aux = this.selection.selected;
-    
+
     // if( aux ){
       this.clientService.selectKeyClient = client ;
     this.router.navigate(['update'], {relativeTo: this.route});
     // }
   }
- 
-//---------------------Delete--------------------//
-  handleDeleteUser(){
-    let aux = this.selection.selected;
 
-    for(let i in aux){
-    console.log(aux[i].$key);
-      this.clientService.deleteUser(aux[i].$key)
-    }
+// ---------------------Delete--------------------//
+  handleDeleteUser() {
+    const aux = this.selection.selected;
+    aux.forEach(element => {
+      this.clientService.deleteUser(element.$key);
+    });
   }
 
-  //-------------------Table------------------------//
+  // -------------------Table------------------------//
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
