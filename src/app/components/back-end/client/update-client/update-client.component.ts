@@ -19,7 +19,7 @@ export class UpdateClientComponent implements OnInit {
   boolChangePassword = false;
   boolDontChangePassword = true;
   changePassword = new Password;
-  
+
   ngOnInit() {
     this.clientList = this.clientService.selectKeyClient
   }
@@ -28,16 +28,17 @@ handleUpdateClient(){
   let validation = 0;
   if( this.boolChangePassword == false){
 
-    (this.clientList.name == "") ? this.snackBar.open("Ingrese un nombre", "Ok!"): validation++;
-    (this.clientList.mail == "") ? this.snackBar.open("Ingresar contraseña", "Ok!"): validation++;
-    
-    if(validation == 2){
+    (this.clientList.name == "") ? this.snackBar.open("Ingrese un nombre", "Ok!",{duration: 1000}): validation++;
+    (this.clientList.mail == "") ? this.snackBar.open("Ingresar contraseña", "Ok!",{duration: 1000}): validation++;
+
+    if  (validation == 2){
       this.clientService.updateUser(this.clientList)
       this.location.back();
     }
   }else{
-      (this.changePassword.new != this.changePassword.confirm) ? this.snackBar.open("Contraseñas distintas", "Ok!"): validation++;
-      (this.changePassword.old != this.clientList.password) ? this.snackBar.open("Ingresar la contraseña actual", "Ok!"): validation++;
+
+    (this.changePassword.new != this.changePassword.confirm) ? this.snackBar.open("Contraseñas distintas", "Ok!",{duration: 1000}): validation++;
+    (this.changePassword.old != this.clientList.password) ? this.snackBar.open("Ingresar la contraseña actual", "Ok!",{duration: 1000}): validation++;
 
       if(validation == 2 ){
         this.clientList.password = this.changePassword.new
@@ -46,7 +47,7 @@ handleUpdateClient(){
       }
     }
   }
- 
+
 //-----------Change Password-------//
   handleChangePassword(){
     this.boolChangePassword = true;
