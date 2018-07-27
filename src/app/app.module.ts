@@ -101,6 +101,7 @@ import { UpperCaracterPipe } from './upper-caracter.pipe';
 import { LoginBackendComponent } from './components/back-end/login-backend/login-backend.component';
 import { NotificationComponent } from './components/front-end/notification/notification.component';
 import { NotificationService } from './services/front-end/notification.service';
+import { NotFoundComponent } from './global/not-found/not-found.component';
 
 
 
@@ -148,6 +149,7 @@ import { NotificationService } from './services/front-end/notification.service';
     UpperCaracterPipe,
     LoginBackendComponent,
     NotificationComponent,
+    NotFoundComponent,
   ],
   imports: [
   AppRoutingModule,

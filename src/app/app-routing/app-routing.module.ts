@@ -40,6 +40,7 @@ import { CategorySearchComponent } from '../components/front-end/product-search/
 import { ProductFindComponent } from '../components/front-end/product-search/product-find/product-find.component';
 import { LoginBackendComponent } from '../components/back-end/login-backend/login-backend.component';
 import { NotificationComponent } from '../components/front-end/notification/notification.component';
+import { NotFoundComponent } from '../global/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -82,8 +83,10 @@ const routes: Routes = [
     { path: 'busqueda/:product', component: ProductFindComponent},
     { path: 'validar', component: ValidateAccountComponent},
     { path: 'notificaciones', component: NotificationComponent}
-  ]}
+  ]},
+  { path: '**', component: NotFoundComponent }
 ];
+
 
 @NgModule({
   imports: [
