@@ -3,15 +3,18 @@ import { Injectable } from '@angular/core';
 // FireBase
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { User } from '../../model/user';
+import { of } from 'rxjs/observable/of';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
   constructor( private fireBase: AngularFireDatabase ) { }
-  
+
   listUser: AngularFireList<any>;
   jsonUser = new User();
+  userList: User[];
+
   getUser() {
     return this.listUser = this.fireBase.list('user');
   }
@@ -34,5 +37,8 @@ export class UserService {
 
   deleteUser($key) {
     this.listUser.remove($key);
+  }
+  getJsonForUser(user: string, json) {
+    return of(json.find((object => object.user === user)));
   }
 }

@@ -10,50 +10,55 @@ import { AskService } from '../../services/back-end/ask.service';
 
 export class BackEndComponent implements OnInit {
 
-  Messages : number;
+  Messages: number;
 
-  constructor(private route : ActivatedRoute, private router : Router, private askService : AskService) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private askService: AskService) { }
 
   ngOnInit() {
+    if (localStorage.getItem('datakeyy') === undefined ) {
+      this.router.navigateByUrl('/admin771');
+    }
     this.askService.getAsk()
     .snapshotChanges()
     .subscribe(item => {
       const listAsk = [];
       item.forEach(element => {
-        let x = element.payload.toJSON();
-        x["$key"] = element.key;
-        if(x["estado"] !== "Respondido" && x["status"] !== 0){
+        const x = element.payload.toJSON();
+        x['$key'] = element.key;
+        if (x['estado'] !== 'Respuesto' && x['status'] !== 0) {
           listAsk.push(x);
         }
       });
-      this.Messages = listAsk.length;    
+      this.Messages = listAsk.length;
     });
   }
 
-  handleExitSession(){
+  handleExitSession() {
 
   }
 
-  goHome(){
+  goHome() {
 
   }
-  goClient(){
-    this.router.navigate(['cliente'], {relativeTo: this.route});    
+  goClient() {
+    this.router.navigate(['cliente'], {relativeTo: this.route});
   }
   goSection() {
     this.router.navigate(['seccion'], {relativeTo: this.route});
   }
-  goUser(){
+  goUser() {
     this.router.navigate(['usuarios'], {relativeTo: this.route});
-  } 
-  goCategoria(){
+  }
+  goCategoria() {
     this.router.navigate(['categorias'], {relativeTo: this.route});
-  }  
-  goOpciones(){
-    this.router.navigate(['opcion'], {relativeTo: this.route});    
+  }
+  goOpciones() {
+    this.router.navigate(['opcion'], {relativeTo: this.route});
   }
 
-  goProductos(){
+  goProductos() {
     this.router.navigate(['productos'], {relativeTo: this.route});
   }
 
