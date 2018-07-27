@@ -41,6 +41,8 @@ import { ProductFindComponent } from '../components/front-end/product-search/pro
 import { LoginBackendComponent } from '../components/back-end/login-backend/login-backend.component';
 import { NotificationComponent } from '../components/front-end/notification/notification.component';
 import { CreateClientComponent } from '../components/front-end/create-client/create-client.component';
+import { NotFoundComponent } from '../global/not-found/not-found.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'admin771', component: LoginBackendComponent},
@@ -83,8 +85,10 @@ const routes: Routes = [
     { path: 'validar', component: ValidateAccountComponent},
     { path: 'notificaciones', component: NotificationComponent},
     { path: 'cliente-creado', component: CreateClientComponent}
-  ]}
+  ]},
+  { path: '**', component: NotFoundComponent }
 ];
+
 
 @NgModule({
   imports: [

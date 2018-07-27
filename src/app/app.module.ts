@@ -100,7 +100,11 @@ import { UpperCaracterPipe } from './upper-caracter.pipe';
 import { LoginBackendComponent } from './components/back-end/login-backend/login-backend.component';
 import { NotificationComponent } from './components/front-end/notification/notification.component';
 import { NotificationService } from './services/front-end/notification.service';
+<<<<<<< HEAD
 import { CreateClientComponent } from './components/front-end/create-client/create-client.component';
+=======
+import { NotFoundComponent } from './global/not-found/not-found.component';
+>>>>>>> 6e6f30b362e0294fcdd118dfe4c764fe0ad1cac5
 
 
 
@@ -148,7 +152,11 @@ import { CreateClientComponent } from './components/front-end/create-client/crea
     UpperCaracterPipe,
     LoginBackendComponent,
     NotificationComponent,
+<<<<<<< HEAD
     CreateClientComponent,
+=======
+    NotFoundComponent,
+>>>>>>> 6e6f30b362e0294fcdd118dfe4c764fe0ad1cac5
   ],
   imports: [
   AppRoutingModule,
