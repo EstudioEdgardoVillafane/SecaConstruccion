@@ -81,7 +81,7 @@ const routes: Routes = [
     { path: 'categoria/:name', component: CategorySearchComponent},
     { path: 'busqueda/:product', component: ProductFindComponent},
     { path: 'validar', component: ValidateAccountComponent},
-    { path: 'notificaciones', component: NotificationComponent}    
+    { path: 'notificaciones', component: NotificationComponent}
   ]}
 ];
 
