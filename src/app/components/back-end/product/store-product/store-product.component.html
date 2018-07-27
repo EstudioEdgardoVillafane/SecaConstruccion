@@ -28,13 +28,14 @@
 
   </div>
   <div class="form-container" *ngIf="!booleanNextPage">
-  <div>
-    <mat-form-field class="rg">
-      <input matInput placeholder="Agregar categoria..." type="text" [(ngModel)]="categoriaToAdd" name="name">
-      <mat-icon matSuffix (click)="handleAddCategoria()" class="addAny">add</mat-icon>
-    </mat-form-field>  
-  </div>
+  
   <h3>Seleccione una categoria</h3>
+  <div class="categoriaAdd">
+      <mat-form-field class="w100">
+        <input matInput placeholder="Agregar categoria..." type="text" [(ngModel)]="categoriaToAdd" name="name" (keyup.enter)="handleAddCategoria()">
+        <mat-icon matSuffix (click)="handleAddCategoria()" class="addAny">add</mat-icon>
+      </mat-form-field>  
+    </div>    
     <mat-expansion-panel class="fw"  *ngFor="let x of listSeccionFilter"  [expanded]="auxCheckbox === x.$key" (closed)="handleClosePanel()" (opened)="handleCategoriaSelected(x)">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -54,7 +55,6 @@
             </mat-list-item>
         </mat-list>        
       </mat-expansion-panel>
-      
       <mat-form-field class="fw mt">
         <input type="text"  placeholder="Escriba etiqueta" (keyup.enter)="handleAddEtiqueta()" (blur)="handleAddEtiqueta()" matInput [matAutocomplete]="etiqueta" (keyup)="applyFilterEtiquetas()" [(ngModel)]="etiquetaToAdd" name="name">
         <mat-icon matSuffix class="addAny">add_circle_outline</mat-icon>
@@ -66,11 +66,15 @@
       <br>
       
       
-      <form id="formIMG">
+      <form id="formIMG" class="mt">
         Imagen del producto - 
         <a *ngIf="!alertFoto"> Debe subir una imagen de formato .jpg .png .web</a>
         <a style="color:Red" *ngIf="alertFoto"> Debe subir una imagen de formato .jpg .png .web</a>
-        <input class="fw mt" (input)="handleGenerateUrlIMG($event)" name="uploadedfile" type="file" >
+        <label class="labelFile">
+          Haga click para subir su imagen
+          <input class="fw mt" (input)="handleGenerateUrlIMG($event)" name="uploadedfile" type="file" >
+        </label>
+        <a *ngIf="imgName != undefined">Nombre de la imagen subida: {{imgName}}</a>
       </form>
 
 

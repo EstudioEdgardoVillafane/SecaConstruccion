@@ -28,13 +28,14 @@
   
     </div>
     <div class="form-container" *ngIf="!booleanNextPage">
-    <div>
-      <mat-form-field class="rg">
-        <input matInput placeholder="Agregar categoria..." type="text" [(ngModel)]="categoriaToAdd" name="name">
-        <mat-icon matSuffix (click)="handleAddCategoria()" class="addAny">add</mat-icon>
-      </mat-form-field>  
-    </div>
+    
     <h3>Seleccione una categoria</h3>
+    <div class="categoriaAdd">
+        <mat-form-field class="w100">
+          <input matInput placeholder="Agregar categoria..." type="text" [(ngModel)]="categoriaToAdd" name="name" (keyup.enter)="handleAddCategoria()">
+          <mat-icon matSuffix (click)="handleAddCategoria()" class="addAny">add</mat-icon>
+        </mat-form-field>  
+      </div>    
       <mat-expansion-panel class="fw"  *ngFor="let x of listSeccionFilter"  [expanded]="auxCheckbox === x.$key" (closed)="handleClosePanel()" (opened)="handleCategoriaSelected(x)">
           <mat-expansion-panel-header>
             <mat-panel-title>

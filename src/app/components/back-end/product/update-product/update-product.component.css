@@ -20,3 +20,10 @@ h3{
 .btn{
     min-width: 10%!important;
 }
+.categoriaAdd{
+    width: 100%;
+    margin-top:25px;
+}
+.w100{
+    width: 100%!important;
+}

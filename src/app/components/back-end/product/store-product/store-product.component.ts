@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+
 import { ProductService } from '../../../../services/back-end/product.service';
-import { MatTableDataSource } from '@angular/material';
 import { Product } from '../../../../model/product';
 import { SeccionService } from '../../../../services/back-end/seccion.service';
 import { Seccion } from '../../../../model/seccion';
@@ -21,7 +18,7 @@ export class StoreProductComponent implements OnInit {
   
   booleanAdd: boolean;
   booleanNextPage: boolean = true;
-  alertFoto: boolean  = true;
+  alertFoto: boolean = false;
   listEtiquetasFromProducts: any[];
   listOption: any[];
   listProducts: any[];
@@ -65,7 +62,6 @@ export class StoreProductComponent implements OnInit {
   }
 
   listOfProducts() {
-
     this.productService.getProduct()
     .snapshotChanges()
     .subscribe(item => {
@@ -298,10 +294,11 @@ export class StoreProductComponent implements OnInit {
   formObjectIMG;
   formImg;
   request;
+  imgName : string;
   handleGenerateUrlIMG(event){
-    console.log("hola");
     if(event.target.value === ""){
-      this.alertFoto = true; 
+      this.alertFoto = true;
+      this.imgName = undefined;
     }else{  
     this.formImg = document.getElementById("formIMG");
     this.formObjectIMG = new FormData(this.formImg);
@@ -309,12 +306,13 @@ export class StoreProductComponent implements OnInit {
       this.request.open("POST", "api/script/upload-product.php", true);
       this.request.send(this.formObjectIMG);
       this.request.onload = (e) => {
-        console.log("Is upload");
+      console.log("Is upload");
      this.productToAdd.url = this.request.responseText;
-
-      }
+     this.imgName = this.productToAdd.url;
+    }
      this.productToAdd.url = this.request.responseText;
      this.alertFoto = false; 
+     this.imgName = this.productToAdd.url;
     }
   }
 

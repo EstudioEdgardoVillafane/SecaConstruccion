@@ -58,6 +58,7 @@ export class UpdateProductComponent implements OnInit {
           this.listSeccion.push(x);
         }
       });
+      console.log(this.listSeccion);
     })
   }
   
@@ -79,6 +80,7 @@ export class UpdateProductComponent implements OnInit {
       this.keyToEdit = key;
       this.productService.getProductForKey(key,this.listProducts)
       .subscribe((data) => {
+        console.log(data);
         this.productToAdd  = data;
       })
     })
@@ -120,9 +122,11 @@ export class UpdateProductComponent implements OnInit {
       
       //  We are saving the seccion to filter categories
       // this.productToAdd.seccion get the value of the ngModel
-
+      console.log(this.listSeccion);
+      console.log(this.productToAdd.seccion);
       this.seccionService.getJsonForName(this.productToAdd.seccion,this.listSeccion)
       .subscribe((data) => {
+        console.log(data);     
         this.keySeccionSelected = data.$key;
         this.filterSeccion(data.$key)
       })
