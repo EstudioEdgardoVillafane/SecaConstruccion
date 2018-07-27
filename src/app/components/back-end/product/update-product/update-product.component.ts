@@ -58,7 +58,6 @@ export class UpdateProductComponent implements OnInit {
           this.listSeccion.push(x);
         }
       });
-      console.log(this.listSeccion);
     })
   }
   

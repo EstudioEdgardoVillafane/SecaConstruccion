@@ -11,7 +11,9 @@ import {MatSnackBar} from '@angular/material';
 })
 export class StoreClientComponent implements OnInit {
 
-  constructor(private clientService: ClientService, private location : Location, public snackBar: MatSnackBar) { }
+  constructor(private clientService: ClientService,
+              private location: Location,
+              public snackBar: MatSnackBar) { }
 
   objectClient = new Client();
   clientList: any[];
@@ -32,13 +34,20 @@ export class StoreClientComponent implements OnInit {
   formStoreClient;
   formObjectClient;
   request;
-  //-----------Store----------//
-  handleSendClient(){
+  // -----------Store----------//
+  handleSendClient() {
     let validation = 0;
-    (this.objectClient.name == null) ? this.snackBar.open("Ingrese un nombre", "Ok!",{duration: 1000}): validation++;
-    (this.objectClient.password == null) ? this.snackBar.open("Ingresar contraseña", "Ok!",{duration: 1000}): validation++;
-    (this.objectClient.confirm != this.objectClient.password ) ? this.snackBar.open("las contraseñas no coinsiden", "Ok!",{duration: 1000}): validation++;
-    (this.objectClient.mail == null) ? this.snackBar.open("Ingrese un mail", "Ok!",{duration: 1000}): validation++;
+    (this.objectClient.name == null) ?
+      this.snackBar.open("Ingrese un nombre", "Ok!",{duration: 1000}) : validation++;
+
+      (this.objectClient.password == null) ?
+      this.snackBar.open("Ingresar contraseña", "Ok!",{duration: 1000}) : validation++;
+
+      (this.objectClient.confirm !== this.objectClient.password ) ?
+      this.snackBar.open("las contraseñas no coinsiden", "Ok!", {duration: 1000}) : validation++;
+
+      (this.objectClient.mail == null) ?
+      this.snackBar.open("Ingrese un mail", "Ok!",{duration: 1000}) : validation++;
     if(validation == 4){
 
       this.clientService.insertUser(this.objectClient);
@@ -54,10 +63,9 @@ export class StoreClientComponent implements OnInit {
       this.location.back();
     }
   }
-  
+
   validateEmail(button){
-    const mail = this.objectClient.mail;
-    this.clientService.getJsonByMail(mail,this.clientList)
+    this.clientService.getJsonByMail(this.objectClient.mail,this.clientList)
     .subscribe((data)=>{
         if(data != null){
         this.snackBar.open("El mail ya esta registrado", "Ok!",{duration: 1000})
