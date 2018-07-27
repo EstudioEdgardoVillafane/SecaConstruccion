@@ -1,0 +1,19 @@
+.notFound404{
+  text-align: center;
+}
+  .notFound404 h1{
+    margin-bottom: 0;
+    color: grey;
+    font-size: 90px;
+  }
+  .notFound404 h2 {
+    margin-top: 0;
+    color: rgb(82, 82, 82);
+    font-size: 90px;
+  }
+
+.text{
+  color: grey;
+  font-size: 20px;
+  text-align: center;
+}

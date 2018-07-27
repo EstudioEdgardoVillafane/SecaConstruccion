@@ -1,0 +1,23 @@
+<div class="container">
+  <mat-grid-list cols="3" rowHeight = "400px">
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile>
+      <div class="notFound404">
+        <h1>404</h1>
+        <h2>Not found</h2>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list cols="1" rowHeight = "200px">
+    <mat-grid-tile>
+      <div class="text">
+        <p>La pagina/URL que estas buscando no existe o no estas autorizado a verla, si consideras esto un error comunicate con tu supervisor</p>
+        <button mat-raised-button color = "accent" (click)="handleGoBack()">
+          Volver al Inicio
+        </button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
