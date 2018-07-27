@@ -40,7 +40,6 @@ import { MatAutocompleteModule,
           MatTooltipModule,
           MatTreeModule,
           MatFormFieldModule,
-          matFormFieldAnimations
         } from '@angular/material';
 
 // FireBase Configuration
@@ -101,6 +100,7 @@ import { UpperCaracterPipe } from './upper-caracter.pipe';
 import { LoginBackendComponent } from './components/back-end/login-backend/login-backend.component';
 import { NotificationComponent } from './components/front-end/notification/notification.component';
 import { NotificationService } from './services/front-end/notification.service';
+import { CreateClientComponent } from './components/front-end/create-client/create-client.component';
 
 
 
@@ -148,6 +148,7 @@ import { NotificationService } from './services/front-end/notification.service';
     UpperCaracterPipe,
     LoginBackendComponent,
     NotificationComponent,
+    CreateClientComponent,
   ],
   imports: [
   AppRoutingModule,

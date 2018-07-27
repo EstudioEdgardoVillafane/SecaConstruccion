@@ -78,7 +78,7 @@ export class LoginFrontComponent implements OnInit {
       this.request.onload = (e) => {
           console.log(this.request)
       }
-      // this.location.back();
+      this.router.navigateByUrl("/cliente-creado");
     }
   }
   validateEmail(button){

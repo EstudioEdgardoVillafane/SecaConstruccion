@@ -40,7 +40,7 @@ import { CategorySearchComponent } from '../components/front-end/product-search/
 import { ProductFindComponent } from '../components/front-end/product-search/product-find/product-find.component';
 import { LoginBackendComponent } from '../components/back-end/login-backend/login-backend.component';
 import { NotificationComponent } from '../components/front-end/notification/notification.component';
-
+import { CreateClientComponent } from '../components/front-end/create-client/create-client.component';
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'admin771', component: LoginBackendComponent},
@@ -81,7 +81,8 @@ const routes: Routes = [
     { path: 'categoria/:name', component: CategorySearchComponent},
     { path: 'busqueda/:product', component: ProductFindComponent},
     { path: 'validar', component: ValidateAccountComponent},
-    { path: 'notificaciones', component: NotificationComponent}
+    { path: 'notificaciones', component: NotificationComponent},
+    { path: 'cliente-creado', component: CreateClientComponent}
   ]}
 ];
 

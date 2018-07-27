@@ -20,7 +20,7 @@ export class LoginBackendComponent implements OnInit {
   user: string;
 
   ngOnInit() {
-    if (localStorage.getItem('datakeyy') !== undefined) {
+    if (localStorage.getItem('datakeyy') !== null) {
       this.router.navigateByUrl('/backend');
     }
     this.userService.getUser()
@@ -43,8 +43,9 @@ export class LoginBackendComponent implements OnInit {
           localStorage.getItem('datakeyy');
           this.router.navigateByUrl('/backend');
         }
+      }else{
+        this.snackbar.open('Usuario o contrasena incorrecta', 'Ok!', {duration: 2000});
       }
-      this.snackbar.open('Usuario o contrasena incorrecta', 'Ok!', {duration: 2000});
     });
   }
 }

@@ -17,7 +17,7 @@ export class BackEndComponent implements OnInit {
               private askService: AskService) { }
 
   ngOnInit() {
-    if (localStorage.getItem('datakeyy') === undefined ) {
+    if (localStorage.getItem('datakeyy') === null ) {
       this.router.navigateByUrl('/admin771');
     }
     this.askService.getAsk()
@@ -27,7 +27,7 @@ export class BackEndComponent implements OnInit {
       item.forEach(element => {
         const x = element.payload.toJSON();
         x['$key'] = element.key;
-        if (x['estado'] !== 'Respuesto' && x['status'] !== 0) {
+        if (x['estado'] !== 'Respondido' && x['status'] === 1) {
           listAsk.push(x);
         }
       });
@@ -36,7 +36,8 @@ export class BackEndComponent implements OnInit {
   }
 
   handleExitSession() {
-
+    localStorage.removeItem("datakeyy");
+    this.router.navigateByUrl("/admin771");
   }
 
   goHome() {
