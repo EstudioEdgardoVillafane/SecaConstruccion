@@ -11,13 +11,14 @@ import { AskService } from '../../services/back-end/ask.service';
 export class BackEndComponent implements OnInit {
 
   Messages: number;
-
+  userOnline : string;
   constructor(private route: ActivatedRoute,
               private router: Router,
               private askService: AskService) { }
 
   ngOnInit() {
-    if (localStorage.getItem('datakeyy') === null ) {
+    this.userOnline = localStorage.getItem('datakeyy');
+    if (this.userOnline === null ) {
       this.router.navigateByUrl('/admin771');
     }
     this.askService.getAsk()

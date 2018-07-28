@@ -1,12 +1,8 @@
 <mat-toolbar>
   <span class="full-right text-black"><h3>Seca Construcciones</h3></span>
-  <button mat-raised-button color="primary" class="ov-y mr"
-  matBadge="{{Messages}}" matBadgePosition="before" matBadgeColor="accent" routerLink="preguntas">
-    <mat-icon>messages</mat-icon> Mensajes
-  </button>
-  <span>
-    <button mat-raised-button color="warn" (click)="handleExitSession()"> Cerrar sessión </button>
-  </span>
+  <span class="w20"><button mat-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button></span>
+
+ 
 </mat-toolbar>
 <mat-sidenav-container  opened class="container-sidenav">
 
@@ -38,6 +34,19 @@
           </mat-list-item>
           <mat-list-item (click)="goOpciones()">
             <mat-icon>sort</mat-icon> <a>Opciones</a>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <a>Hola {{userOnline}}</a>
+          </mat-list-item>
+          <mat-list-item>
+            <button mat-raised-button color="primary" class="ov-y mr"
+            matBadge="{{Messages}}" matBadgePosition="before" matBadgeColor="accent" routerLink="preguntas">
+              <mat-icon>messages</mat-icon> Mensajes
+            </button>
+          </mat-list-item>
+          <mat-list-item>
+            <button mat-raised-button color="warn" (click)="handleExitSession()"> Cerrar sessión </button>
           </mat-list-item>
       </mat-list>
       </mat-nav-list>

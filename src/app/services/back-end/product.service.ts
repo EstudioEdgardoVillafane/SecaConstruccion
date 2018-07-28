@@ -51,6 +51,7 @@ export class ProductService {
     this.listProducts.update(key,{
       favorite: favoriteValue 
     });    
+  
   }
   updateProduct(key, productObject : Product){
     this.listProducts.update(key,{

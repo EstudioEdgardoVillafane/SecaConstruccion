@@ -3,7 +3,6 @@ table{
 }
 .rigth{
     float: right;
-    padding-top: 25px;
 }
 .btn-u-d{
     position: relative;
@@ -11,4 +10,35 @@ table{
 }
 td{
     height: 100px!important;
+    padding:10px!important;
+}
+
+#fav{
+    cursor:pointer;
+}
+.dpl{
+    background: #ff8f05;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    .mobil{
+        float:none;
+        text-align:center;
+        width: 100%;
+    }
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+    .rigth{
+        float: none!important;
+    }
+    .backend{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    .inputFilter{
+        width: 100%;
+    }
 }

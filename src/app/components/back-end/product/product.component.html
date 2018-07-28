@@ -1,14 +1,13 @@
 <h2>Tabla de productos</h2>
 <div>
-    <mat-form-field>
+    <mat-form-field class="inputFilter">
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
-      </mat-form-field>
-  <span class="rigth mb">
-    <button mat-raised-button style="background-color:#fbf539" class="mr" (click)="handleFavorite()"><mat-icon>start</mat-icon> Destacar producto</button>
-    <button mat-raised-button color="primary" class="mr" routerLink="store"><mat-icon>add_circle_outline</mat-icon> Agregar</button>
-  <button mat-raised-button color="yellow" class="mr" (click)="handleDuplicate()"><mat-icon>file_copy</mat-icon> Duplicar</button>
-  <button mat-raised-button color="warn" (click)="handleDestroy()"><mat-icon>delete</mat-icon> Borrar</button>
-</span>
+    </mat-form-field>
+  <div class="rigth mb mobil">
+  <button mat-raised-button color="yellow" class="mr dpl mobil mt" (click)="handleDuplicate()"><mat-icon>file_copy</mat-icon> Duplicar</button>
+  <button mat-raised-button color="primary" class="mr mobil mt" routerLink="store"><mat-icon>add_circle_outline</mat-icon> Agregar</button>
+  <button mat-raised-button color="warn" class="mobil mt" (click)="handleDestroy()"><mat-icon>delete</mat-icon> Borrar</button>
+  </div>
 </div>
 <table mat-table [dataSource]="dataSource">
 
@@ -61,7 +60,7 @@
     </ng-container>
     <ng-container matColumnDef="favorite">
       <th mat-header-cell *matHeaderCellDef> Fav </th>
-      <td mat-cell *matCellDef="let element"> <mat-icon>{{element.favorite | favorite}}</mat-icon></td>
+      <td mat-cell *matCellDef="let element" (click)="handleDoFavorite(element)"> <mat-icon id="fav">{{element.favorite | favorite}}</mat-icon></td>
     </ng-container>
     <ng-container matColumnDef="order">
       <th mat-header-cell *matHeaderCellDef> Orden </th>
