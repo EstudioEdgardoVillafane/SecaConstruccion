@@ -50,7 +50,6 @@ export class ProductComponent implements OnInit {
   applyFilter(filterValue: string) {
     console.log(this.dataSource.filter);
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }

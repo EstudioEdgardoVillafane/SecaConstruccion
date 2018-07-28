@@ -199,7 +199,7 @@ export class StoreProductComponent implements OnInit {
   }
   /** Insert a new etiqueta */
   handleAddEtiqueta(){
-    (this.etiquetaToAdd != "" ) ? this.addEtiqueta() : this.openSnackBar("Debe escribir una etiqueta","Ok!");
+    (this.etiquetaToAdd != "" ) ? this.addEtiqueta() : "any";
   }
   addEtiqueta(){
   this.listFilterEtiqueta = [];
@@ -267,11 +267,14 @@ export class StoreProductComponent implements OnInit {
 
   /** This function used SearchNameOfCategoria() and SearchNameOfOptions */
   storeProduct(){
+    console.log(this.keyCategoriaSelected);
+    console.log(this.keySeccionSelected);
+    console.log(this.productToAdd.url);
     this.aux = 0;
-    (this.productToAdd.url == "") ? this.openSnackBar("Seleccione una imagen para su producto", "Ok!") : this.aux++;
-    (this.keyCategoriaSelected == undefined ) ? this.openSnackBar("Verifique haber seleccionado una categoria y una opcion ", "Ok!") : this.searchNameOfCategoria();
-    (this.arrayEtiquetasSelected.length == 0) ? this.openSnackBar("Debe agregar etiquetas al producto", "Ok!") : this.aux++;
-    (this.productToAdd.price == undefined) ? this.openSnackBar("Ingrese un precio a su producto", "Ok!") : this.aux++;
+    (this.productToAdd.url === undefined) ? this.openSnackBar("Seleccione una imagen para su producto", "Ok!") : this.aux++;
+    (this.keyCategoriaSelected === undefined  || this.productToAdd.option === undefined) ? this.openSnackBar("Verifique haber seleccionado una categoria y una opcion ", "Ok!") : this.searchNameOfCategoria();
+    (this.productToAdd.price === undefined) ? this.openSnackBar("Ingrese un precio a su producto", "Ok!") : this.aux++;
+    console.log(this.aux);
     if(this.aux == 3){
       this.productToAdd.order = this.listProducts.length+1;
       this.productToAdd.etiqueta = this.arrayEtiquetasSelected;
