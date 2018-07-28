@@ -4,35 +4,35 @@
 
  
 </mat-toolbar>
-<mat-sidenav-container  opened class="container-sidenav">
+<mat-sidenav-container  class="container-sidenav">
 
-    <mat-sidenav #snav opened mode="side">
+    <mat-sidenav #snav closed mode="side">
       <mat-nav-list>
         <mat-list dense>
-          <mat-list-item (click)="goHome()">
+          <mat-list-item (click)="goHome()" (click)="snav.toggle()">
             <mat-icon>home</mat-icon> <a>Home</a>
           </mat-list-item>
-          <mat-list-item (click)="goUser()">
+          <mat-list-item (click)="goUser()" (click)="snav.toggle()">
             <mat-icon>account_circle</mat-icon> <a>Usuarios</a> 
           </mat-list-item>
           
-          <mat-list-item (click)="goProductos()">
+          <mat-list-item (click)="goProductos()" (click)="snav.toggle()">
             <mat-icon>store</mat-icon> <a>Productos</a> 
           </mat-list-item>
-          <mat-list-item (click)="goClient()">
+          <mat-list-item (click)="goClient()" (click)="snav.toggle()">
               <mat-icon>supervisor_account</mat-icon> <a>Clientes</a> 
             </mat-list-item>
-            <mat-list-item routerLink="mensajes">
+            <mat-list-item routerLink="mensajes" (click)="snav.toggle()">
                 <mat-icon>mail_outline</mat-icon> <a>Mensajes</a> 
               </mat-list-item>
           
-          <mat-list-item (click)="goSection()">
+          <mat-list-item (click)="goSection()" (click)="snav.toggle()">
           <mat-icon>assignment</mat-icon> <a>Secciones</a>
         </mat-list-item>
-        <mat-list-item (click)="goCategoria()">
+        <mat-list-item (click)="goCategoria()" (click)="snav.toggle()">
             <mat-icon>list_alt</mat-icon> <a>Atributos</a>
           </mat-list-item>
-          <mat-list-item (click)="goOpciones()">
+          <mat-list-item (click)="goOpciones()" (click)="snav.toggle()">
             <mat-icon>sort</mat-icon> <a>Opciones</a>
           </mat-list-item>
           <mat-divider></mat-divider>

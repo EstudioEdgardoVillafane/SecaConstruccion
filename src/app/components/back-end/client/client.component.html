@@ -1,12 +1,12 @@
 <h2>Tabla de clientes</h2>
 <!-- search engine -->
-<mat-form-field>
+<mat-form-field class="inputFilter">
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
 </mat-form-field>
 <!-- buttons -->
 <div class="rigth mb">
-  <button mat-raised-button color="primary" class="mr" (click)="handleGoStoreForm()"><mat-icon>add_circle_outline</mat-icon> Agregar</button>
-  <button mat-raised-button color="warn"    class="mr" (click)="handleDeleteUser()"><mat-icon>delete</mat-icon>Borrar</button>
+  <button mat-raised-button color="primary" class="mr mobil" (click)="handleGoStoreForm()"><mat-icon>add_circle_outline</mat-icon> Agregar</button>
+  <button mat-raised-button color="warn"    class="mr mobil mt" (click)="handleDeleteUser()"><mat-icon>delete</mat-icon>Borrar</button>
 </div>
 
 
