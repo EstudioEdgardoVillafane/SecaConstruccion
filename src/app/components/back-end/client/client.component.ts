@@ -24,6 +24,7 @@ export class ClientComponent implements OnInit {
   @ViewChild(MatPaginator)  paginator: MatPaginator;
 
   ngOnInit() {
+    this.paginator._intl.itemsPerPageLabel = 'items por pagina';
     this.clientService.getUser()
     .snapshotChanges()
     .subscribe(item => {

@@ -25,6 +25,7 @@ export class AskComponent implements OnInit {
 
 
   ngOnInit() {
+    this.paginator._intl.itemsPerPageLabel = 'items por pagina';
     this.askService.getAsk()
     .snapshotChanges()
     .subscribe(item => {

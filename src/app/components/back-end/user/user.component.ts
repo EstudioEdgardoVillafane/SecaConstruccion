@@ -21,8 +21,9 @@ export class UserComponent implements OnInit {
   displayedColumns: string[] = ['$key', 'user', 'mail', 'update'];
   selection = new SelectionModel(true, []);
   @ViewChild(MatPaginator)  paginator: MatPaginator;
-
+  itemsPerPageLabel: string;
   ngOnInit() {
+    this.paginator._intl.itemsPerPageLabel = 'items por pagina';
     this.userService.getUser()
     .snapshotChanges()
     .subscribe(item => {
