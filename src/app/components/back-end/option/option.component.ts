@@ -27,6 +27,8 @@ export class OptionComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit() {
+    this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+
    this.listar();
   }
 

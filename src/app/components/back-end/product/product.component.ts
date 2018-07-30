@@ -30,6 +30,8 @@ export class ProductComponent implements OnInit {
 
   
   ngOnInit() {
+    this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+
     this.productService.getProduct()
     .snapshotChanges()
     .subscribe(item => {

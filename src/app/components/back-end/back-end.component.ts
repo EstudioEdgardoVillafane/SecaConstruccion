@@ -17,6 +17,7 @@ export class BackEndComponent implements OnInit {
               private askService: AskService) { }
 
   ngOnInit() {
+    
     if (localStorage.getItem('datakeyy') === null ) {
       this.router.navigateByUrl('/admin771');
     }
