@@ -31,3 +31,13 @@ mat-toolbar{
     padding-right:50px;
     padding-top: 25px;
 }
+.w20{
+    width: 70px!important;
+}
+@media screen and (max-width: 768px) {
+
+    .backend{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}

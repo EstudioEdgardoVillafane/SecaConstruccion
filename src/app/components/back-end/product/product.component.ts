@@ -52,16 +52,15 @@ export class ProductComponent implements OnInit {
   applyFilter(filterValue: string) {
     console.log(this.dataSource.filter);
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
-  isAllSelected() {
+  isAllSelected(someBolean?) {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
+    return (someBolean === undefined) ? numSelected === numRows : someBolean;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
@@ -92,20 +91,15 @@ export class ProductComponent implements OnInit {
     this.selection.clear()
   }
 
-  handleFavorite(){
-    (this.selection.selected.length == 1) ? this.updateFavorite() : this.openSnackBar("Seleccione un solo producto", "Ok!");
-  }
-  updateFavorite(){
-    var aux;
-    if(this.selection.selected[0].favorite == 1){
-      aux = 0;
+  handleDoFavorite(element){
+    this.selection.toggle(element);
+    if(element.favorite == 1){
+      this.productService.updateProductFavorite(0,element.$key)
     }else{
-      aux = 1;
+      this.productService.updateProductFavorite(1,element.$key)
     }
-    this.productService.updateProductFavorite(aux,this.selection.selected[0].$key);
-    this.selection.clear()
   }
-
+  
   changeOrder(element, value){
     if(value <= 0){
       value = 1;

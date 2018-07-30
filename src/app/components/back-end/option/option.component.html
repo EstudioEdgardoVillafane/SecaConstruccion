@@ -1,8 +1,8 @@
 <h2>Tabla de Opciones</h2>
 <div class="rigth mb">
 
-<button mat-raised-button color="primary" class="mr" routerLink="store"><mat-icon>add_circle_outline</mat-icon>Agregar</button>
-<button mat-raised-button color="warn" class="mr" (click)="handleDestroy()"><mat-icon>delete</mat-icon>Borrar</button>
+<button mat-raised-button color="primary" class="mr mobil" routerLink="store"><mat-icon>add_circle_outline</mat-icon>Agregar</button>
+<button mat-raised-button color="warn" class="mr mobil mt" (click)="handleDestroy()"><mat-icon>delete</mat-icon>Borrar</button>
 </div>
   <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="$key">
