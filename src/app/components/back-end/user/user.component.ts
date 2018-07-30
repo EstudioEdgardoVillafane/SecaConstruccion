@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../../services/back-end/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {MatPaginator, MatTableDataSource, MatSnackBar} from '@angular/material';
-import {SelectionModel} from '@angular/cdk/collections';
+import {  SelectionModel  } from '@angular/cdk/collections';
 import { User } from '../../../model/user';
 
 @Component({
