@@ -26,6 +26,7 @@ export class CategoryComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
+    this.paginator._intl.itemsPerPageLabel = 'items por pagina';
     this.sectionService.getSection()
     .snapshotChanges()
     .subscribe(item => {

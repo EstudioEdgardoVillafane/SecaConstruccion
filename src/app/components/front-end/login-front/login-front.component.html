@@ -69,7 +69,8 @@
         </mat-grid-tile>
         <mat-grid-tile [colspan]="7">
             <mat-form-field class="justifier">
-                <input [(ngModel)]="createclienteObject.name" matInput placeholder="Nombre y Apellido" text="text" name="name" >
+                <input [(ngModel)]="createclienteObject.name" matInput placeholder="Nombre y Apellido" text="text" name="name"  [formControl]="user" required>
+                <mat-error *ngIf="user.invalid">{{getErrorUser()}}</mat-error>
             </mat-form-field>
         </mat-grid-tile>
     </mat-grid-list>
@@ -79,7 +80,8 @@
         </mat-grid-tile>
         <mat-grid-tile [colspan]="7">
             <mat-form-field class="justifier">
-                <input [(ngModel)]="createclienteObject.mail" matInput placeholder="Email" text="text" name="mail" (change)="validateEmail(button)">
+                <input [(ngModel)]="createclienteObject.mail" matInput placeholder="Email" text="text" name="mail" (change)="validateEmail(button)" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </mat-grid-tile>
     </mat-grid-list>
@@ -92,7 +94,8 @@
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="7">
                     <mat-form-field class="justifier">
-                        <input [(ngModel)]="createclienteObject.password" matInput placeholder="Contraseña" [type]="'password'" name="password">
+                        <input [(ngModel)]="createclienteObject.password" matInput placeholder="Contraseña" [type]="'password'" name="password"  [formControl]="password" required>
+                        <mat-error *ngIf="password.invalid">{{getErrorPassword()}}</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
             </mat-grid-list>
@@ -102,7 +105,8 @@
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="7">
                     <mat-form-field class="justifier">
-                        <input [(ngModel)]="createclienteObject.confirm" matInput placeholder="Confirmar Contraseña" [type]="'password'" name="confirm">
+                        <input [(ngModel)]="createclienteObject.confirm" matInput placeholder="Confirmar Contraseña" [type]="'password'" name="confirm"  [formControl]="confirm" required>
+                        <mat-error *ngIf="confirm.invalid">{{getErrorUserConfirm()}}</mat-error>
                     </mat-form-field>
                 </mat-grid-tile>
             </mat-grid-list>
