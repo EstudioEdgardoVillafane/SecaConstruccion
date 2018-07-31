@@ -1,0 +1,57 @@
+<!-- First toolbar to setting acount -->
+<mat-toolbar class="toolbar-acount">
+  <span class="full-right"></span>
+  <span class="p32">
+    <a>
+      <mat-icon>alarm</mat-icon>Atencion al cliente desde las 14:00hs +54 (011) 4637-9283
+    </a>
+  </span>
+  <span class="cp">
+  <a>
+    <mat-icon>settings</mat-icon>Mi cuenta
+  </a>
+  </span>
+</mat-toolbar>
+<!--
+   ./ toolbar-acount 
+    Second toolbar to search products
+-->
+<mat-toolbar class="toolbar-search">
+    <span class="container-img"><img src="http://www.beta.secaconstrucciones.com.ar/assets/img/logo.jpg"></span>
+    <span class="right-input">
+      <input type="text" id="inputSearch" placeholder="Buscar producto"/>
+      <button id="goSearch" class="cp"><mat-icon>search</mat-icon></button>
+    </span>
+    <span class="circle" matBadge="0" matBadgePosition="after" matBadgeColor="warn"><mat-icon class="shopping cp" >shopping_cart</mat-icon> <a id="price-cart">$0,00</a></span>
+    
+  </mat-toolbar>
+  <!-- 
+    ./toolbar-search
+    Trhee toolbar to filter by category
+  -->
+  <mat-toolbar class="toolbar-category">
+    <span class="button-category cp">
+      <b>
+        <mat-icon>menu</mat-icon> Categorias
+      </b>
+    </span>
+    <span class="space"></span>
+    <div class="menu">
+    <span class="f13 mr cp">
+      <b>
+      Inicio
+    </b>
+    </span>
+    <span class="f13 mr cp">
+      <b>
+      ¿Quienes somos?
+      </b>
+    </span>  
+    <span>
+      <b class="f13 cp">
+      Ofertas
+      </b>
+    </span>
+  </div>
+
+  </mat-toolbar>

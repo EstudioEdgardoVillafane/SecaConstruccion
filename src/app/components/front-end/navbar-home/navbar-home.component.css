@@ -1,0 +1,134 @@
+.f13{
+    font-size: 14px;
+}
+.cp{
+    cursor: pointer;
+}
+.space{
+    flex: 0.2 1 auto;
+}
+.mr{
+    margin-right: 30px!important;
+}
+.menu{
+    margin-top:5px;
+}
+/* Toobal acount */
+.toolbar-acount{
+    background-color: #20252d;
+    max-height: 45px;
+    font-size: 10px;
+    color:white;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.toolbar-acount > span > a > mat-icon {
+    position: relative;
+    top:5.8px;
+    font-size: 19px;
+}
+.p32{
+    margin-right: 32px;
+}
+
+.full-right{
+    flex: 1 1 auto;
+}
+
+/* Toolbar Search  */
+
+.toolbar-search{
+    height: 122px;
+    background-color: #20252d;
+    color:white;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.container-img{
+    height: 100%;
+    flex: 0.3 1 auto;
+}
+.container-img > img {
+    max-height: 100%;
+}
+#inputSearch{
+    outline:0px;
+    font-size: 11px;
+    height:50px;
+    border: 0px solid white!important;
+    margin-left: 10px;
+    width: 450px;
+    position: relative;
+    bottom: 7px;
+    border-radius: 15px 0 0 15px;
+    padding-left: 15px;
+}
+#goSearch{
+    border-radius: 0 25px 25px 0;
+    height: 52px;
+    border: 0;
+    width: 65px;
+    background-color:#bb302a;
+    color:white;
+    outline:0px;
+}
+#goSearch > mat-icon {
+    position: relative;
+    top: 2px;
+}
+.right-input{
+    flex: 0.4 1 auto;
+    padding-top: 6px;
+}
+.shopping{
+    position: relative;
+    top: 12px;
+    right: -11px;
+}
+.circle{
+    height: 47px;
+    color: white;
+    width: 47px;
+    border-radius: 25px;
+    border: 2px solid white;
+    position: relative;
+    bottom: 4px;
+    margin-top: 6px;
+
+}
+#price-cart{
+    position: relative;
+    top: 6px;
+    margin-left: 35px;
+}
+
+/* Toolbar  Category*/
+
+.toolbar-category{
+    height: 60px;
+    background-color: #20252d!important;
+    color:white;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    padding-left: 50px;
+    padding-right: 50px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    background: url("https://d29u17ylf1ylz9.cloudfront.net/Javenist/img/bg/menu-bg.png") repeat-x 0 0;
+
+}
+.button-category{
+    background-color: #bb302a;
+    width: 182px;
+    height: 102%;
+    font-size: 13px;
+    border-radius: 8px 8px 0px 0px;
+}
+.button-category > b > mat-icon{
+    position: relative;
+    top:7px;
+}
+.button-category > b{
+    position: relative;
+    top: 11px;
+    left: 10px;
+}

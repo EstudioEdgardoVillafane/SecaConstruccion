@@ -102,6 +102,8 @@ import { NotificationComponent } from './components/front-end/notification/notif
 import { NotificationService } from './services/front-end/notification.service';
 import { CreateClientComponent } from './components/front-end/create-client/create-client.component';
 import { NotFoundComponent } from './global/not-found/not-found.component';
+import { MaquetaComponent } from './components/front-end/maqueta/maqueta.component';
+import { NavbarHomeComponent } from './components/front-end/navbar-home/navbar-home.component';
 
 
 
@@ -151,6 +153,8 @@ import { NotFoundComponent } from './global/not-found/not-found.component';
     NotificationComponent,
     CreateClientComponent,
     NotFoundComponent,
+    MaquetaComponent,
+    NavbarHomeComponent,
   ],
   imports: [
   AppRoutingModule,
