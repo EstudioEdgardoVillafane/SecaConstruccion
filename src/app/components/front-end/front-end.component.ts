@@ -37,7 +37,7 @@ export class FrontEndComponent implements OnInit {
             item.forEach(element => {
               let x = element.payload.toJSON();
               x["$key"] = element.key;
-              if(x['isLook'] == false){
+              if(x['isLook'] === false && x['client'] === y){
                 aux.push(x);
               }
             });

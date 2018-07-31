@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../../services/back-end/client.service';
 import { Client } from '../../../model/client';
-import { SessionService } from '../../../services/global/session.service';
+
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import {MatSnackBar} from '@angular/material';
+
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login-front',
@@ -12,11 +12,13 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./login-front.component.css']
 })
 export class LoginFrontComponent implements OnInit {
+
   tamGrid : number;
   clienteObject = new Client();
   listClient : any[];
   createclienteObject = new Client();
-  constructor(private clienteService : ClientService, private sessionService : SessionService, private router : Router, private activatedRoute : ActivatedRoute, public snackBar: MatSnackBar ) { }
+
+  constructor(private clienteService : ClientService, private router : Router, public snackBar: MatSnackBar ) { }
 
   onResize(event) {
     this.tamGrid = (event.target.innerWidth <= 768) ? 1 : 2;
@@ -86,7 +88,9 @@ export class LoginFrontComponent implements OnInit {
     this.clienteService.getJsonByMail(mail,this.listClient)
     .subscribe((data)=>{
         if(data != null){
-        this.snackBar.open("El mail ya esta registrado", "Ok!",{duration: 1000})
+
+          console.log(this.snackBar.open("El mail ya esta","ok",{ duration : 9999 }));
+          
         button.disabled = true;
       }else{
         button.disabled = false;

@@ -13,7 +13,10 @@ export class NotificationComponent implements OnInit {
   listNewNotification = new Array();
   constructor(private notificationService : NotificationService) { }
 
+
   ngOnInit() {
+    let y = localStorage.getItem("aux");
+
     this.notificationService.getNotification()
     .snapshotChanges()
     .subscribe(item => {
@@ -22,10 +25,12 @@ export class NotificationComponent implements OnInit {
       item.forEach(element => {
         let x = element.payload.toJSON();
         x["$key"] = element.key;
-        if(x["isLook"] == true){
-          this.listNotification.push(x);
-        }else{
-          this.listNewNotification.push(x);
+        if(x['client'] === y){
+          if(x["isLook"] === true ){
+            this.listNotification.push(x);
+          }else{
+            this.listNewNotification.push(x);
+          }
         }
       });
     });
