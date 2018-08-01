@@ -1,0 +1,164 @@
+.bg-img{
+    background-image: url('https://d29u17ylf1ylz9.cloudfront.net/Javenist/img/slider/17.jpg');
+    height: 64vh;
+    background-size: cover;
+    background-repeat: no-repeat no-repeat;
+    background-position-y: center;
+    margin-bottom: 100px;
+}
+.publicidad{
+    margin-left: 13%;
+    position: relative;
+    top:30%;
+}
+.oferts-small{
+    font-size:12px;
+    color:#20252d;
+    margin-top: 0px;
+}
+.title{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 36px;
+    color: #21252d;
+}
+.btn-go{
+    background-color: #bb302a;
+    border-radius: 6px;
+    border: 0px;
+    width: 240px;
+    height: 53px;
+    font-size: 15px;
+    color: white;
+    font-weight: 900;
+    outline: 0px;
+    cursor: pointer;
+}
+#section-of-sections{
+    color: #21252d;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.container-section{
+    height: 100%;
+    max-width: 100%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.container-section > img{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px #0000001c;
+}
+#some-products > div, #product-filter > div  {
+    border-bottom: 2px solid #bb302a;
+    margin-bottom: 30px;
+}
+#product-seccion > div{ 
+    padding-bottom: 12px;
+    border-bottom: 2px solid #bb302a;
+    margin-bottom: 30px;
+}
+
+#some-products > div > h3, #product-filter > div > h3, #product-seccion > div > .ps {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-top: 15px;
+    background-color: #bb302a;
+    width: 20%;
+    color: white;
+    border-radius: 6px 6px 0px 0px;
+    font-size: 15px;
+}
+#product-seccion > div > .ps {
+    padding-right: 15px;
+}
+#product-seccion > div > .item-seccion {
+    margin-left: 33%;
+    color:#20252d;
+    display: inline;
+}
+#some-products, #product-filter{
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-bottom:100px;
+}
+.container-product{
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid #80808063;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.cont-img{
+    width: 50%;
+    float:left;
+}
+.cont-img > img {
+    max-width: 100%;
+}
+.cont-description{
+    float: right;
+    width: 47%;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 24px;
+    color: #7a7a7a;
+}
+.m-0{
+    margin: 0px!important;
+    margin-bottom: 15px!important;
+    color:#212121!important;
+}
+.price{
+    color: #bb302a;
+    margin-top: -10px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+#cursos{
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 14px;
+    margin-bottom: 100px;
+}
+#cursos > img {
+    cursor: pointer;
+    max-width: 100%;
+}
+.cont-img-filter{
+    width: 100%;
+}
+.cont-img-filter > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.container-product-filter{
+    height: 100%;
+    width: 100%;
+    border-right: 1px solid #80808063;
+}
+.cont-description-filter{
+    text-align: center;
+}
+#empresas{
+    border-top: 1px solid #ebebeb;
+    margin-left:50px;
+    margin-right:50px;
+    text-align: center;
+}
+#emp{
+    border-bottom: 1px solid #ebebeb;
+    clear: both;
+}
+#yesero, #product-seccion{
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-bottom: 100px;
+}
+#yesero > img{
+    max-width: 100%;
+}
