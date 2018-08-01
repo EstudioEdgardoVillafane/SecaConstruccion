@@ -5,7 +5,7 @@
     cursor: pointer;
 }
 .space{
-    flex: 0.2 1 auto;
+    flex: 1 1 auto;
 }
 .mr{
     margin-right: 30px!important;
@@ -120,7 +120,7 @@
     background-color: #bb302a;
     width: 182px;
     height: 102%;
-    font-size: 13px;
+    font-size: 15px;
     border-radius: 8px 8px 0px 0px;
 }
 .button-category > b > mat-icon{
