@@ -61,6 +61,11 @@ footer{
     bottom: 18px;
     height: 30px;
     left: 79px;
+    background: #22222d;
+    border: 0px;
+    color: white;
+    border-radius: 0px 15px 15px 0px;
+    padding-right: 15px;
 
 }
 .input-send > input{
@@ -80,4 +85,54 @@ footer{
     padding-top: 7px;
     float: right;
     width: 90%;
+}
+.first-img{
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .h100{
+        width: 50%;
+        text-align: center;
+    }
+    .btn-seguir{
+        margin-left: 10px;
+    }
+    .input-send{
+        display: block;
+    }
+    .input-send > input {
+        left:-45px;
+        bottom:0px;
+        top:25px;
+        width: 55%;
+    }
+    .input-send > button {
+        left: -45px;
+        top:25px;
+        bottom:0px;
+    }
+    .first-img{
+        text-align: center;
+    }
+    footer{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    .tam-em{
+        padding-left: 15px;
+        padding-top:15px;
+    }
+    .enviar{
+        min-height: 40vh;
+    }
+    .tam-img{
+        width: 25%;
+    }
+    .tam-img > img {
+        padding-top: 15px;
+    }
+    .text-em{
+        width: 75%;
+    }
 }

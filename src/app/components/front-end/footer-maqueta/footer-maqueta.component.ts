@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterMaquetaComponent implements OnInit {
 
+
+  tamHeightFooter = "140px";
+  countTileFooter = 1;
+
   constructor() { }
 
   ngOnInit() {

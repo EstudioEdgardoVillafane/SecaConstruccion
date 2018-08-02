@@ -162,3 +162,35 @@
 #yesero > img{
     max-width: 100%;
 }
+
+@media (max-width: 768px) {
+    .publicidad{
+        margin-left:5%;
+        top:13%;
+    }
+    .bg-img{
+        background-position-x: 63%;
+    }
+    #section-of-sections{
+        padding-left: 25px;
+        padding-right: 25px;
+        margin-bottom: 100px;
+    }    
+    #product-seccion, #some-products, #cursos, #product-filter, #yesero{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    .container-product{
+        border: 0px;
+    }
+    #some-products> div > h3, #product-filter > div > h3 {
+        width: 45%
+    }
+    .container-product-filter{
+        border: 0px;
+    }
+    .ltl{
+        display: none!important;
+    }
+    
+}
