@@ -6,6 +6,8 @@ import { MatSnackBar } from '@angular/material';
 import { Seccion } from '../../../../model/seccion';
 import { Product } from '../../../../model/product';
 import { ActivatedRoute } from '@angular/router';
+import { Key } from '../../../../../../node_modules/protractor';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-update-product',
@@ -14,7 +16,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UpdateProductComponent implements OnInit {
 
-  constructor(private productService : ProductService, private router : Router, private seccionService : SeccionService, public snackBar: MatSnackBar, private _activatedRoute : ActivatedRoute) { }
+  constructor(private productService: ProductService, 
+              private router: Router,
+              private seccionService: SeccionService,
+              public snackBar: MatSnackBar,
+              private _activatedRoute : ActivatedRoute) { }
   
   booleanAdd : boolean;
   booleanNextPage : boolean = true;
@@ -45,8 +51,9 @@ export class UpdateProductComponent implements OnInit {
   
   ngOnInit() {
     //  List of fireBase
-    this.listOfProducts();    
+    // this.listar();
     
+    this.listOfProducts();    
     this.seccionService.getSeccion()
     .snapshotChanges()
     .subscribe(item => {
@@ -60,7 +67,7 @@ export class UpdateProductComponent implements OnInit {
       });
     })
   }
-  
+y = new Array();   
   listOfProducts(){
     
     this.productService.getProduct()
@@ -79,12 +86,21 @@ export class UpdateProductComponent implements OnInit {
       this.keyToEdit = key;
       this.productService.getProductForKey(key,this.listProducts)
       .subscribe((data) => {
-        console.log(data);
         this.productToAdd  = data;
-      })
-    })
-  }
+        console.log(key)
+        //esto es lo que hice yo
+      });
 
+        this.productService.getEtiquetaForKey(key,this.listProducts)
+        .subscribe((data)=>{
+          let etiqueta = data.etiqueta;
+          // console.log(etiqueta)
+          this.y = Object.values(etiqueta);
+          // console.log(Object.values(etiqueta))
+        });
+        console.log(this.y)
+      });
+    }
 
   /** This is a filter to the input of the seccion's */
   applyFilter(filterValue: string) {
@@ -148,7 +164,7 @@ export class UpdateProductComponent implements OnInit {
         x["$key"] = element.key;
         this.listEtiquetas.push(x);
       });
-    });  
+    });
   }
 
   /** This is a filter to the input of the etiquet's */
@@ -190,10 +206,10 @@ export class UpdateProductComponent implements OnInit {
         this.seccionService.insertCategoria(this.categoriaToAdd,this.productToAdd.seccion);
         this.productToAdd.categoria = this.categoriaToAdd;
       }else{
-        this.openSnackBar("Esta categoria ya existe", "Ok!");
+        this.openSnackBar("Esta atributo ya existe", "Ok!");
       }
     }else{
-      this.openSnackBar("Estas intentando agregar una categoria en blanco", "Ok!");
+      this.openSnackBar("Estas intentando agregar una atributo en blanco", "Ok!");
     }
   }
 
@@ -237,6 +253,7 @@ export class UpdateProductComponent implements OnInit {
   }
   
   handlePullEtiqueta(nameOfEtiquetaToHide){
+    console.log(nameOfEtiquetaToHide)
     var index = this.arrayEtiquetasSelected.indexOf(nameOfEtiquetaToHide);
     this.arrayEtiquetasSelected.splice(index, 1);
   }
@@ -275,10 +292,10 @@ export class UpdateProductComponent implements OnInit {
   /** This function used SearchNameOfCategoria() and SearchNameOfOptions */
   updateProduct(){
     this.aux = 0;
-    (this.keyCategoriaSelected == undefined ) ? this.openSnackBar("Verifique haber seleccionado una categoria y una opcion ", "Ok!") : this.searchNameOfCategoria();
-    (this.arrayEtiquetasSelected.length == 0) ? this.openSnackBar("Debe agregar etiquetas al producto", "Ok!") : this.aux++;
-    (this.productToAdd.price == undefined) ? this.openSnackBar("Ingrese un precio a su producto", "Ok!") : this.aux++;
-    if(this.aux == 3){
+    ( this.keyCategoriaSelected == undefined ) ? this.openSnackBar("Verifique haber seleccionado una atributo y una opcion ", "Ok!") : this.searchNameOfCategoria();
+    // (this.arrayEtiquetasSelected.length == 0) ? this.openSnackBar("Debe agregar etiquetas al producto", "Ok!") : this.aux++;
+    ( this.productToAdd.price == undefined ) ? this.openSnackBar("Ingrese un precio a su producto", "Ok!") : this.aux++;
+    if(this.aux == 2){
       this.productToAdd.order = this.listProducts.length+1;
       this.productToAdd.etiqueta = this.arrayEtiquetasSelected;
       this.productToAdd.etiqueta.forEach(element => {
