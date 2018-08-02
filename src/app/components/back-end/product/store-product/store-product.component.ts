@@ -182,10 +182,10 @@ export class StoreProductComponent implements OnInit {
         this.seccionService.insertCategoria(this.categoriaToAdd,this.productToAdd.seccion);
         this.productToAdd.categoria = this.categoriaToAdd;
       }else{
-        this.openSnackBar("Esta categoria ya existe", "Ok!" );
+        this.openSnackBar("Esta atributo ya existe", "Ok!" );
       }
     }else{
-      this.openSnackBar("Estas intentando agregar una categoria en blanco", "Ok!" );
+      this.openSnackBar("Estas intentando agregar un atributo en blanco", "Ok!" );
     }
   }
 
@@ -272,7 +272,7 @@ export class StoreProductComponent implements OnInit {
     console.log(this.productToAdd.url);
     this.aux = 0;
     (this.productToAdd.url === undefined) ? this.openSnackBar("Seleccione una imagen para su producto", "Ok!") : this.aux++;
-    (this.keyCategoriaSelected === undefined  || this.productToAdd.option === undefined) ? this.openSnackBar("Verifique haber seleccionado una categoria y una opcion ", "Ok!") : this.searchNameOfCategoria();
+    (this.keyCategoriaSelected === undefined  || this.productToAdd.option === undefined) ? this.openSnackBar("Verifique haber seleccionado un atributo y una opcion ", "Ok!") : this.searchNameOfCategoria();
     (this.productToAdd.price === undefined) ? this.openSnackBar("Ingrese un precio a su producto", "Ok!") : this.aux++;
     console.log(this.aux);
     if(this.aux == 3){

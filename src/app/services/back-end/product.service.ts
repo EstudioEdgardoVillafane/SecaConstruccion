@@ -28,6 +28,9 @@ export class ProductService {
   getEtiquetas(key){
     return this.listEtiquetas = this.fireBase.list("product/"+key+"/etiqueta");
   }
+  getEtiquetaForKey(key, json){
+    return of(json.find((product => product.$key === key)));
+  }
 
   insertProduct(productObject : Product){
     this.listProducts.push({
