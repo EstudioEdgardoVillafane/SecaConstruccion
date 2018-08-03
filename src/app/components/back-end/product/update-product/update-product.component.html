@@ -28,11 +28,11 @@
   
     </div>
     <div class="form-container" *ngIf="!booleanNextPage">
-    
-    <h3>Seleccione una categoria</h3>
+    <!-- atributos -->
+    <h3>Seleccione una atributo</h3>
     <div class="categoriaAdd">
         <mat-form-field class="w100">
-          <input matInput placeholder="Agregar categoria..." type="text" [(ngModel)]="categoriaToAdd" name="name" (keyup.enter)="handleAddCategoria()">
+          <input matInput placeholder="Agregar atributo..." type="text" [(ngModel)]="categoriaToAdd" name="name" (keyup.enter)="handleAddCategoria()">
           <mat-icon matSuffix (click)="handleAddCategoria()" class="addAny">add</mat-icon>
         </mat-form-field>  
       </div>    
@@ -42,7 +42,7 @@
               {{x.name}}  
             </mat-panel-title>
           <mat-panel-description>
-          <a>Categoria</a>
+          <a>atributo</a>
           </mat-panel-description>
           </mat-expansion-panel-header>
           <mat-form-field>
@@ -55,15 +55,18 @@
               </mat-list-item>
           </mat-list>        
         </mat-expansion-panel>
-        
+        <!-- Etiquetas -->
         <mat-form-field class="fw mt">
           <input type="text"  placeholder="Escriba etiqueta" matInput [matAutocomplete]="etiqueta" (keyup)="applyFilterEtiquetas()" [(ngModel)]="etiquetaToAdd" name="name">
           <mat-icon matSuffix class="addAny" (click)="handleAddEtiqueta()">add_circle_outline</mat-icon>
         </mat-form-field>
+
         <mat-autocomplete class="fw" #etiqueta="matAutocomplete">
           <mat-option *ngFor="let option of listFilterEtiqueta" [value]="option" (click)="handleSaveArrayOfEtiquetas()">{{option}}</mat-option>
         </mat-autocomplete>
         <button mat-raised-button color="primary" class="btn" *ngFor="let x of arrayEtiquetasSelected" (click)="handlePullEtiqueta(x)"><mat-icon>close</mat-icon> {{x}}</button>
+        <button mat-raised-button color="primary" class="btn" *ngFor="let y of y" (click)="handlePullEtiqueta(y)"><mat-icon>close</mat-icon> {{y}}</button>
+        
         <br>
         
         

@@ -29,10 +29,10 @@
   </div>
   <div class="form-container" *ngIf="!booleanNextPage">
   
-  <h3>Seleccione una categoria</h3>
+  <h3>Seleccione un atributo</h3>
   <div class="categoriaAdd">
       <mat-form-field class="w100">
-        <input matInput placeholder="Agregar categoria..." type="text" [(ngModel)]="categoriaToAdd" name="name" (keyup.enter)="handleAddCategoria()">
+        <input matInput placeholder="Agregar atributo..." type="text" [(ngModel)]="categoriaToAdd" name="name" (keyup.enter)="handleAddCategoria()">
         <mat-icon matSuffix (click)="handleAddCategoria()" class="addAny">add</mat-icon>
       </mat-form-field>  
     </div>    
@@ -42,7 +42,7 @@
             {{x.name}}  
           </mat-panel-title>
         <mat-panel-description>
-        <a>Categoria</a>
+        <a>atributo</a>
         </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-form-field>
