@@ -1,28 +1,36 @@
 <!-- First toolbar to setting acount -->
-<mat-toolbar class="toolbar-acount">
-  <span class="full-right">
-    <a>
-      <mat-icon>room</mat-icon>
-  Cnel. Mom 2257, San Martin
+<section (window:scroll)="onScroll($event)">
+
+  <mat-toolbar class="toolbar-acount">
+    <span class="full-right">
+      <a>
+        <mat-icon>room</mat-icon>
+        Cnel. Mom 2257, San Martin
       </a>
 </span>
-  <span class="p32">
-    <a>
-      <mat-icon>alarm</mat-icon>Atencion al cliente desde las 14:00hs +54 (011) 4637-9283
-    </a>
-  </span>
-  <span class="cp ltl">
+<span class="p32">
   <a>
-    <mat-icon>settings</mat-icon>Mi cuenta
+    <mat-icon>alarm</mat-icon>Atencion al cliente desde las 14:00hs +54 (011) 4637-9283
   </a>
   </span>
+  <span class="cp ltl">
+    <a [matMenuTriggerFor]="menu">
+    <mat-icon>settings</mat-icon>Mi cuenta
+  </a>
+  <mat-menu #menu="matMenu">
+  <button mat-menu-item>Iniciar sesión</button>
+  <button mat-menu-item>Crear cuenta</button>
+  <button mat-menu-item>Carrito</button>
+
+</mat-menu>
+</span>
 </mat-toolbar>
 <!--
-   ./ toolbar-acount 
-    Second toolbar to search products
+  ./ toolbar-acount 
+  Second toolbar to search products
 -->
 <mat-toolbar class="toolbar-search">
-    <span class="container-img"><img src="./assets/img/logo3.png"></span>
+  <span class="container-img"><img src="./assets/img/logo3.png"></span>
     <span class="right-input">
       <input type="text" id="inputSearch" placeholder="Buscar producto"/>
       <button id="goSearch" class="cp"><mat-icon>search</mat-icon></button>
@@ -35,31 +43,39 @@
     Trhee toolbar to filter by category
   -->
   <mat-toolbar class="toolbar-category">
-    <span class="button-category cp">
-      <b>
+    <span (click)="handleOpenCategory()" class="button-category cp">
+      <b >
         <mat-icon>menu</mat-icon> Categorias
       </b>
+      <mat-list *ngIf="clickMenu" class="menuopen">
+          <mat-list-item class="overitem" *ngFor="let x of listSeccions | slice : 0 : 10">
+            <div>
+                <a> {{x.name | changeSpace | lowercase | upperCaracter | breakSpace}} </a>
+            </div> 
+          </mat-list-item>
+          <mat-list-item> Ver más...</mat-list-item>
+         </mat-list>
     </span>
     <span class="space"></span>
     <div class="menu ltl">
-   
+      
     <span class="f13 cp mr" >
       <b >
-      Ofertas
+        Ofertas
       </b>
     </span>
     <span class="f13 mr cp">
       <b>
       Envios a todo el país
-      </b>
-    </span>
+    </b>
+  </span>
     <span class="f13 mr cp">
-        <b>
+      <b>
           Retiro en local
         </b>
       </span>
       <span class="f13 mr cp">
-          <b>
+        <b>
             Más vendidos  
           </b>
         </span>    
@@ -68,6 +84,44 @@
               Medios de pago
             </b>
           </span>
-  </div>
-
-  </mat-toolbar>
+        </div>
+        
+      </mat-toolbar>
+    </section>
+        <mat-toolbar *ngIf="viewNavbar" style="position: fixed;" id="search-fixed" class="toolbar-search search-fixed">
+            <div class="container-img all-tam">
+              
+                  <img src="./assets/img/logoprueba.png" class="nav-fixed">
+              
+            </div>            
+              <span class="space"></span>
+              <div class="menu ltl">
+                
+              <span class="f13 cp mr" >
+                <b >
+                  Ofertas
+                </b>
+              </span>
+              <span class="f13 mr cp">
+                <b>
+                Envios a todo el país
+              </b>
+            </span>
+              <span class="f13 mr cp">
+                <b>
+                    Retiro en local
+                  </b>
+                </span>
+                <span class="f13 mr cp">
+                  <b>
+                      Más vendidos  
+                    </b>
+                  </span>    
+                  <span class="f13 mr cp">
+                      <b>
+                        Medios de pago
+                      </b>
+                    </span>
+                  </div>
+                                
+            </mat-toolbar>

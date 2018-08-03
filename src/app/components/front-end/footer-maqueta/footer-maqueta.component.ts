@@ -12,8 +12,24 @@ export class FooterMaquetaComponent implements OnInit {
   countTileFooter = 1;
 
   constructor() { }
+  onResize(event) {
+    if(event.target.innerWidth <= 768){
+      this.tamHeightFooter = "340px";
+      this.countTileFooter = 1;
+    }else{
+      this.tamHeightFooter = "340px;"
+      this.countTileFooter = 4;
+    }
+  }
 
   ngOnInit() {
+    if(screen.width <= 768){
+      this.tamHeightFooter = "340px";
+      this.countTileFooter = 1;
+    }else{
+      this.tamHeightFooter = "340px;"
+      this.countTileFooter = 4;
+    }
   }
 
 }

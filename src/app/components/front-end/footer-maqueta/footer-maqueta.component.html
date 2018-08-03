@@ -1,5 +1,5 @@
 <footer>
-    <mat-grid-list [cols]="countTileFooter" rowHeight="{{tamHeightFooter}}">
+    <mat-grid-list [cols]="countTileFooter" rowHeight="{{tamHeightFooter}}" (window:resize)="onResize($event)">
 
       <mat-grid-tile> 
         <div style="width: 90%;height: 100%;">
@@ -50,7 +50,7 @@
       <a class="info">y recibi informacion sobre todas las ofertas</a>
       <div class="input-send">
         <input type="text">
-        <button>Enviar</button>  
+        <button><mat-icon>mail_outline</mat-icon></button>  
       </div>
     </div>
   </div>

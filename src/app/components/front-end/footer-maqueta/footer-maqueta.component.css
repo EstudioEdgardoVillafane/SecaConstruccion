@@ -6,6 +6,11 @@ footer{
     padding-top:50px;
     font-size: 13px;
 }
+.input-send > button > mat-icon {
+    position: relative;
+    top: 3px;
+    left: 3px;
+}
 .title{
     color: #363f4d;
     font-size: 14px;
@@ -45,6 +50,8 @@ footer{
 .tam-img{
     float: left;
     width: 7%;
+    position: relative;
+    top: 5px;
 }
 .revisa{
     font-size: 22px;
@@ -52,34 +59,40 @@ footer{
 }
 .info{
     font-size: 18px;
+    position: relative;
+    bottom: 12px;
 }
 .input-send{
     display: inline;
+    position: relative;
+    bottom: 10px;
 }
 .input-send > button{
     position: relative;
-    bottom: 18px;
-    height: 30px;
+    bottom: 12px;
+    height: 41.9px;
     left: 79px;
     background: #22222d;
     border: 0px;
     color: white;
     border-radius: 0px 15px 15px 0px;
     padding-right: 15px;
+    
 
 }
+
 .input-send > input{
     display: inline;
-
     position: relative;
     bottom: 18px;
     left: 80px;
     width: 27%;
     outline: 0px;
-    height: 26px;
-    border-radius: 12px 0px 0px 12px;
-    border: 1px solid #80808073;
-    padding-left: 36px;
+    height: 40px;
+    border-radius: 29px 0px 0px 25px;
+    background: #e8e8e8;
+    border: 0;
+    padding-left: 24px;
 }
 .text-em{
     padding-top: 7px;
@@ -109,9 +122,10 @@ footer{
     }
     .input-send > button {
         left: -45px;
-        top:25px;
+        top:32px;
         bottom:0px;
     }
+ 
     .first-img{
         text-align: center;
     }

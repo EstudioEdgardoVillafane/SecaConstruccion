@@ -1,9 +1,10 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url('https://fonts.googleapis.com/css?family=Shanti');
+@import url('https://fonts.googleapis.com/css?family=Cabin');
 
 body{
     margin : 0px;
-    font-family: 'Shanti', sans-serif!important;
+    font-family: 'Cabin', sans-serif;
 }
 .mb{
     margin-bottom: 15px!important;

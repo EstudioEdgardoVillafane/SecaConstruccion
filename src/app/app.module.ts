@@ -105,6 +105,7 @@ import { NotFoundComponent } from './global/not-found/not-found.component';
 import { MaquetaComponent } from './components/front-end/maqueta/maqueta.component';
 import { NavbarHomeComponent } from './components/front-end/navbar-home/navbar-home.component';
 import { FooterMaquetaComponent } from './components/front-end/footer-maqueta/footer-maqueta.component';
+import { BreakSpacePipe } from './pipes/break-space.pipe';
 
 
 
@@ -157,6 +158,7 @@ import { FooterMaquetaComponent } from './components/front-end/footer-maqueta/fo
     MaquetaComponent,
     NavbarHomeComponent,
     FooterMaquetaComponent,
+    BreakSpacePipe,
   ],
   imports: [
   AppRoutingModule,

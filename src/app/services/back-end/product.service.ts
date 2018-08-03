@@ -6,7 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 // FireBase
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { User } from '../../model/user';
-import { Product } from '../../model/product';
+import { Product, ProductInteface } from '../../model/product';
 import { AngularFireAction } from 'angularfire2/database/interfaces';
 
 @Injectable({
@@ -21,6 +21,9 @@ export class ProductService {
 
   constructor( private fireBase: AngularFireDatabase ) { }
 
+  /**
+   * Get a list of products without struct
+   */
   getProduct() {
     return this.listProducts = this.fireBase.list('product', ref => ref.orderByChild("order"));
   }
