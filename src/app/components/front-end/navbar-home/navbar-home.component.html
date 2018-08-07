@@ -1,5 +1,5 @@
 <!-- First toolbar to setting acount -->
-<section (window:scroll)="onScroll($event)">
+<section (window:scroll)="onScroll()">
 
   <mat-toolbar class="toolbar-acount">
     <span class="full-right">
@@ -18,11 +18,19 @@
     <mat-icon>settings</mat-icon>Mi cuenta
   </a>
   <mat-menu #menu="matMenu">
-  <button mat-menu-item>Iniciar sesión</button>
-  <button mat-menu-item>Crear cuenta</button>
-  <button mat-menu-item>Carrito</button>
+    <span *ngIf="clientOnline === undefined">
+    <button mat-menu-item routerLink="/login">Iniciar sesión</button>
+    <button mat-menu-item routerLink="/login">Crear cuenta</button>
+    <button mat-menu-item>Carrito</button>
+    </span>
+    <span *ngIf="clientOnline !== undefined">
+      <button mat-menu-item routerLink="/notifaciones"><mat-icon matBadge="{{notifications}}" matBadgePosition="after" matBadgeColor="warn">message</mat-icon>Notificaciones</button>
+      <button mat-menu-item routerLink="/mi-cuenta"><mat-icon>account_circle</mat-icon>Mi cuenta</button>
+      <button mat-menu-item><mat-icon>shopping_cart</mat-icon>Mi carrito</button>
+      <button mat-menu-item (click)="handleExitSession()"><mat-icon>highlight_off</mat-icon>Cerrar sesión</button>      
+    </span>
+  </mat-menu>
 
-</mat-menu>
 </span>
 </mat-toolbar>
 <!--
@@ -32,8 +40,8 @@
 <mat-toolbar class="toolbar-search">
   <span class="container-img"><img src="./assets/img/logo3.png"></span>
     <span class="right-input">
-      <input type="text" id="inputSearch" placeholder="Buscar producto"/>
-      <button id="goSearch" class="cp"><mat-icon>search</mat-icon></button>
+      <input type="text" id="inputSearch" [(ngModel)]="nameToSearch" name="inputSearch" placeholder="Buscar producto"/>
+      <button id="goSearch" class="cp" (click)="handleSearchProduct('busqueda/', 'busqueda')" ><mat-icon>search</mat-icon></button>
     </span>
     <span class="circle ltl" matBadge="0" matBadgePosition="after" matBadgeColor="warn"><mat-icon class="shopping cp" >shopping_cart</mat-icon> <a id="price-cart">$0,00</a></span>
     
@@ -48,9 +56,9 @@
         <mat-icon>menu</mat-icon> Categorias
       </b>
       <mat-list *ngIf="clickMenu" class="menuopen">
-          <mat-list-item class="overitem" *ngFor="let x of listSeccions | slice : 0 : 10">
-            <div>
-                <a> {{x.name | changeSpace | lowercase | upperCaracter | breakSpace}} </a>
+          <mat-list-item class="overitem" *ngFor="let x of listSeccions | slice : 0 : 7" (click)="handleSearchProduct('seccion/'+x.name, 'seccion')">
+            <div class="item-click">
+                <a > {{x.name | changeSpace | lowercase | upperCaracter }} </a>
             </div> 
           </mat-list-item>
           <mat-list-item> Ver más...</mat-list-item>

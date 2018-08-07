@@ -77,7 +77,7 @@ const routes: Routes = [
     { path: '', component: FrontEndComponent,
   children: [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
-    { path: 'home', component: HomeComponent },
+    { path: 'home', component: MaquetaComponent },
     { path: 'producto/:slug', component: DetalleProductComponent },
     { path: 'mi-cuenta', component: UpdateAccountComponent},
     { path: 'login', component: LoginFrontComponent },

@@ -1,10 +1,11 @@
+
 .f13{
     font-size: 14px;
 }
 .menuopen{
     background-color: white;
     position: relative;
-    z-index: 99999999999;
+    z-index: 999999;
     border-radius: 0px 0px 5px 5px;
     top: 24px;
     box-shadow: 2px 2px 5px lightgrey;
@@ -44,6 +45,14 @@
 }
 .nav-fixed{
 
+}
+.item-click{
+    width: 250px;
+
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 18px;
 }
 .mr{
     margin-right: 30px!important;

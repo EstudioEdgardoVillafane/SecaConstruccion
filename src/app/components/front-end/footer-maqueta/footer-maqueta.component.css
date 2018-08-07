@@ -104,6 +104,9 @@ footer{
 }
 
 @media (max-width: 768px) {
+    .info{
+        bottom:0px!important;
+    }
     .h100{
         width: 50%;
         text-align: center;
