@@ -1,4 +1,4 @@
-<section>
+<section class="home">
 <header class="bg-img">
 <div class="publicidad">
   <p class="oferts-small">Ofertas exclusivas en Herramientas de uso domestico hasta %40</p>
@@ -85,7 +85,7 @@
             <a class="mr item-sec-a" *ngFor="let nameSec of listSeccions | slice : 0 : 6" (click)="handleFilterProducts(nameSec.name)">{{nameSec.name | changeSpace | lowercase | upperCaracter}}</a>
           </div>
     <mat-grid-list [cols]="countTileProductSection" rowHeight="{{tamHeightProductSection}}" (window:resize)="onResize($event)">
-        <mat-grid-tile *ngFor="let productOrder of listProductFilter | slice : 8 : 16"> 
+        <mat-grid-tile *ngFor="let productOrder of listProductFilter | slice : 0 : 8"> 
           <div class="container-product cp" routerLink="/producto/{{productOrder.slug}}">
           <div class="cont-img">
             <img src="{{productOrder.url}}" />

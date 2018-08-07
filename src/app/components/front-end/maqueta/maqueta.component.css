@@ -11,6 +11,9 @@
     position: relative;
     top:30%;
 }
+.home{
+    background-color: #f5f5f5;
+}
 .oferts-small{
     font-size:12px;
     color:#20252d;

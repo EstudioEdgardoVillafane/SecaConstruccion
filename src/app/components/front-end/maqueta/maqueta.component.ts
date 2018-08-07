@@ -124,7 +124,8 @@ export class MaquetaComponent implements OnInit {
         }
       });
       this.listOfProductsOff = this.listOfProductsOff.reverse();
-      this.listProductFilter = this.listOfProductsOff
+      this.listProductFilter = this.listOfProductsOff;
+      console.log(this.listProductFitler);
     });
   }
   listOfSeccion(){

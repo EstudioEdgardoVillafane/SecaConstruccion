@@ -1,6 +1,7 @@
 
 <div class="general">
     <div class="container text-dark">
+      <section class="hide">
         <div class="etiquetas">
             <b>Etiquetas relacionadas: </b> <a *ngFor="let etiqueta of listEtiquetas | slice : 0 : 14" class="mr">{{etiqueta.name}}</a> 
           </div>
@@ -9,16 +10,17 @@
     <div class="item-top">
       <span>
       <a class="mr td-none backList" routerLink="/busqueda/all">Volver al listado</a>
-      <a class="ml mr td-none click" routerLink="/seccion/{{productFilter.seccion}}">{{productFilter.seccion | changeSpace | lowercase | upperCaracter}} </a> >
-      <a class="ml mr td-none click" routerLink="/categoria/{{productFilter.categoria}}">{{productFilter.categoria | changeSpace | lowercase | upperCaracter}}</a> >
-      <a class="ml mr click">{{productFilter.option | changeSpace | lowercase | upperCaracter}}</a>
+      <a class="ml mr hide td-none click" routerLink="/seccion/{{productFilter.seccion}}">{{productFilter.seccion | changeSpace | lowercase | upperCaracter}} </a> <a class="hide">></a>
+      <a class="ml mr hide td-none click" routerLink="/categoria/{{productFilter.categoria}}">{{productFilter.categoria | changeSpace | lowercase | upperCaracter}}</a> <a class="hide">></a>
+      <a class="ml mr hide click">{{productFilter.option | changeSpace | lowercase | upperCaracter}}</a>
     </span>
     </div>
   </mat-grid-tile>
 </mat-grid-list>
+</section>
 <section class="cardProduct">
       <!-- primer fila, contiene foto principal + precio,nombre,etc -->
-      <mat-grid-list cols="2" rowHeight="430px">
+      <mat-grid-list [cols]="tamCard" (window:resize)="onResize($event)" rowHeight="430px">
         <!-- foto principal del producto -->
         <mat-grid-tile class="cont-img">
           <div class="contenedor-imagen">
@@ -62,7 +64,7 @@
 
 
       <!-- segunda fila, contiene descripcion del producto y metodos de pagos -->
-      <mat-grid-list [cols]="tamDetalle" (window:resize)="onResize($event)" rowHeight="450px">
+      <mat-grid-list [cols]="tamDetalle" class="descp-mobil" (window:resize)="onResize($event)" rowHeight="{{heightDetalle}}">
         <!-- descripcion del producto -->
         <mat-grid-tile class="br">
           <div class="descripcion">
@@ -74,7 +76,7 @@
         </mat-grid-tile>
 
 
-        <mat-grid-tile class="bb">
+        <mat-grid-tile class="bb hide">
 
           <div class="medios-pago">
             <h2 class="nombre-prod">Medios de pago</h2>
@@ -109,7 +111,7 @@
   </mat-grid-tile>
       </mat-grid-list>
 
-      <mat-grid-list cols="2" rowHeight = "900px" >
+      <mat-grid-list [cols]="tamAsk" rowHeight = "900px" >
         <mat-grid-tile class="br">
           <div class="preguntas">
             <h2>Preguntas</h2>

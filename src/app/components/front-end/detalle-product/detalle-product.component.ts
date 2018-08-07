@@ -28,16 +28,25 @@ export class DetalleProductComponent implements OnInit {
   boolAlertAsk = false;
   boolAlertSession = false;
   tamDetalle : number;
-  
+  heightDetalle : string;
+  tamCard : number;
+  tamAsk : number;
   objectToSendAsk = new Ask();
   fecha = new Date();
   aux;
+
   onResize(event) {
     this.tamDetalle = (event.target.innerWidth <= 768) ? 1 : 2;
+    this.heightDetalle = (this.tamDetalle === 2) ? "450px" : "350px"; 
+    this.tamCard = this.tamDetalle;
+    this.tamAsk = this.tamDetalle;
   }
 
   ngOnInit() {
     this.tamDetalle = (screen.width <= 768) ? 1 : 2;
+    this.heightDetalle = (this.tamDetalle === 2) ? "450px" : "350px"; 
+    this.tamCard = this.tamDetalle;
+    this.tamAsk =  this.tamDetalle;
     const slug = this._activatedRoute.snapshot.paramMap.get('slug');
     this.productoService.getProduct()
     .snapshotChanges()
