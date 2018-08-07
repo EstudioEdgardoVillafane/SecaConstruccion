@@ -1,37 +1,59 @@
 
 <div class="general">
     <div class="container text-dark">
-
+        <div class="etiquetas">
+            <b>Etiquetas relacionadas: </b> <a *ngFor="let etiqueta of listEtiquetas | slice : 0 : 14" class="mr">{{etiqueta.name}}</a> 
+          </div>
 <mat-grid-list cols="1" rowHeight="60px">
   <mat-grid-tile>
-    <a>Volver al listado</a>
-    <a>Categoria > caca > opcion</a>
+    <div class="item-top">
+      <span>
+      <a class="mr td-none backList" routerLink="/busqueda/all">Volver al listado</a>
+      <a class="ml mr td-none click" routerLink="/seccion/{{productFilter.seccion}}">{{productFilter.seccion | changeSpace | lowercase | upperCaracter}} </a> >
+      <a class="ml mr td-none click" routerLink="/categoria/{{productFilter.categoria}}">{{productFilter.categoria | changeSpace | lowercase | upperCaracter}}</a> >
+      <a class="ml mr click">{{productFilter.option | changeSpace | lowercase | upperCaracter}}</a>
+    </span>
+    </div>
   </mat-grid-tile>
 </mat-grid-list>
+<section class="cardProduct">
       <!-- primer fila, contiene foto principal + precio,nombre,etc -->
-      <mat-grid-list cols="2" rowHeight="400px">
+      <mat-grid-list cols="2" rowHeight="430px">
         <!-- foto principal del producto -->
-        <mat-grid-tile style="border-top: 1px solid lightgray;">
+        <mat-grid-tile class="cont-img">
           <div class="contenedor-imagen">
-            <img class="imagen-prod" src="{{productFilter.url}}">
+<img class="imagen-prod" src="{{productFilter.url}}">
           </div>
         </mat-grid-tile>
 
         <!-- nombre prod + precio + detalle de envios y pagos + botones -->
-        <mat-grid-tile style="border-top: 1px solid lightgray">
+        <mat-grid-tile >
           <div class="contenedor-venta">
-            <p class="nombre-prod" style="font-size: 40px;">{{productFilter.name}}</p>
-            <h2 class="precio" style="font-size: 30px;">${{productFilter.price}}</h2>
-
-            <p>
-              <mat-icon>credit_card</mat-icon>Paga hasta en 12 cuotas
+            <p class="nombre-prod"> {{productFilter.name}}</p>
+            <h2 class="precio">${{productFilter.price}}</h2>
+            <span>
+            <p class="mb-0">
+              <mat-icon class="icon-info">credit_card</mat-icon>Paga hasta en 12 cuotas
+              <br/>
+              <a class="more-info-a">Conocé las formas de pago.</a>
+              <br>
+              <b class="more-info">Más información</b>
             </p>
-            <p>
-              <mat-icon>local_shipping</mat-icon>Envios a todo el pais
+            
+          </span>
+          <span>
+            <p class="mb-0">
+              <mat-icon class="icon-info">local_shipping</mat-icon>Envios a todo el pais
+              <br/>
+                <a class="more-info-a">Conocé los tiempos y las formas de envío.</a>
+              <br>
+              <b class="more-info">Más información</b>
             </p>
-            <input mat-input type="number" value="1">
-              <button   mat-raised-button color="primary"
-                        matBadge="1" matBadgePosition="before" matBadgeColor="accent">
+          </span>
+          <button class="mr" mat-raised-button color="primary">
+            Comprar ahora
+    </button>
+              <button class="btn-add"  mat-raised-button color="primary">
                         Agregar al carrito
               </button>
           </div>
@@ -42,9 +64,9 @@
       <!-- segunda fila, contiene descripcion del producto y metodos de pagos -->
       <mat-grid-list [cols]="tamDetalle" (window:resize)="onResize($event)" rowHeight="450px">
         <!-- descripcion del producto -->
-        <mat-grid-tile>
+        <mat-grid-tile class="br">
           <div class="descripcion">
-            <h2>Descripcion</h2>
+            <h2 class="nombre-prod">Descripcion del vendedor</h2>
             <p style="text-align: justify">
               {{productFilter.description}}
             </p>
@@ -52,10 +74,10 @@
         </mat-grid-tile>
 
 
-        <mat-grid-tile>
+        <mat-grid-tile class="bb">
 
           <div class="medios-pago">
-            <h2>Medios de pago</h2>
+            <h2 class="nombre-prod">Medios de pago</h2>
             <mat-tab-group>
               <mat-tab label="En Efectivo">
                 <p class="text-dark">
@@ -73,12 +95,22 @@
                 </p>
               </mat-tab>
             </mat-tab-group>
+            
+              <div  class="garantia">
+                  <p class="mb-0">
+                    Garantía del vendedor
+                    <br/><br>
+                      <a class="more-info-a pl-0">12 meses de garantía, mediante el fabricante con varios services en todo el país. Respuestos asegurados dentro y fuera del país...</a>
+                    <br>
+                    <b class="more-info pl-0 mr-garantia">Conocer más sobre la garantía</b>
+                  </p>
           </div>
-        </mat-grid-tile>
+            </div>
+  </mat-grid-tile>
       </mat-grid-list>
 
-      <mat-grid-list cols="1" rowHeight = "900px" >
-        <mat-grid-tile>
+      <mat-grid-list cols="2" rowHeight = "900px" >
+        <mat-grid-tile class="br">
           <div class="preguntas">
             <h2>Preguntas</h2>
             <h6>Realice las preguntas que considere necesarias, a la brevedad le responderemos!</h6>
@@ -86,6 +118,7 @@
                 <mat-form-field class="escribir-consulta">
                   <textarea matInput placeholder="Consulta" [(ngModel)]="objectToSendAsk.ask" name="messageAsk"></textarea>
                 </mat-form-field>
+                <br>
                 <button mat-raised-button color="primary" (click)="handdleAsk()">Enviar</button>
               </form>
               <p class="alert-ask" *ngIf="boolAlertAsk">Ingrese una pregunta.</p>
@@ -93,7 +126,7 @@
 
 
             <h5>Ultimas preguntas</h5>
-            <div *ngFor="let preguntas of listAsk | slice : 0 : 10">
+            <div *ngFor="let preguntas of listAsk | slice : 0 : 4">
               <p>
                   <mat-icon>mail</mat-icon>
                   {{preguntas.ask}}
@@ -104,8 +137,10 @@
               </p>
             </div>
             <br>
+            <b class="more-info pl-0 ">Ver más preguntas</b>
             </div>
         </mat-grid-tile>
       </mat-grid-list>
+    </section>
     </div>
     </div>

@@ -4,15 +4,15 @@
     </div>
     <div  class="content-catalogo ">
     <div class="left-content">
-      <h2>Seccion  de {{nameSeccion | changeSpace}}/{{nameCategory | changeSpace}}</h2>
+      <h2>Seccion  de {{nameSeccion | changeSpace | lowercase | upperCaracter}}/{{nameCategory | changeSpace | lowercase | upperCaracter}}</h2>
       <b class="font-product">Cantidad de productos : {{dataSource.data.length}}</b>
       <h3>Opciones</h3>
-      <p class="font-product cp" *ngFor="let name of listOptions" (click)="handleFilter(name)"> {{name.name}} </p>
+      <p class="font-product cp" *ngFor="let name of listOptions" (click)="handleFilter(name)"> {{name.name | changeSpace | lowercase | upperCaracter}} </p>
      
     </div>
     <div class="rigth-content">
         <mat-grid-list [cols]="tamCard" rowHeight="400px" (window:resize)="onResize($event)">
-            <mat-grid-tile *ngFor="let product of dataSource.data"> 
+            <mat-grid-tile *ngFor="let product of dataSource.data | slice : Desde : Hasta"> 
                 <mat-card class="card-product">
                     <div class="card-product-img">
                     <img src="{{product.url}}">
@@ -39,5 +39,5 @@
   </div>
 </div>
         <div style="clear:both">
-        <mat-paginator [pageSize]="9"></mat-paginator>
+        <mat-paginator [pageSize]="9" (page)="console($event)"></mat-paginator>
       </div>

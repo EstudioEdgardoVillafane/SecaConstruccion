@@ -16,6 +16,8 @@ export class ProductFindComponent implements OnInit {
   listEtiquetas : any[];
   nameSearch : string = "todos los productos";
   tamCard : number;
+  Desde : number = 0;
+  Hasta : number = 9;
 
   @ViewChild(MatPaginator)  paginator: MatPaginator;
   dataSource = new MatTableDataSource();
@@ -26,11 +28,11 @@ export class ProductFindComponent implements OnInit {
     private seccionService : SeccionService
   ){}
   onResize(event) {
-    this.tamCard = (event.target.innerWidth <= 768) ? 2 : 4;
+    this.tamCard = (event.target.innerWidth <= 768) ? 2 : 3;
   }
 
   ngOnInit() {
-    this.tamCard = (screen.width <= 768) ? 2 : 4;
+    this.tamCard = (screen.width <= 768) ? 2 : 3;
     const valueToFind = this._activatedRoute.snapshot.paramMap.get("product");
     let valueToSearch = "";
     if(valueToFind  !== "all"){
@@ -88,5 +90,10 @@ export class ProductFindComponent implements OnInit {
       });
     });
   
-}
+  }
+  
+  console(event){
+    this.Desde = event.pageIndex * 9;
+    this.Hasta = this.Desde + 9;    
+  }
 }

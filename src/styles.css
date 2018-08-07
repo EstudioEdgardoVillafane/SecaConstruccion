@@ -21,3 +21,9 @@ body{
 .pb{
     padding-bottom: 15px!important;
 }
+.mb-0{
+    margin-bottom: 0px!important;
+}
+.cp{
+    cursor: pointer!important;
+}

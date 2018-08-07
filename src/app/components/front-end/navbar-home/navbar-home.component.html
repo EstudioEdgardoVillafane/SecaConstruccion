@@ -24,7 +24,7 @@
     <button mat-menu-item>Carrito</button>
     </span>
     <span *ngIf="clientOnline !== undefined">
-      <button mat-menu-item routerLink="/notifaciones"><mat-icon matBadge="{{notifications}}" matBadgePosition="after" matBadgeColor="warn">message</mat-icon>Notificaciones</button>
+      <button mat-menu-item routerLink="/notificaciones"><mat-icon matBadge="{{notifications}}" matBadgePosition="after" matBadgeColor="warn">message</mat-icon>Notificaciones</button>
       <button mat-menu-item routerLink="/mi-cuenta"><mat-icon>account_circle</mat-icon>Mi cuenta</button>
       <button mat-menu-item><mat-icon>shopping_cart</mat-icon>Mi carrito</button>
       <button mat-menu-item (click)="handleExitSession()"><mat-icon>highlight_off</mat-icon>Cerrar sesión</button>      
@@ -67,27 +67,27 @@
     <span class="space"></span>
     <div class="menu ltl">
       
-    <span class="f13 cp mr" >
+    <span class="f13 cp cp-hover mr" >
       <b >
         Ofertas
       </b>
     </span>
-    <span class="f13 mr cp">
+    <span class="f13 mr cp-hover cp">
       <b>
       Envios a todo el país
     </b>
   </span>
-    <span class="f13 mr cp">
+    <span class="f13 mr cp-hover cp">
       <b>
           Retiro en local
         </b>
       </span>
-      <span class="f13 mr cp">
+      <span class="f13 mr cp-hover cp">
         <b>
             Más vendidos  
           </b>
         </span>    
-        <span class="f13 mr cp">
+        <span class="f13 mr cp-hover cp">
             <b>
               Medios de pago
             </b>

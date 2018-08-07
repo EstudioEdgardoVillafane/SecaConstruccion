@@ -37,9 +37,10 @@ h3{
     width: 75%;
     min-height: 10vh;
     float:right;
+    padding-bottom: 50px;
 }
 .card-product{
-    width:250px;
+    width:230px;
     height: 340px;
 }
 .card-product-img{

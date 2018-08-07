@@ -5,6 +5,7 @@ import { AskService } from '../../../services/back-end/ask.service';
 import { Ask } from '../../../model/ask';
 import { Product } from '../../../model/product';
 import {MatTableDataSource, MatSnackBar} from '@angular/material';
+import { SeccionService } from '../../../services/back-end/seccion.service';
 
 @Component({
   selector: 'app-detalle-product',
@@ -13,13 +14,17 @@ import {MatTableDataSource, MatSnackBar} from '@angular/material';
 })
 export class DetalleProductComponent implements OnInit {
 
-  constructor(private _activatedRoute : ActivatedRoute, private productoService : ProductService, private askService : AskService, private snackBar : MatSnackBar) { }
+  constructor(private _activatedRoute : ActivatedRoute,
+    private productoService : ProductService,
+    private seccionService : SeccionService,
+    private askService : AskService,
+    private snackBar : MatSnackBar) { }
 
   listProducts : any[];
   listAsk : any[];
   listAskToThisProduct : any[];
   productFilter : Product;
-
+  listEtiquetas : any[];
   boolAlertAsk = false;
   boolAlertSession = false;
   tamDetalle : number;
@@ -63,6 +68,16 @@ export class DetalleProductComponent implements OnInit {
       });
     });
     });
+    this.seccionService.getEtiquetas()
+    .snapshotChanges()
+    .subscribe(item => {
+      this.listEtiquetas = [];
+      item.forEach(element => {
+        let x = element.payload.toJSON();
+        x["$key"] = element.key;
+        this.listEtiquetas.push(x);
+      });
+    });
   }
 
   handdleAsk(){
@@ -81,11 +96,15 @@ export class DetalleProductComponent implements OnInit {
     }
   }
 
+  
+  
+  
   /** Open SnackBar alert **/
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 6000,
     });
   }
+
 
 }

@@ -9,11 +9,48 @@
   .contenedor-imagen{
     height: max-content!important;
   }
+  .etiquetas{
+    color: rgba(92, 92, 92, 0.87);
+    background: whitesmoke;
+    font-size:14px;
+}
   .contenedor-imagen > img {
     max-width: 100%;
     max-height: 100%;
   }
-
+  .nombre-prod{
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .cardProduct{
+    box-shadow: 1px 0px 15px lightgrey;
+    color:#333!important;
+    border-radius: 5px;
+  }
+  .more-info{
+    padding-left: 39px;
+    font-weight: 100;
+    color:blue;
+    cursor:pointer;
+  }
+  .more-info:hover{
+    color:#bb302a;
+  }
+  .btn-add{
+    margin-top: 30px;
+    padding-top: 5px;
+    background-color: transparent;
+    color: blue;
+    border: 1px solid blue;
+  }
+  .icon-info{
+    padding-right: 15px;
+  }
+  .precio{
+    font-size:44px;
+    font-weight: 100;
+    margin-top: 0px;
+  }
   .medios-pago{
     text-align: justify;
     margin-top: 30px;
@@ -24,13 +61,35 @@
     text-align: justify;
     margin-top: 10px;
   }
-
+  .cont-img{
+    border-right: 1px solid #d3d3d3;
+    border-bottom: 1px solid #d3d3d3;
+  }
+  .more-info-a{
+    padding-left:39px;
+    color:gray;
+  }
+.br{
+  border-right: 1px solid #d3d3d3;
+}
+.mr-garantia{
+  font-size: 13px;
+}
+.pl-0{
+padding-left: 0px!important;
+}
+.garantia{
+  margin-top:70px!important;
+}
+.bb{
+  border-bottom: 1px solid #d3d3d3;
+}
   .contenedor-venta, preguntas, .mat-icon{
     position: relative;
     top: 7px;
   }
   .contenedor-venta{
-    padding-left: 30px;
+   width: 90%
   }
   .contenedor-venta h1{
     padding-top: 15px;
@@ -56,14 +115,8 @@
     padding-bottom: 75px;
   }
 
-.mat-grid-tile{
-  border-bottom: 1px solid lightgray;
-  border-left: 1px solid lightgray;
-  border-right: 1px solid lightgray;
-}
   .container{
     background-color:white!important;
-    box-shadow: 2px 2px 2px #dadada;
     padding: 0px!important;
   }
 
@@ -73,24 +126,42 @@
     position: relative;
     bottom:30px;
   }
-
+  .td-none{
+    text-decoration: none!important;
+  }
   .escribir-consulta{
     width: 417px;
   }
+  .backList{
+    color:black;
+  }
   .form-consulta button{
-    margin-left: 30px;
   }
   .form-consulta{
     margin-top: 30px;
     margin-bottom: 30px;
   }
 
-
+  .item-top{
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    padding-top: 40px;
+  }
+  .item-top > span{
+    font-size: 14px;
+  }
   .material-imagen{
     margin-top: 15px;
     margin-bottom: 15px;
   }
-
+  .click{
+    cursor:pointer;
+    color: blue
+  }
+  .click:hover{
+    color:#bb302a;
+  }
   .container{
       padding-left: 60px;
       padding-right: 60px;
@@ -131,7 +202,7 @@
   }
 }
 .preguntas{
-  width: 95%!important;
+  width: 90%!important;
   padding-top:100px;
 }
 h2{

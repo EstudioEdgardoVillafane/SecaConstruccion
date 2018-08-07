@@ -4,7 +4,7 @@ import { ProductService } from '../../../services/back-end/product.service';
 import { Product } from '../../../model/product';
 import { SeccionService } from '../../../services/back-end/seccion.service';
 import { Categoria } from '../../../model/categoria';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { ViewChild } from '@angular/core';
 
 @Component({
@@ -13,13 +13,16 @@ import { ViewChild } from '@angular/core';
   styleUrls: ['./product-search.component.css']
 })
 export class ProductSearchComponent implements OnInit {
-
+  Desde : number = 0;
+  Hasta : number = 9;
   listProducts : any[];
   listCategory : any[];
   listEtiquetas : any[];
   nameSeccion : string;
   tamCard : number;
   @ViewChild(MatPaginator)  paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
   dataSource = new MatTableDataSource();
 
   constructor(
@@ -28,11 +31,11 @@ export class ProductSearchComponent implements OnInit {
     private seccionService : SeccionService
   ){}
   onResize(event) {
-    this.tamCard = (event.target.innerWidth <= 768) ? 2 : 4;
+    this.tamCard = (event.target.innerWidth <= 768) ? 2 : 3;
   }
 
   ngOnInit() {
-    this.tamCard = (screen.width <= 768) ? 2 : 4;
+    this.tamCard = (screen.width <= 768) ? 2 : 3;
     const name = this._activatedRoute.snapshot.paramMap.get('name');
     this.nameSeccion = name;
 
@@ -50,6 +53,8 @@ export class ProductSearchComponent implements OnInit {
       });
       this.dataSource.data = this.listProducts;
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
     });
     /** Product Get List finished */
     let aux = []; // This variable is an auxiliar to get a list of the sections;
@@ -88,5 +93,10 @@ export class ProductSearchComponent implements OnInit {
         this.listEtiquetas.push(x);
       });
     });
+  }
+
+  console(event){
+    this.Desde = event.pageIndex * 9;
+    this.Hasta = this.Desde + 9;    
   }
 }

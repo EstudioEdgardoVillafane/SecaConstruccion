@@ -36,7 +36,7 @@
   </div>
   <mat-grid-list [cols]="countTileProductOffer" rowHeight="{{tamHeightProductOffer}}" (window:resize)="onResize($event)">
       <mat-grid-tile *ngFor="let productOffer of listOfProducts | slice : 0 : 2"> 
-        <div class="container-product">
+        <div class="container-product cp" routerLink="/producto/{{productOffer.slug}}">
         <div class="cont-img">
           <img src="{{productOffer.url}}" />
         </div>
@@ -60,7 +60,7 @@
       </div>
       <mat-grid-list [cols]="countTileProductBestSeller" rowHeight="{{tamHeightProductBestSeller}}" (window:resize)="onResize($event)">
           <mat-grid-tile *ngFor="let productOrder of listOfProductsOff | slice : 0 : 8"> 
-            <div class="container-product-filter">
+            <div class="container-product-filter cp" routerLink="/producto/{{productOrder.slug}}"> 
             <div class="cont-img-filter">
               <img src="{{productOrder.url}}" />
             </div>
@@ -86,7 +86,7 @@
           </div>
     <mat-grid-list [cols]="countTileProductSection" rowHeight="{{tamHeightProductSection}}" (window:resize)="onResize($event)">
         <mat-grid-tile *ngFor="let productOrder of listProductFilter | slice : 8 : 16"> 
-          <div class="container-product">
+          <div class="container-product cp" routerLink="/producto/{{productOrder.slug}}">
           <div class="cont-img">
             <img src="{{productOrder.url}}" />
           </div>

@@ -120,6 +120,9 @@
     color:white;
     outline:0px;
 }
+.cp-hover:hover{
+    color:#bb302a;
+}
 #goSearch > mat-icon {
     position: relative;
     top: 2px;

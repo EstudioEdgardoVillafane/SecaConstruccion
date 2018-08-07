@@ -21,6 +21,8 @@ export class CategorySearchComponent implements OnInit {
   nameSeccion : string;
   nameCategory : string;
   tamCard : number;
+  Desde : number = 0;
+  Hasta : number = 9;
   @ViewChild(MatPaginator)  paginator: MatPaginator;
   dataSource = new MatTableDataSource();
 
@@ -31,11 +33,11 @@ export class CategorySearchComponent implements OnInit {
   ){}
 
   onResize(event) {
-    this.tamCard = (event.target.innerWidth <= 768) ? 2 : 4;
+    this.tamCard = (event.target.innerWidth <= 768) ? 2 : 3;
   }
 
   ngOnInit() {
-    this.tamCard = (screen.width <= 768) ? 2 : 4;
+    this.tamCard = (screen.width <= 768) ? 2 : 3;
 
     const name = this._activatedRoute.snapshot.paramMap.get('name');
     this.nameCategory = name;
@@ -112,13 +114,15 @@ export class CategorySearchComponent implements OnInit {
     aux = this.listProducts; 
     this.dataSource.data = [];
     aux.forEach(element => {
-      console.log(element);
-      console.log(object);
       if(element.option === object.name ){
         this.dataSource.data.push(element);
       }      
     });
-    console.log(this.dataSource.data);
+  }
+
+  console(event){
+    this.Desde = event.pageIndex * 9;
+    this.Hasta = this.Desde + 9;    
   }
 
 }
