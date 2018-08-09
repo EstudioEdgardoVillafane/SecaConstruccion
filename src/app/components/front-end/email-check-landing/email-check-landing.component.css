@@ -1,0 +1,27 @@
+.info, .mat-grid-tile , .mat-figure{
+  display: block;
+  height: 100%;
+  text-align: center;
+  color: rgb(63, 63, 63);
+}
+.info{
+  margin-top: 25px;
+}
+  h2{
+    font-size: 60px;
+  }
+  h4{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    font-size: 30px;
+  }
+  p{
+    font-size: 25px;
+    margin-bottom: 70px;
+  }
+
+img{
+  /* max-width: 100%; */ /*descomentar segun preferencia*/
+  /* position:block; */
+}
+
