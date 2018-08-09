@@ -8,6 +8,10 @@ table{
     position: relative;
     top:6px;
 }
+th{
+    padding-left:10px!important;
+    padding-right: 10px!important;
+}
 td{
     height: 100px!important;
     padding:10px!important;
@@ -21,6 +25,11 @@ td{
     color: white;
 }
 
+.table{
+    height: 350px;
+    overflow-y: auto;
+    width: 100%;
+}
 @media screen and (max-width: 768px) {
     .mobil{
         float:none;

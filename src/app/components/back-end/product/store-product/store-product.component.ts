@@ -115,6 +115,7 @@ export class StoreProductComponent implements OnInit {
 
       this.seccionService.getJsonForName(this.productToAdd.seccion,this.listSeccion)
       .subscribe((data) => {
+        console.log(data)
         this.keySeccionSelected = data.$key;
         this.filterSeccion(data.$key)
       })
