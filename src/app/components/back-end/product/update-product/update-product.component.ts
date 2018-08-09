@@ -67,7 +67,7 @@ export class UpdateProductComponent implements OnInit {
       });
     })
   }
-y = new Array();   
+  img;
   listOfProducts(){
     
     this.productService.getProduct()
@@ -94,12 +94,11 @@ y = new Array();
         this.productService.getEtiquetaForKey(key,this.listProducts)
         .subscribe((data)=>{
           let etiqueta = data.etiqueta;
-          // console.log(etiqueta)
-          this.y = Object.values(etiqueta);
-          // console.log(Object.values(etiqueta))
+          this.img = data.url;
+          this.arrayEtiquetasSelected = Object.values(etiqueta);
         });
-        console.log(this.y)
       });
+
     }
 
   /** This is a filter to the input of the seccion's */
@@ -305,7 +304,7 @@ y = new Array();
           }
         }
       });
-      this.productToAdd.url = this.request.responseText;
+      // this.productToAdd.url = this.request.responseText;
       this.productService.updateProduct(this.keyToEdit,this.productToAdd);
       this.router.navigateByUrl("/backend");
     }
@@ -322,10 +321,10 @@ y = new Array();
       this.request.send(this.formObjectIMG);
       this.request.onload = (e) => {
         console.log("some");
-     this.productToAdd.url = this.request.responseText;
+    //  this.productToAdd.url = this.request.responseText;
       
       }
-     this.productToAdd.url = this.request.responseText;
+    //  this.productToAdd.url = this.request.responseText;
     console.log(this.request.responseText);
   }
 

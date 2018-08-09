@@ -65,10 +65,9 @@
           <mat-option *ngFor="let option of listFilterEtiqueta" [value]="option" (click)="handleSaveArrayOfEtiquetas()">{{option}}</mat-option>
         </mat-autocomplete>
         <button mat-raised-button color="primary" class="btn" *ngFor="let x of arrayEtiquetasSelected" (click)="handlePullEtiqueta(x)"><mat-icon>close</mat-icon> {{x}}</button>
-        <button mat-raised-button color="primary" class="btn" *ngFor="let y of y" (click)="handlePullEtiqueta(y)"><mat-icon>close</mat-icon> {{y}}</button>
-        
         <br>
-        
+        foto Actual del producto:
+        <img src="{{img}}" alt="foto del producto">
         
         <form id="formIMG">
         Foto del producto: <input class="fw mt" (change)="handleGenerateUrlIMG()" name="uploadedfile" type="file">
