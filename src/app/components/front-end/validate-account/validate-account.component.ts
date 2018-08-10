@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../../services/back-end/client.service';
 import { Client } from '../../../model/client';
 import { Router, ActivatedRoute } from '@angular/router';
+// import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -11,10 +12,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ValidateAccountComponent implements OnInit {
 
-  constructor(private clientService : ClientService,private route : ActivatedRoute,private router : Router) { }
+  constructor(private clientService : ClientService, private _activatedRoute : ActivatedRoute,private route : ActivatedRoute,private router : Router) { }
   objectClient = new Client;
   clientList : any[];
-
+  code : string;
   ngOnInit() {
     this.clientService.getUser()
     .snapshotChanges()
@@ -26,14 +27,14 @@ export class ValidateAccountComponent implements OnInit {
         this.clientList.push(x);
       });
     })
+    this.code = this._activatedRoute.snapshot.paramMap.get('code');
   }
   handdleValidateAcount(){
-    const code = this.objectClient.code;
-  this.clientService.getJsonByCode(code,this.clientList)
+  this.clientService.getJsonByCode(this.code,this.clientList)
   .subscribe((data)=>{
     const validate = data.code;
     console.log(validate)
-    if(code == validate ){
+    if(this.code == validate ){
       this.clientService.validateClient(data);
       this.router.navigate(['home'], {relativeTo: this.route});
     }

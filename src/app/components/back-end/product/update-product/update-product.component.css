@@ -27,3 +27,36 @@ h3{
 .w100{
     width: 100%!important;
 }
+.enmarcada{
+border:3px solid #000; /* ancho - tipo - color */
+padding:2px; /* distancia entre la img y el borde */
+margin:5px; /* distancia entre el borde y el contenido */
+width:500px /* el ancho de la img */
+}
+.labelFile {
+    overflow: hidden;
+    position: relative;
+}
+.labelFile [type=file] {
+    cursor: inherit;
+    display: none;
+    font-size: 10px;
+    color: black;
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+.labelFile{
+    cursor: pointer;
+    background: #4054b5;
+    display: block;
+    width: 198px;
+    border-radius: 0px;
+    box-shadow: 0px 2px 1.5px #a5a5a5;
+    color: white;
+    padding: 11px;
+    margin-top: 20px;
+    font-size: 14px;
+}
