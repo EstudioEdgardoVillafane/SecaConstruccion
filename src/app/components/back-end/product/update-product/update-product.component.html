@@ -66,11 +66,18 @@
         </mat-autocomplete>
         <button mat-raised-button color="primary" class="btn" *ngFor="let x of arrayEtiquetasSelected" (click)="handlePullEtiqueta(x)"><mat-icon>close</mat-icon> {{x}}</button>
         <br>
-        foto Actual del producto:
-        <img src="{{img}}" alt="foto del producto">
+        <p> foto Actual del producto:</p>
+        <img src="{{img}}" alt="foto del producto" class="enmarcada">
         
         <form id="formIMG">
-        Foto del producto: <input class="fw mt" (change)="handleGenerateUrlIMG()" name="uploadedfile" type="file">
+            <!-- Imagen del producto - 
+            <a *ngIf="!alertFoto"> Debe subir una imagen de formato .jpg .png .web</a>
+            <a style="color:Red" *ngIf="alertFoto"> Debe subir una imagen de formato .jpg .png .web</a> -->
+            <label class="labelFile">
+              Haga click para subir su imagen
+        <input class="fw mt" (change)="handleGenerateUrlIMG()" name="uploadedfile" type="file">
+      </label>
+      <!-- <a *ngIf="imgName != undefined">Nombre de la imagen subida: {{imgName}}</a> -->
         </form>
   
   
