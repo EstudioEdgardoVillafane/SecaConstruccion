@@ -5,6 +5,7 @@ import { MatTableDataSource, MatSnackBar } from '@angular/material';
 import { Product } from '../../../model/product';
 import { Router } from '@angular/router';
 import { MatPaginator, MatSort } from '@angular/material';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-product',
@@ -12,23 +13,25 @@ import { MatPaginator, MatSort } from '@angular/material';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   dataSource: MatTableDataSource<Product>;
 
-  constructor(private productService: ProductService, private router : Router, public snackBar: MatSnackBar) { 
+  constructor(private productService: ProductService,
+              private router: Router,
+              public snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource();
    }
 
   listProducts: any[];
-  displayedColumns: string[] = ['select','url','name', 'price', 'seccion', 'categoria','code','favorite','order','edit'];
+  displayedColumns: string[] = ['select', 'url', 'name', 'price', 'seccion', 'code', 'favorite', 'order', 'edit'];
 
   orderValue;
   selection = new SelectionModel<Product>(true, []);
 
-  
+
   ngOnInit() {
     this.paginator._intl.itemsPerPageLabel = 'items por pagina';
 
@@ -37,12 +40,12 @@ export class ProductComponent implements OnInit {
     .subscribe(item => {
       this.listProducts = [];
       item.forEach(element => {
-        let x = element.payload.toJSON();
-        x["$key"] = element.key;
-        if(x["status"] != 0){
+        const x = element.payload.toJSON();
+        x['$key'] = element.key;
+        if (x['status'] !== 0) {
           this.listProducts.push(x);
         }
-      });      
+      });
     this.dataSource.data = this.listProducts;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -74,37 +77,37 @@ export class ProductComponent implements OnInit {
     const data = this.selection.selected;
     data.forEach(element => {
       this.productService.updateStatus(element);
-      
+
     });
-    this.selection.clear()
+    this.selection.clear();
   }
-  handleUpdateTemplate(element){
-    this.router.navigateByUrl("backend/productos/update/"+element.$key);
+  handleUpdateTemplate(element) {
+    this.router.navigateByUrl('backend/productos/update/' + element.$key);
   }
 
-  handleDuplicate(){
+  handleDuplicate() {
     const data = this.selection.selected;
     console.log(data);
     data.forEach(element => {
       this.productService.duplicateProduct(element);
     });
-    this.selection.clear()
+    this.selection.clear();
   }
 
-  handleDoFavorite(element){
+  handleDoFavorite(element) {
     this.selection.toggle(element);
-    if(element.favorite == 1){
-      this.productService.updateProductFavorite(0,element.$key)
-    }else{
-      this.productService.updateProductFavorite(1,element.$key)
+    if (element.favorite === 1) {
+      this.productService.updateProductFavorite(0, element.$key);
+    } else {
+      this.productService.updateProductFavorite(1, element.$key);
     }
   }
-  
-  changeOrder(element, value){
-    if(value <= 0){
+
+  changeOrder(element, value) {
+    if (value <= 0) {
       value = 1;
-    }else{
-    this.productService.updateOrden(value,element.$key)
+    } else {
+    this.productService.updateOrden(value, element.$key);
     }
     this.selection.clear();
   }
@@ -115,5 +118,9 @@ export class ProductComponent implements OnInit {
     this.snackBar.open(message, action, {
       duration: 6000,
     });
+  }
+
+  changePrice(key, price) {
+    this.productService.updatePrice(key, price);
   }
 }
