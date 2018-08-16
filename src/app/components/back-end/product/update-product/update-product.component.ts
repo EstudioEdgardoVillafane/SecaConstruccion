@@ -16,15 +16,14 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class UpdateProductComponent implements OnInit {
 
-  constructor(private productService: ProductService, 
+  constructor(private productService: ProductService,
               private router: Router,
               private seccionService: SeccionService,
               public snackBar: MatSnackBar,
               private _activatedRoute : ActivatedRoute) { }
-  
+
   booleanAdd : boolean;
-  booleanNextPage : boolean = true;
-  
+
   listEtiquetasFromProducts : any[];
   listOption : any[];
   listProducts : any[];
@@ -48,12 +47,12 @@ export class UpdateProductComponent implements OnInit {
   //  U.X
   afterCheck;
   auxCheckbox;
-  
+
   ngOnInit() {
     //  List of fireBase
     // this.listar();
-    
-    this.listOfProducts();    
+
+    this.listOfProducts();
     this.seccionService.getSeccion()
     .snapshotChanges()
     .subscribe(item => {
@@ -69,7 +68,7 @@ export class UpdateProductComponent implements OnInit {
   }
   img;
   listOfProducts(){
-    
+
     this.productService.getProduct()
     .snapshotChanges()
     .subscribe(item => {
@@ -122,49 +121,49 @@ export class UpdateProductComponent implements OnInit {
   }
 
   /** Next page to store */
-  goNextPage(){
-    
-    if(this.booleanAdd == true){
-      this.openSnackBar("Ingrese una seccion al producto o agrege una seccion nueva", "Ok!");
-    }else{
-      this.aux = 0;
-      (this.productToAdd.name == null) ? this.openSnackBar("Ingrese un nombre al producto", "Ok!") : this.aux++;
-      (this.productToAdd.slug == null) ? this.openSnackBar("Ingrese un slug al producto", "Ok!") : this.aux++;
-      (this.productToAdd.description == null) ? this.openSnackBar("Ingrese una descripción al producto", "Ok!") : this.aux++;
-      (this.productToAdd.code == null) ? this.openSnackBar("Ingrese un codigo al producto", "Ok!") : this.aux++;
-      (this.productToAdd.seccion == null) ? this.openSnackBar("Ingrese una seccion al producto", "Ok!") : 
-      
-      //  We are saving the seccion to filter categories
-      // this.productToAdd.seccion get the value of the ngModel
-      console.log(this.listSeccion);
-      console.log(this.productToAdd.seccion);
-      this.seccionService.getJsonForName(this.productToAdd.seccion,this.listSeccion)
-      .subscribe((data) => {
-        console.log(data);     
-        this.keySeccionSelected = data.$key;
-        this.filterSeccion(data.$key)
-      })
-     
-      this.aux++;
-      if(this.aux == 5){
-        //  Change template
-        this.booleanNextPage = false;
-      }
-    }
-  
-    
+  // goNextPage(){
+
+  //   if(this.booleanAdd == true){
+  //     this.openSnackBar("Ingrese una seccion al producto o agrege una seccion nueva", "Ok!");
+  //   }else{
+  //     this.aux = 0;
+  //     (this.productToAdd.name == null) ? this.openSnackBar("Ingrese un nombre al producto", "Ok!") : this.aux++;
+  //     (this.productToAdd.slug == null) ? this.openSnackBar("Ingrese un slug al producto", "Ok!") : this.aux++;
+  //     (this.productToAdd.description == null) ? this.openSnackBar("Ingrese una descripción al producto", "Ok!") : this.aux++;
+  //     (this.productToAdd.code == null) ? this.openSnackBar("Ingrese un codigo al producto", "Ok!") : this.aux++;
+  //     (this.productToAdd.seccion == null) ? this.openSnackBar("Ingrese una seccion al producto", "Ok!") :
+
+  //     //  We are saving the seccion to filter categories
+  //     // this.productToAdd.seccion get the value of the ngModel
+  //     console.log(this.listSeccion);
+  //     console.log(this.productToAdd.seccion);
+  //     this.seccionService.getJsonForName(this.productToAdd.seccion,this.listSeccion)
+  //     .subscribe((data) => {
+  //       console.log(data);
+  //       this.keySeccionSelected = data.$key;
+  //       this.filterSeccion(data.$key)
+  //     })
+
+  //     this.aux++;
+  //     if(this.aux == 5){
+  //       //  Change template
+  //       this.booleanNextPage = false;
+  //     }
+  //   }
+
+
     //  Do a list of etiquetas.
-    this.seccionService.getEtiquetas()
-    .snapshotChanges()
-    .subscribe(item => {
-      this.listEtiquetas = [];
-      item.forEach(element => {
-        let x = element.payload.toJSON();
-        x["$key"] = element.key;
-        this.listEtiquetas.push(x);
-      });
-    });
-  }
+  //   this.seccionService.getEtiquetas()
+  //   .snapshotChanges()
+  //   .subscribe(item => {
+  //     this.listEtiquetas = [];
+  //     item.forEach(element => {
+  //       let x = element.payload.toJSON();
+  //       x["$key"] = element.key;
+  //       this.listEtiquetas.push(x);
+  //     });
+  //   });
+  // }
 
   /** This is a filter to the input of the etiquet's */
   applyFilterEtiquetas() {
@@ -175,7 +174,7 @@ export class UpdateProductComponent implements OnInit {
       }
     });
   }
- 
+
 
 
   /** When we are going to a next page, we filter all categorias of the seccion selected. */
@@ -189,7 +188,7 @@ export class UpdateProductComponent implements OnInit {
         x["$key"] = element.key;
         this.listSeccionFilter.push(x);
       });
-    })  
+    })
   }
 
   /** Insert a new categoria */
@@ -215,7 +214,7 @@ export class UpdateProductComponent implements OnInit {
   /** Insert a new option */
   handleAddOption(){
     this.seccionService.getJsonOfCategoriaForKey(this.keyCategoriaSelected, this.listSeccionFilter)
-    .subscribe((data) => {  
+    .subscribe((data) => {
       this.seccionService.insertOption(this.optionToAdd, data.name);
     });
   }
@@ -236,21 +235,21 @@ export class UpdateProductComponent implements OnInit {
     if(toAdd == true){
       this.seccionService.insertEtiquetas(this.etiquetaToAdd);
     }
-     
+
     for(let i in this.arrayEtiquetasSelected){
       if(this.arrayEtiquetasSelected[i] == this.etiquetaToAdd){
         toAddOnArray = false;
-      }  
+      }
     }
     if(toAddOnArray == true){
       if(this.arrayEtiquetasSelected.length == null){
         this.arrayEtiquetasSelected[0] = this.etiquetaToAdd;
       }
-      this.arrayEtiquetasSelected[this.arrayEtiquetasSelected.length] = this.etiquetaToAdd;  
+      this.arrayEtiquetasSelected[this.arrayEtiquetasSelected.length] = this.etiquetaToAdd;
     }
     this.etiquetaToAdd = "";
   }
-  
+
   handlePullEtiqueta(nameOfEtiquetaToHide){
     console.log(nameOfEtiquetaToHide)
     var index = this.arrayEtiquetasSelected.indexOf(nameOfEtiquetaToHide);
@@ -286,7 +285,7 @@ export class UpdateProductComponent implements OnInit {
       });
     })
   }
-  
+
 
   /** This function used SearchNameOfCategoria() and SearchNameOfOptions */
   updateProduct(){
@@ -322,7 +321,7 @@ export class UpdateProductComponent implements OnInit {
       this.request.onload = (e) => {
         console.log("some");
     //  this.productToAdd.url = this.request.responseText;
-      
+
       }
     //  this.productToAdd.url = this.request.responseText;
     console.log(this.request.responseText);
