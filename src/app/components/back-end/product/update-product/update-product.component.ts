@@ -320,10 +320,9 @@ export class UpdateProductComponent implements OnInit {
       this.request.send(this.formObjectIMG);
       this.request.onload = (e) => {
         console.log("some");
-    //  this.productToAdd.url = this.request.responseText;
-
+     this.productToAdd.url = this.request.responseText;
       }
-    //  this.productToAdd.url = this.request.responseText;
+     this.productToAdd.url = this.request.responseText;
     console.log(this.request.responseText);
   }
 
