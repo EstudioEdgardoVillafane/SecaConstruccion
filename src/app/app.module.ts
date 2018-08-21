@@ -107,6 +107,7 @@ import { NavbarHomeComponent } from './components/front-end/navbar-home/navbar-h
 import { FooterMaquetaComponent } from './components/front-end/footer-maqueta/footer-maqueta.component';
 import { BreakSpacePipe } from './pipes/break-space.pipe';
 import { EmailCheckLandingComponent } from './components/front-end/email-check-landing/email-check-landing.component';
+import { AlfaHomeComponent } from './alfa-home/alfa-home.component';
 
 
 
@@ -161,6 +162,7 @@ import { EmailCheckLandingComponent } from './components/front-end/email-check-l
     FooterMaquetaComponent,
     BreakSpacePipe,
     EmailCheckLandingComponent,
+    AlfaHomeComponent,
   ],
   imports: [
   AppRoutingModule,
