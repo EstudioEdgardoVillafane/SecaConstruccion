@@ -1,6 +1,6 @@
 
   <h1 class="text-center">Agregar producto</h1>
-  <mat-grid-list cols="2" rowHeight="450px">
+  <mat-grid-list [cols]="countTileSection" rowHeight="{{tamHeightSection}}" (window:resize)="onResize($event)">
     <mat-grid-tile>
         <div class="form-containerr">
             <mat-form-field class="mtt">

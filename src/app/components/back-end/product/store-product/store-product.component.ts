@@ -30,6 +30,10 @@ export class StoreProductComponent implements OnInit {
   listFilter: any[];
   listFilterEtiqueta: any[];
   listEtiquetas: any[];
+  tamHeightSection;
+  countTileSection;
+  tamHeightSectionButtons;
+  countTileSectionButtons;
 
   arrayCheckbox: string[];
   arrayEtiquetasSelected = new Array();
@@ -47,7 +51,36 @@ export class StoreProductComponent implements OnInit {
   afterCheck;
   auxCheckbox;
 
+
+  onResize(event) { // responsive event
+    if (event.target.innerWidth <= 768) {
+    this.tamHeightSection = "450px";
+    this.countTileSection = 1;
+
+    } else {
+    this.tamHeightSection = "450px;"
+    this.countTileSection = 2;
+
+
+    }
+    }
+
+    onScroll(navbar) {
+    const scrollPosition = window.pageYOffset
+    if (scrollPosition >= 240){
+    console.log(navbar);
+    }
+    }
   ngOnInit() {
+    // responsive on init
+    if (screen.width <= 768) {
+      this.tamHeightSection = "450px";
+      this.countTileSection = 1;
+
+    } else {
+      this.tamHeightSection = "450px;"
+      this.countTileSection = 2;
+    }
     //  List of fireBase
 
     this.seccionService.getSeccion()
