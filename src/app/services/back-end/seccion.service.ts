@@ -76,6 +76,11 @@ export class SeccionService {
       // password: seccionObject.password
     });
   }
+  updateOption(key, data) {
+    this.listCategoriaFilter.update(key, {
+      name: data,
+    });
+  }
 
   getJsonForName(name: string, json) {
     return of(json.find((seccion => seccion.name === name)));
@@ -94,5 +99,8 @@ export class SeccionService {
 
   deleteSeccion($key) {
     this.listSeccion.remove($key);
+  }
+  deleteOption($key) {
+    this.listCategoriaFilter.remove($key);
   }
 }

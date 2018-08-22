@@ -27,6 +27,9 @@ h3{
 .w100{
     width: 100%!important;
 }
+.insrtAtrib{
+  width:700px;
+}
 .enmarcada{
 border:3px solid #000; /* ancho - tipo - color */
 padding:2px; /* distancia entre la img y el borde */

@@ -13,9 +13,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./store-product.component.css']
 })
 export class StoreProductComponent implements OnInit {
-  
-  constructor(private productService : ProductService, private router : Router, private seccionService : SeccionService, public snackBar: MatSnackBar) { }
-  
+
+  constructor(  private productService: ProductService,
+                private router: Router,
+                private seccionService: SeccionService,
+                public snackBar: MatSnackBar) { }
+
   booleanAdd: boolean;
   booleanNextPage: boolean = true;
   alertFoto: boolean = false;
@@ -95,6 +98,9 @@ export class StoreProductComponent implements OnInit {
   addSeccion(){
     this.seccionService.insertSeccion(this.productToAdd);
     this.booleanAdd = false;
+  }
+  handleDeleteOption(key) {
+    this.seccionService.deleteOption(key);
   }
 
   /** Next page to store */
@@ -303,7 +309,7 @@ export class StoreProductComponent implements OnInit {
     if(event.target.value === ""){
       this.alertFoto = true;
       this.imgName = undefined;
-    }else{  
+    }else{
     this.formImg = document.getElementById("formIMG");
     this.formObjectIMG = new FormData(this.formImg);
       this.request = new XMLHttpRequest();
@@ -315,7 +321,7 @@ export class StoreProductComponent implements OnInit {
      this.imgName = this.productToAdd.url;
     }
      this.productToAdd.url = this.request.responseText;
-     this.alertFoto = false; 
+     this.alertFoto = false;
      this.imgName = this.productToAdd.url;
     }
   }

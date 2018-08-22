@@ -7,11 +7,11 @@
       <mat-form-field class="fw">
           <input matInput placeholder="Slug del producto" [(ngModel)]="productToAdd.slug" name="slug">
         </mat-form-field>
-    
+
       <mat-form-field class="fw">
         <textarea matInput placeholder="Descripción del producto" [(ngModel)]="productToAdd.description" name="description"></textarea>
       </mat-form-field>
-    
+
       <mat-form-field class="fw">
         <input matInput placeholder="Codigo" [(ngModel)]="productToAdd.code" name="code">
       </mat-form-field>
@@ -19,13 +19,13 @@
           <input type="text"  placeholder="Seleccionce seccion"  matInput [matAutocomplete]="auto" (keyup)="applyFilter($event.target.value)" [(ngModel)]="productToAdd.seccion" name="name">
           <mat-icon *ngIf="booleanAdd" matSuffix class="addAny" (click)="handleAddSeccion()">add_circle_outline</mat-icon>
         </mat-form-field>
-        
+
         <mat-autocomplete #auto="matAutocomplete" class="fw">
           <mat-option *ngFor="let option of listFilter" [value]="option">{{option}}</mat-option>
         </mat-autocomplete>
         <button mat-raised-button color="primary" class="mr" (click)="goNextPage()"> Siguiente </button>
-        <button mat-raised-button color="warn" routerLink="/backend" > Volver al listado </button> 
-  
+        <button mat-raised-button color="warn" routerLink="/backend" > Volver al listado </button>
+
     </div>
     <div class="form-container" *ngIf="!booleanNextPage">
     <!-- atributos -->
@@ -34,26 +34,28 @@
         <mat-form-field class="w100">
           <input matInput placeholder="Agregar atributo..." type="text" [(ngModel)]="categoriaToAdd" name="name" (keyup.enter)="handleAddCategoria()">
           <mat-icon matSuffix (click)="handleAddCategoria()" class="addAny">add</mat-icon>
-        </mat-form-field>  
-      </div>    
+        </mat-form-field>
+      </div>
       <mat-expansion-panel class="fw"  *ngFor="let x of listSeccionFilter"  [expanded]="auxCheckbox === x.$key" (closed)="handleClosePanel()" (opened)="handleCategoriaSelected(x)">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{x.name}}  
+              {{x.name}}
             </mat-panel-title>
           <mat-panel-description>
           <a>atributo</a>
           </mat-panel-description>
           </mat-expansion-panel-header>
           <mat-form-field>
-            <input type="text" matInput placeholder="Ingrese una opcion para agregar" [(ngModel)]="optionToAdd" name="option">
+            <input class="insrtAtrib" type="text" matInput placeholder="Ingrese un atributo para agregar" [(ngModel)]="optionToAdd" name="option">
             <mat-icon matSuffix (click)="handleAddOption()" class="addAny">add</mat-icon>
           </mat-form-field>
           <mat-list>
               <mat-list-item *ngFor="let option of listOption">
-                  <mat-checkbox id="{{option.$key}}" [checked]="afterCheck === option.$key" (change)="handleSaveCheckbox(option)"> {{option.name}}</mat-checkbox>
-              </mat-list-item>
-          </mat-list>        
+                  <mat-checkbox id="{{option.$key}}" *ngIf="!booleanEditOption" [checked]="afterCheck === option.$key" (change)="handleSaveCheckbox(option)"> {{option.name}}</mat-checkbox>
+                  <mat-icon matSuffix (click)="handleDeleteOption(option.$key)" class="addAny">delete</mat-icon>
+
+                </mat-list-item>
+          </mat-list>
         </mat-expansion-panel>
         <!-- Etiquetas -->
         <mat-form-field class="fw mt">
@@ -68,9 +70,9 @@
         <br>
         <p> foto Actual del producto:</p>
         <img src="{{img}}" alt="foto del producto" class="enmarcada">
-        
+
         <form id="formIMG">
-            <!-- Imagen del producto - 
+            <!-- Imagen del producto -
             <a *ngIf="!alertFoto"> Debe subir una imagen de formato .jpg .png .web</a>
             <a style="color:Red" *ngIf="alertFoto"> Debe subir una imagen de formato .jpg .png .web</a> -->
             <label class="labelFile">
@@ -79,8 +81,8 @@
       </label>
       <!-- <a *ngIf="imgName != undefined">Nombre de la imagen subida: {{imgName}}</a> -->
         </form>
-  
-  
+
+
         <mat-form-field class="mt">
           <!-- Any mat-icon here -->
           <mat-icon matPrefix>attach_money</mat-icon>
@@ -92,4 +94,3 @@
           <button mat-raised-button color="warn" routerLink="/backend" > Volver al listado </button>
         </span>
       </div>
-      
