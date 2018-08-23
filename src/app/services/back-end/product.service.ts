@@ -34,7 +34,15 @@ export class ProductService {
   getEtiquetaForKey(key, json){
     return of(json.find((product => product.$key === key)));
   }
-
+  getProductBySectionName(name, json){
+    return of(json.find((product => product.seccion === name)));
+  }
+  getProductByOptionName(name, json){
+    return of(json.find((product => product.option === name)));
+  }
+  getJsonProductWhitAtribute(name,json){
+    return of(json.find((product => product.categoria === name)));
+  }
   insertProduct(productObject : Product){
     this.listProducts.push({
       name: productObject.name,

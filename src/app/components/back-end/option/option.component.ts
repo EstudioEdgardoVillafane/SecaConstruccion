@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatTableDataSource, MatSnackBar} from '@angular/material';
 import { SectionService } from '../../../services/back-end/section.service';
 import { CategoryService } from '../../../services/back-end/category.service';
 import {SelectionModel} from '@angular/cdk/collections';
 import { Section } from '../../../model/section';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ProductService } from '../../../services/back-end/product.service';
 
 @Component({
   selector: 'app-option',
@@ -16,7 +17,9 @@ export class OptionComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private categoryService: CategoryService,
-               private sectionService: SectionService) { }
+              private sectionService: SectionService,
+              private snackBar: MatSnackBar,
+              private productService: ProductService) { }
 
   listSection: any[];
   listCategoria: any[];
@@ -46,36 +49,25 @@ export class OptionComponent implements OnInit {
 
 
   handleDestroy() {
+    const optionDetele = this.selection.selected;
+    this.listProducts();
 
-
-    const data = this.selection.selected;
-    data.forEach(element => {
-      this.sectionService.getJsonOfOptionForOption(element, this.listOption)
-      .subscribe(date => {
-
-      this.sectionService.getJsonOfOptionForName(date.category, this.listCategoria)
-    .subscribe(dataa => {
-      //  this.keyCategory = dataa.$key;
-       console.log(dataa);
-       console.log(element);
-      this.sectionService.getJsonOfOptionForSection(dataa.section, this.listSection)
-      .subscribe(dataaa => {
-        // this.keySection = dataa.$key;
-         console.log(dataaa);
-        this.sectionService.getOptiontoList(dataaa.$key, dataa.$key)
-        .snapshotChanges()
-        .subscribe(e => {
-          e.forEach(elementt => {
-            console.log (elementt.payload.toJSON());
-
-          });
-        });
-      });
-    });
-      this.sectionService.deleteOption(element);
+    optionDetele.forEach(option => {
+      this.sectionService.getJsonOfOptionForOption(option, this.listOption)//search option
+      .subscribe((dataOption) => {
+        console.log(dataOption)
+        this.productService.getProductByOptionName(dataOption.name,this.listProduct)
+        .subscribe((dataProduct)=>{
+          console.log(dataProduct)
+          if(dataProduct == undefined){
+            this.sectionService.deleteOption(option);
+          }else{
+            this.snackBar.open("hay una opcion que contienen productos", "Ok!",{duration: 3000}) 
+          }
+     });
     });
     });
-    this.listar();
+    // this.listar();
   }
 
   handleEdit(option) {
@@ -117,6 +109,22 @@ listar() {
       });
       x['$key'] = element.key;
         this.listSection.push(x);
+    });
+  });
+}
+
+listProduct: any[];
+listProducts() {
+  this.productService.getProduct()
+  .snapshotChanges()
+  .subscribe(item =>  {
+    this.listProduct = [];
+    item.forEach(element => {
+     let x = element.payload.toJSON();
+     x['$key'] = element.key;
+     if(x['status' ]!== 0){
+       this.listProduct.push(x);
+     }
     });
   });
 }

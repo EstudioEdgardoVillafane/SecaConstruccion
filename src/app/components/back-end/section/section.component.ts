@@ -4,8 +4,10 @@ import { SectionService } from '../../../services/back-end/section.service';
 import {SelectionModel} from '@angular/cdk/collections';
 import { Section } from '../../../model/section';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 import { map } from 'rxjs/operators';
+import { ProductService } from '../../../services/back-end/product.service';
 
 @Component({
   selector: 'app-section',
@@ -16,6 +18,8 @@ export class SectionComponent implements OnInit {
 
   constructor(private sectionService: SectionService,
               private router: Router,
+              private snackBar: MatSnackBar,
+              private productService: ProductService,
               private route: ActivatedRoute) { }
 
 
@@ -55,6 +59,9 @@ export class SectionComponent implements OnInit {
     });
   }
 
+  // listProducts(){
+  //   this.productService.
+  // }
 
 
   isAllSelected() {
@@ -72,9 +79,24 @@ export class SectionComponent implements OnInit {
   }
 
   handleDestroy() {
-    const data = this.selection.selected;
-    data.forEach(element => {
-      this.sectionService.deleteSection(element);
+    this.listProducts();
+    const seccionByDelete = this.selection.selected;
+    let products :any[];
+    seccionByDelete.forEach((element) => {
+      this.sectionService.getSeccionByKey(element,this.listSection)
+      .subscribe((dataSeccion) =>{
+        this.productService.getProductBySectionName(dataSeccion.name,this.listProduct)
+        .subscribe((dataService) => {
+     
+          products = dataService;
+            console.log( products)
+            if(products == undefined ){
+              this.sectionService.deleteSection(element);
+            }else{
+              this.snackBar.open("hay uno o mas atributos que contienen productos", "Ok!",{duration: 3000}) 
+          }
+      });
+    });
     });
   }
 
@@ -83,4 +105,21 @@ export class SectionComponent implements OnInit {
     this.router.navigate(['editar'], {relativeTo: this.route});
     console.log(section.name);
   }
+
+  listProduct: any[];
+  listProducts() {
+    this.productService.getProduct()
+    .snapshotChanges()
+    .subscribe(item =>  {
+      this.listProduct = [];
+      item.forEach(element => {
+       let x = element.payload.toJSON();
+       x['$key'] = element.key;
+       if(x['status' ]!== 0){
+         this.listProduct.push(x);
+       }
+      });
+    });
+  }
+
 }
