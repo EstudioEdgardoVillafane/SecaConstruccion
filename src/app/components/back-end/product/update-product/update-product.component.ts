@@ -20,37 +20,53 @@ export class UpdateProductComponent implements OnInit {
               private router: Router,
               private seccionService: SeccionService,
               public snackBar: MatSnackBar,
-              private _activatedRoute : ActivatedRoute) { }
+              private _activatedRoute: ActivatedRoute) { }
 
-  booleanAdd : boolean;
+  booleanAdd: boolean;
 
-  listEtiquetasFromProducts : any[];
-  listOption : any[];
-  listProducts : any[];
-  listSeccion : any[];
-  listSeccionFilter : any[];
-  listFilter : any[];
-  listFilterEtiqueta : any[];
-  listEtiquetas : any[];
-  arrayCheckbox : string[];
+  listEtiquetasFromProducts: any[];
+  listOption: any[];
+  listProducts: any[];
+  listSeccion: any[];
+  listSeccionFilter: any[];
+  listFilter: any[];
+  listFilterEtiqueta: any[];
+  listEtiquetas: any[];
+  arrayCheckbox: string[];
   arrayEtiquetasSelected = new Array();
 
   productToAdd = new Product();
   seccionToAdd = new Seccion();
-  categoriaToAdd : string = ""; //  ngModel
-  optionToAdd : string = "";    //  ngModel
-  etiquetaToAdd : string = "";  //  ngModel
+  categoriaToAdd: string = ""; //  ngModel
+  optionToAdd: string = "";    //  ngModel
+  etiquetaToAdd: string = "";  //  ngModel
   aux : number;
   keySeccionSelected : string;
   keyCategoriaSelected : string;
   keyToEdit : string;
+  tamHeightSection;
+  countTileSection;
   //  U.X
   afterCheck;
   auxCheckbox;
 
+  onResize(event) {
+    if (event.target.innerWidth <= 768) {
+      this.tamHeightSection = "450px";
+      this.countTileSection = 1;
+    } else {
+      this.tamHeightSection = "450px;"
+      this.countTileSection = 2;
+    }
+  }
   ngOnInit() {
-    //  List of fireBase
-    // this.listar();
+    if (screen.width <= 768) {
+      this.tamHeightSection = "450px";
+      this.countTileSection = 1;
+    } else {
+      this.tamHeightSection = "450px;"
+      this.countTileSection = 2;
+    }
 
     this.listOfProducts();
     this.seccionService.getSeccion()
