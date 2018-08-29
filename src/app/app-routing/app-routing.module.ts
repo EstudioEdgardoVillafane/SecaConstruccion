@@ -43,6 +43,7 @@ import { NotificationComponent } from '../components/front-end/notification/noti
 import { CreateClientComponent } from '../components/front-end/create-client/create-client.component';
 import { NotFoundComponent } from '../global/not-found/not-found.component';
 import { MaquetaComponent } from '../components/front-end/maqueta/maqueta.component';
+import { AlfaHomeComponent } from '../alfa-home/alfa-home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -73,7 +74,6 @@ const routes: Routes = [
       { path: 'categorias/agregar', component: StoreCategoryComponent },
       { path: 'categorias/editar', component: UpdateCategoryComponent }
     ]},
-    { path: 'maqueta', component: MaquetaComponent },
     { path: '', component: FrontEndComponent,
   children: [
     { path: '', redirectTo: 'home', pathMatch: 'full'},

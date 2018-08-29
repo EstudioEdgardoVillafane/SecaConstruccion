@@ -40,8 +40,10 @@
 <mat-toolbar class="toolbar-search">
   <span class="container-img"><img src="./assets/img/logo3.png"></span>
     <span class="right-input">
+      <div class="display-table">
       <input type="text" id="inputSearch" [(ngModel)]="nameToSearch" name="inputSearch" placeholder="Buscar producto"/>
       <button id="goSearch" class="cp" (click)="handleSearchProduct('busqueda/', 'busqueda')" ><mat-icon>search</mat-icon></button>
+    </div>
     </span>
     <span class="circle ltl" matBadge="0" matBadgePosition="after" matBadgeColor="warn"><mat-icon class="shopping cp" >shopping_cart</mat-icon> <a id="price-cart">$0,00</a></span>
     

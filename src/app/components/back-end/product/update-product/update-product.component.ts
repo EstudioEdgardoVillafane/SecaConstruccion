@@ -27,7 +27,6 @@ export class UpdateProductComponent implements OnInit {
   booleanAdd: boolean;
   booleanNextPage: boolean = true;
   booleanEditOption: boolean = false;
-
   listEtiquetasFromProducts: any[];
   listOption: any[];
   listProducts: any[];
@@ -45,17 +44,38 @@ export class UpdateProductComponent implements OnInit {
   categoriaToAdd : string = ""; //  ngModel
   optionToAdd : string = "";    //  ngModel
   etiquetaToAdd : string = "";  //  ngModel
+  categoriaToAdd: string = ""; //  ngModel
+  optionToAdd: string = "";    //  ngModel
+  etiquetaToAdd: string = "";  //  ngModel
   aux : number;
   keySeccionSelected : string;
   keyCategoriaSelected : string;
   keyToEdit : string;
+  tamHeightSection;
+  countTileSection;
   //  U.X
   afterCheck;
   auxCheckbox;
 
+
+  onResize(event) {
+    if (event.target.innerWidth <= 768) {
+      this.tamHeightSection = "450px";
+      this.countTileSection = 1;
+    } else {
+      this.tamHeightSection = "450px;"
+      this.countTileSection = 2;
+    }
+  }
   ngOnInit() {
-    //  List of fireBase
-    // this.listar();
+    if (screen.width <= 768) {
+      this.tamHeightSection = "450px";
+      this.countTileSection = 1;
+    } else {
+      this.tamHeightSection = "450px;"
+      this.countTileSection = 2;
+    }
+
     this.listOfProducts();
     this.seccionService.getSeccion()
     .snapshotChanges()
@@ -135,49 +155,50 @@ export class UpdateProductComponent implements OnInit {
   }
 
   /** Next page to store */
-  goNextPage(){
 
-    if(this.booleanAdd == true){
-      this.openSnackBar("Ingrese una seccion al producto o agrege una seccion nueva", "Ok!");
-    }else{
-      this.aux = 0;
-      (this.productToAdd.name == null) ? this.openSnackBar("Ingrese un nombre al producto", "Ok!") : this.aux++;
-      (this.productToAdd.slug == null) ? this.openSnackBar("Ingrese un slug al producto", "Ok!") : this.aux++;
-      (this.productToAdd.description == null) ? this.openSnackBar("Ingrese una descripción al producto", "Ok!") : this.aux++;
-      (this.productToAdd.code == null) ? this.openSnackBar("Ingrese un codigo al producto", "Ok!") : this.aux++;
-      (this.productToAdd.seccion == null) ? this.openSnackBar("Ingrese una seccion al producto", "Ok!") :
+  // goNextPage(){
 
-      //  We are saving the seccion to filter categories
-      // this.productToAdd.seccion get the value of the ngModel
-      console.log(this.listSeccion);
-      console.log(this.productToAdd.seccion);
-      this.seccionService.getJsonForName(this.productToAdd.seccion,this.listSeccion)
-      .subscribe((data) => {
-        console.log(data);
-        this.keySeccionSelected = data.$key;
-        this.filterSeccion(data.$key)
-      })
+  //   if(this.booleanAdd == true){
+  //     this.openSnackBar("Ingrese una seccion al producto o agrege una seccion nueva", "Ok!");
+  //   }else{
+  //     this.aux = 0;
+  //     (this.productToAdd.name == null) ? this.openSnackBar("Ingrese un nombre al producto", "Ok!") : this.aux++;
+  //     (this.productToAdd.slug == null) ? this.openSnackBar("Ingrese un slug al producto", "Ok!") : this.aux++;
+  //     (this.productToAdd.description == null) ? this.openSnackBar("Ingrese una descripción al producto", "Ok!") : this.aux++;
+  //     (this.productToAdd.code == null) ? this.openSnackBar("Ingrese un codigo al producto", "Ok!") : this.aux++;
+  //     (this.productToAdd.seccion == null) ? this.openSnackBar("Ingrese una seccion al producto", "Ok!") :
 
-      this.aux++;
-      if(this.aux == 5){
-        //  Change template
-        this.booleanNextPage = false;
-      }
-    }
+  //     //  We are saving the seccion to filter categories
+  //     // this.productToAdd.seccion get the value of the ngModel
+  //     console.log(this.listSeccion);
+  //     console.log(this.productToAdd.seccion);
+  //     this.seccionService.getJsonForName(this.productToAdd.seccion,this.listSeccion)
+  //     .subscribe((data) => {
+  //       console.log(data);
+  //       this.keySeccionSelected = data.$key;
+  //       this.filterSeccion(data.$key)
+  //     })
+
+  //     this.aux++;
+  //     if(this.aux == 5){
+  //       //  Change template
+  //       this.booleanNextPage = false;
+  //     }
+  //   }
 
 
     //  Do a list of etiquetas.
-    this.seccionService.getEtiquetas()
-    .snapshotChanges()
-    .subscribe(item => {
-      this.listEtiquetas = [];
-      item.forEach(element => {
-        let x = element.payload.toJSON();
-        x["$key"] = element.key;
-        this.listEtiquetas.push(x);
-      });
-    });
-  }
+  //   this.seccionService.getEtiquetas()
+  //   .snapshotChanges()
+  //   .subscribe(item => {
+  //     this.listEtiquetas = [];
+  //     item.forEach(element => {
+  //       let x = element.payload.toJSON();
+  //       x["$key"] = element.key;
+  //       this.listEtiquetas.push(x);
+  //     });
+  //   });
+  // }
 
   /** This is a filter to the input of the etiquet's */
   applyFilterEtiquetas() {
