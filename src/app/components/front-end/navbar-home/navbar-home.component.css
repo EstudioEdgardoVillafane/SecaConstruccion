@@ -43,9 +43,7 @@
    align-items: center;
    
 }
-.nav-fixed{
 
-}
 .item-click{
     width: 250px;
 
@@ -99,22 +97,30 @@
 .container-img > img {
     max-height: 100%;
 }
+.display-table{
+    display: table;
+    height: 50px;
+}
 #inputSearch{
+    display: table-cell;vertical-align: middle;
     outline:0px;
     font-size: 11px;
-    height:50px;
-    border: 0px solid white!important;
+    height:100%;
+    border: 0px;
     margin-left: 10px;
     width: 450px;
-    position: relative;
-    bottom: 7px;
+    padding-bottom: 0px;
+    padding-top:0px;
     border-radius: 15px 0 0 15px;
     padding-left: 15px;
 }
 #goSearch{
+    display: table-cell;vertical-align: middle;
     border-radius: 0 25px 25px 0;
-    height: 52px;
+    height: 100%;
     border: 0;
+    padding-bottom: 0px;
+    padding-top:0px;
     width: 65px;
     background-color:#bb302a;
     color:white;
@@ -124,12 +130,11 @@
     color:#bb302a;
 }
 #goSearch > mat-icon {
-    position: relative;
-    top: 2px;
+    /* position: relative;
+    top: 2px; */
 }
 .right-input{
     flex: 0.4 1 auto;
-    padding-top: 6px;
 }
 .shopping{
     position: relative;

@@ -1,9 +1,20 @@
-.form-container, .fw{
-    width: 100%;
-    padding-bottom: 30px;
+.form-container, .form-containerr, .fw{
+    width: 70%;
+    /* padding-bottom: 4  px; */
+}
+.form-containerr{
+   margin-top: 33px;
+}
+.form-container,.form-containerr, .mat-grid-tile, .mat-figure{
+  display: block;
+  height: 100%;
+}
+.mtt, input{
+  max-width: 120px;
 }
 .fw{
     clear: right;
+    width: 100%;
 }
 h3{
     padding-top: 30px;

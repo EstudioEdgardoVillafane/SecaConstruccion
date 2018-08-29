@@ -13,11 +13,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./store-product.component.css']
 })
 export class StoreProductComponent implements OnInit {
-  
-  constructor(private productService : ProductService, private router : Router, private seccionService : SeccionService, public snackBar: MatSnackBar) { }
-  
+
+  constructor(private productService: ProductService,
+              private router: Router,
+              private seccionService: SeccionService,
+              public snackBar: MatSnackBar) { }
+
   booleanAdd: boolean;
-  booleanNextPage: boolean = true;
+  // booleanNextPage: boolean = true;
   alertFoto: boolean = false;
   listEtiquetasFromProducts: any[];
   listOption: any[];
@@ -27,6 +30,10 @@ export class StoreProductComponent implements OnInit {
   listFilter: any[];
   listFilterEtiqueta: any[];
   listEtiquetas: any[];
+  tamHeightSection;
+  countTileSection;
+  tamHeightSectionButtons;
+  countTileSectionButtons;
 
   arrayCheckbox: string[];
   arrayEtiquetasSelected = new Array();
@@ -44,7 +51,36 @@ export class StoreProductComponent implements OnInit {
   afterCheck;
   auxCheckbox;
 
+
+  onResize(event) { // responsive event
+    if (event.target.innerWidth <= 768) {
+    this.tamHeightSection = "450px";
+    this.countTileSection = 1;
+
+    } else {
+    this.tamHeightSection = "450px;"
+    this.countTileSection = 2;
+
+
+    }
+    }
+
+    onScroll(navbar) {
+    const scrollPosition = window.pageYOffset
+    if (scrollPosition >= 240){
+    console.log(navbar);
+    }
+    }
   ngOnInit() {
+    // responsive on init
+    if (screen.width <= 768) {
+      this.tamHeightSection = "450px";
+      this.countTileSection = 1;
+
+    } else {
+      this.tamHeightSection = "450px;"
+      this.countTileSection = 2;
+    }
     //  List of fireBase
 
     this.seccionService.getSeccion()
@@ -98,49 +134,49 @@ export class StoreProductComponent implements OnInit {
   }
 
   /** Next page to store */
-  goNextPage(){
+  // goNextPage(){
 
-    if(this.booleanAdd == true){
-      this.openSnackBar("Ingrese una seccion al producto o agrege una seccion nueva", "Ok!" );
-    }else{
-      this.aux = 0;
-      (this.productToAdd.name == null) ? this.openSnackBar("Ingrese un nombre al producto", "Ok!") : this.aux++;
-      (this.productToAdd.slug == null) ? this.openSnackBar("Ingrese un slug al producto", "Ok!" ) : this.aux++;
-      (this.productToAdd.description == null) ? this.openSnackBar("Ingrese una descripción al producto", "Ok!" ) : this.aux++;
-      (this.productToAdd.code == null) ? this.openSnackBar("Ingrese un codigo al producto", "Ok!" ) : this.aux++;
-      (this.productToAdd.seccion == null) ? this.openSnackBar("Ingrese una seccion al producto", "Ok!") :
+  //   if(this.booleanAdd == true){
+  //     this.openSnackBar("Ingrese una seccion al producto o agrege una seccion nueva", "Ok!" );
+  //   }else{
+  //     this.aux = 0;
+  //     (this.productToAdd.name == null) ? this.openSnackBar("Ingrese un nombre al producto", "Ok!") : this.aux++;
+  //     (this.productToAdd.slug == null) ? this.openSnackBar("Ingrese un slug al producto", "Ok!" ) : this.aux++;
+  //     (this.productToAdd.description == null) ? this.openSnackBar("Ingrese una descripción al producto", "Ok!" ) : this.aux++;
+  //     (this.productToAdd.code == null) ? this.openSnackBar("Ingrese un codigo al producto", "Ok!" ) : this.aux++;
+  //     (this.productToAdd.seccion == null) ? this.openSnackBar("Ingrese una seccion al producto", "Ok!") :
 
-      //  We are saving the seccion to filter categories
-      // this.productToAdd.seccion get the value of the ngModel
+  //     //  We are saving the seccion to filter categories
+  //     // this.productToAdd.seccion get the value of the ngModel
 
-      this.seccionService.getJsonForName(this.productToAdd.seccion,this.listSeccion)
-      .subscribe((data) => {
-        console.log(data)
-        this.keySeccionSelected = data.$key;
-        this.filterSeccion(data.$key)
-      })
+  //     this.seccionService.getJsonForName(this.productToAdd.seccion,this.listSeccion)
+  //     .subscribe((data) => {
+  //       console.log(data)
+  //       this.keySeccionSelected = data.$key;
+  //       this.filterSeccion(data.$key)
+  //     })
 
-      this.aux++;
-      if(this.aux == 5){
-        //  Change template
-        this.booleanNextPage = false;
-      }
-    }
+  //     this.aux++;
+  //     if(this.aux == 5){
+  //       //  Change template
+  //       this.booleanNextPage = false;
+  //     }
+  //   }
 
-    this.listOfProducts();
+  //   this.listOfProducts();
 
-    //  Do a list of etiquetas.
-    this.seccionService.getEtiquetas()
-    .snapshotChanges()
-    .subscribe(item => {
-      this.listEtiquetas = [];
-      item.forEach(element => {
-        let x = element.payload.toJSON();
-        x["$key"] = element.key;
-        this.listEtiquetas.push(x);
-      });
-    });
-  }
+  //   //  Do a list of etiquetas.
+  //   this.seccionService.getEtiquetas()
+  //   .snapshotChanges()
+  //   .subscribe(item => {
+  //     this.listEtiquetas = [];
+  //     item.forEach(element => {
+  //       let x = element.payload.toJSON();
+  //       x["$key"] = element.key;
+  //       this.listEtiquetas.push(x);
+  //     });
+  //   });
+  // }
 
   /** This is a filter to the input of the etiquet's */
   applyFilterEtiquetas() {
@@ -303,7 +339,7 @@ export class StoreProductComponent implements OnInit {
     if(event.target.value === ""){
       this.alertFoto = true;
       this.imgName = undefined;
-    }else{  
+    }else{
     this.formImg = document.getElementById("formIMG");
     this.formObjectIMG = new FormData(this.formImg);
       this.request = new XMLHttpRequest();
@@ -315,7 +351,7 @@ export class StoreProductComponent implements OnInit {
      this.imgName = this.productToAdd.url;
     }
      this.productToAdd.url = this.request.responseText;
-     this.alertFoto = false; 
+     this.alertFoto = false;
      this.imgName = this.productToAdd.url;
     }
   }

@@ -16,6 +16,9 @@ td{
     height: 100px!important;
     padding:10px!important;
 }
+.stablew{
+  min-width: 120px;
+}
 
 #fav{
     cursor:pointer;
