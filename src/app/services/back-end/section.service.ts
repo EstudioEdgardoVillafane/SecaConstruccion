@@ -59,6 +59,9 @@ export class SectionService {
     return this.listOptiontoList = this.fireBase.list('seccion/' + sectionKey + '/categoria/' + categoryKey + '/opcion');
 }
 
+  getSeccionByKey(key,json) {
+    return of(json.find((section => section.$key === key)));
+  }
 
   deleteSection($key) {
     this.listSection.remove($key);
@@ -104,6 +107,9 @@ export class SectionService {
   }
   getJsonOfOptionForOption($key, json) {
     return of(json.find((option => option.$key === $key)));
+  }
+  getJsonOfAtribute($key, json) {
+    return of(json.find((atribute => atribute.$key === $key)));
   }
 // this methods listed beside are for storing the img of the section
 

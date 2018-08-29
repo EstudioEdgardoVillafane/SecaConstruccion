@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatTableDataSource, MatSnackBar} from '@angular/material';
 import { SectionService } from '../../../services/back-end/section.service';
 import { CategoryService } from '../../../services/back-end/category.service';
 import {SelectionModel} from '@angular/cdk/collections';
 import { Section } from '../../../model/section';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ProductService } from '../../../services/back-end/product.service';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -15,6 +16,8 @@ export class CategoryComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private categoryService: CategoryService,
+              private productService: ProductService,
+              private snackBar: MatSnackBar,
               private sectionService: SectionService) { }
 
   listSection: any[];
@@ -68,9 +71,38 @@ export class CategoryComponent implements OnInit {
   }
 
   handleDestroy() {
-    const data = this.selection.selected;
-    data.forEach(element => {
-      this.sectionService.deleteCategory(element);
+    this.listProducts();
+    const atributeForDelete = this.selection.selected;
+
+    atributeForDelete.forEach(atributeKey => {
+      this.sectionService.getJsonOfAtribute(atributeKey,this.listCategoria)
+      .subscribe((atributeJSON)=>{
+        console.log(this.listProduct)
+        console.log(atributeJSON.name);
+        this.productService.getJsonProductWhitAtribute(atributeJSON.name,this.listProduct)
+        .subscribe((ProductJSON) =>{
+          if(ProductJSON == undefined){
+            this.sectionService.deleteCategory(atributeKey);
+          }else{
+            this.snackBar.open("hay un tributo que tiene productos dentro","OK!",{duration:3000});
+          }
+        });
+      })
     });
   }
+  listProduct: any[];
+listProducts() {
+  this.productService.getProduct()
+  .snapshotChanges()
+  .subscribe(item =>  {
+    this.listProduct = [];
+    item.forEach(element => {
+     let x = element.payload.toJSON();
+     x['$key'] = element.key;
+     if(x['status' ]!== 0){
+       this.listProduct.push(x);
+     }
+    });
+  });
+}
 }
