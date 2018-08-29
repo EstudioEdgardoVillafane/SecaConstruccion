@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class StoreProductComponent implements OnInit {
 
+
   constructor(private productService: ProductService,
               private router: Router,
               private seccionService: SeccionService,
@@ -131,6 +132,9 @@ export class StoreProductComponent implements OnInit {
   addSeccion(){
     this.seccionService.insertSeccion(this.productToAdd);
     this.booleanAdd = false;
+  }
+  handleDeleteOption(key) {
+    this.seccionService.deleteOption(key);
   }
 
   /** Next page to store */

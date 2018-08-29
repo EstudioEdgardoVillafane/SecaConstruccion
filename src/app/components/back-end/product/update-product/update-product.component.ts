@@ -8,6 +8,7 @@ import { Product } from '../../../../model/product';
 import { ActivatedRoute } from '@angular/router';
 import { Key } from '../../../../../../node_modules/protractor';
 import { catchError, map, tap } from 'rxjs/operators';
+import { SectionService } from '../../../../services/back-end/section.service';
 
 @Component({
   selector: 'app-update-product',
@@ -20,10 +21,12 @@ export class UpdateProductComponent implements OnInit {
               private router: Router,
               private seccionService: SeccionService,
               public snackBar: MatSnackBar,
-              private _activatedRoute: ActivatedRoute) { }
+              private _activatedRoute: ActivatedRoute,
+              private sectionService: SectionService  ) { }
 
   booleanAdd: boolean;
-
+  booleanNextPage: boolean = true;
+  booleanEditOption: boolean = false;
   listEtiquetasFromProducts: any[];
   listOption: any[];
   listProducts: any[];
@@ -37,6 +40,10 @@ export class UpdateProductComponent implements OnInit {
 
   productToAdd = new Product();
   seccionToAdd = new Seccion();
+  optionToEdit: string = "";    //  ngModel
+  categoriaToAdd : string = ""; //  ngModel
+  optionToAdd : string = "";    //  ngModel
+  etiquetaToAdd : string = "";  //  ngModel
   categoriaToAdd: string = ""; //  ngModel
   optionToAdd: string = "";    //  ngModel
   etiquetaToAdd: string = "";  //  ngModel
@@ -49,6 +56,7 @@ export class UpdateProductComponent implements OnInit {
   //  U.X
   afterCheck;
   auxCheckbox;
+
 
   onResize(event) {
     if (event.target.innerWidth <= 768) {
@@ -120,23 +128,34 @@ export class UpdateProductComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.listFilter = [];
     this.listSeccion.forEach(element => {
-      if(element.name.toUpperCase().match(filterValue.toUpperCase())){
+      if (element.name.toUpperCase().match(filterValue.toUpperCase())) {
         this.listFilter.push(element.name);
       }
     });
-    this.booleanAdd = (this.listFilter.length == 0) ? true : false;
+    this.booleanAdd = (this.listFilter.length === 0) ? true : false;
+  }
+  changeBooleanOption() {
+    this.booleanEditOption = (this.booleanEditOption) ? false : true;
   }
 
 /** We are adding a new seccion on firebase, this function use addSeccion() */
-  handleAddSeccion(){
+  handleAddSeccion() {
     (this.productToAdd.seccion != null) ? this.addSeccion() : "nothing";
   }
-  addSeccion(){
+  addSeccion() {
     this.seccionService.insertSeccion(this.productToAdd);
     this.booleanAdd = false;
   }
+  handleDeleteOption(key) {
+    this.seccionService.deleteOption(key);
+  }
+  handleUpdateOption(key) {
+    this.seccionService.updateOption(key, this.optionToEdit);
+    this.changeBooleanOption();
+  }
 
   /** Next page to store */
+
   // goNextPage(){
 
   //   if(this.booleanAdd == true){
@@ -337,6 +356,7 @@ export class UpdateProductComponent implements OnInit {
       this.request.onload = (e) => {
         console.log("some");
      this.productToAdd.url = this.request.responseText;
+
       }
      this.productToAdd.url = this.request.responseText;
     console.log(this.request.responseText);
