@@ -44,9 +44,7 @@ export class UpdateProductComponent implements OnInit {
   categoriaToAdd : string = ""; //  ngModel
   optionToAdd : string = "";    //  ngModel
   etiquetaToAdd : string = "";  //  ngModel
-  categoriaToAdd: string = ""; //  ngModel
-  optionToAdd: string = "";    //  ngModel
-  etiquetaToAdd: string = "";  //  ngModel
+
   aux : number;
   keySeccionSelected : string;
   keyCategoriaSelected : string;

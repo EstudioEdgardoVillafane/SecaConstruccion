@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './store-product.component.html',
   styleUrls: ['./store-product.component.css']
 })
+
 export class StoreProductComponent implements OnInit {
 
 
